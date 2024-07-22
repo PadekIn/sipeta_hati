@@ -23,8 +23,8 @@ class SaparodikFactory extends Factory
             'pemilik_baru_id' => Warga::factory(),
             'aset_id' => Aset::factory(),
             'no_surat' => fake()->word,
-            'jenis_surat' => fake()->word,
-            'tanggal_surat' => fake()->word,
+            'jenis_surat' => fake()->randomElement(['tanah', 'bangunan']),
+            'tanggal_surat' => fake()->date(),
         ];
     }
 }

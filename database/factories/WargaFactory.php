@@ -19,9 +19,9 @@ class WargaFactory extends Factory
     {
         return [
             'user_id' => User::factory(),
-            'nama' => fake()->name,
-            'alamat' => fake()->address,
-            'no_telp' => fake()->phoneNumber,
+            'nama' => fake()->lastName,
+            'alamat' => fake()->sentence(2),
+            'no_telp' => fake()->e164PhoneNumber,
             'jenis_kelamin' => fake()->randomElement(['laki-laki', 'perempuan']),
             'tanggal_lahir' => fake()->date(),
         ];
