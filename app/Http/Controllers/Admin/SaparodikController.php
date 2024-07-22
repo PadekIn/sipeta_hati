@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Saparodik;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 
-class SaparodikController
+class SaparodikController extends Controller
 {
     public function index()
     {

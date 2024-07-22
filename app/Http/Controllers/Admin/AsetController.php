@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Aset;
 use App\Models\Warga;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 
-class AsetController
+class AsetController extends Controller
 {
     public function index()
     {
