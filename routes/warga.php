@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 
-Route::prefix('admin')->middleware(['auth'])->group(function () {
+Route::prefix('admin')->middleware(['auth', 'isWarga'])->group(function () {
     Route::get('/dashboard', [Dashboard::class, 'index'])->name('dashboard');
 
     Route::get('/pbb', [PbbController::class, 'index'])->name('pbb');
