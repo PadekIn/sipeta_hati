@@ -1,16 +1,19 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Warga\ProfileController;
+use App\Http\Controllers\Warga\PbbController;
+use App\Http\Controllers\Warga\AsetController;
+use App\Http\Controllers\Warga\DashboardController;
+use App\Http\Controllers\Warga\LaporanController;
+use App\Http\Controllers\Warga\SaparodikController;
 
 Route::prefix('admin')->middleware(['auth', 'isWarga'])->group(function () {
-    Route::get('/dashboard', [Dashboard::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-    Route::get('/pbb', [PbbController::class, 'index'])->name('pbb');
-
-    Route::get('/saparodik', [SaparodikController::class, 'index'])->name('saparodik');
-
-    Route::get('/aset', [AsetController::class, 'index'])->name('aset');
+    Route::get('/pbb', [LaporanController::class, 'pbb'])->name('pbb');
+    Route::get('/saparodik', [LaporanController::class, 'saparodik'])->name('saparodik');
+    Route::get('/aset', [LaporanController::class, 'aset'])->name('aset');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
