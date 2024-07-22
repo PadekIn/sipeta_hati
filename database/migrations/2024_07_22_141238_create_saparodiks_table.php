@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('saparodiks', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('pemilik_lama_id')->constrained(table: 'warga', indexName: 'saparodiks_pemilik_lama_id_foreign');
-            $table->foreignId('pemilik_baru_id')->constrained(table:'warga', indexName: 'saparodiks_pemilik_baru_id_foreign');
-            $table->foreignId('aset_id')->constrained(table:'aset', indexName: 'saparodiks_aset_id_foreign');
+            $table->foreignId('pemilik_lama_id')->constrained(table: 'wargas', indexName: 'saparodiks_pemilik_lama_id_foreign');
+            $table->foreignId('pemilik_baru_id')->constrained(table:'wargas', indexName: 'saparodiks_pemilik_baru_id_foreign');
+            $table->foreignId('aset_id')->constrained(table:'asets', indexName: 'saparodiks_aset_id_foreign');
             $table->string('no_surat', 25);
             $table->string('jenis_surat', 15);
             $table->date('tanggal_surat');
