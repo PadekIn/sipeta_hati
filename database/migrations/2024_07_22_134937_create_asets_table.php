@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('asets', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('warga_id')->constrained('warga');
+            $table->foreignId('warga_id')->constrained(table: 'warga', indexName: 'asets_warga_id_foreign');
             $table->enum('jenis_barang', ['tanah', 'bangunan']);
             $table->decimal('luas', 8, 2);
             $table->string('alamat');
