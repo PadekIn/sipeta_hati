@@ -30,4 +30,14 @@ class Warga extends Model
         return $this->hasMany(Aset::class);
     }
 
+    public function saparodik(): HasMany
+    {
+        return $this->hasMany(Saparodik::class, 'pemilik_lama_id');
+    }
+
+    public function saparodikBaru(): HasMany
+    {
+        return $this->hasMany(Saparodik::class, 'pemilik_baru_id');
+    }
+
 }

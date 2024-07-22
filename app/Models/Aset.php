@@ -28,4 +28,9 @@ class Aset extends Model
         return $this->hasMany(Pbb::class);
     }
 
+    public function saparodik():HasMany
+    {
+        return $this->hasMany(Saparodik::class);
+    }
+
 }
