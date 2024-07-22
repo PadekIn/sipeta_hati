@@ -1,41 +1,28 @@
 <x-guest-layout>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
-
-    <form method="POST" action="{{ route('login') }}">
-        @csrf
-
-        <!-- Username -->
-        <div>
-            <x-input-label for="username" :value="__('Username')" />
-            <x-text-input id="username" class="block mt-1 w-full" type="text" name="username" :value="old('username')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('username')" class="mt-2" />
-        </div>
-
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
-
-        <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
-                <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+    <article class="sign-up">
+        <h1 class="sign-up__title">Welcome back!</h1>
+        <p class="sign-up__subtitle">Sign in to your account to continue</p>
+        <form class="sign-up-form form" method="POST" action="{{ route('login') }}">
+            @csrf
+            <label class="form-label-wrapper">
+                <p class="form-label">Username</p>
+                <input name="username" class="form-input" type="username" placeholder="Enter your username" :value="old('username')" required />
+                <x-input-error :messages="$errors->get('username')" class="mt-2" />
             </label>
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            <x-primary-button class="ms-3">
-                {{ __('Log in') }}
-            </x-primary-button>
-        </div>
-    </form>
+            <label class="form-label-wrapper">
+                <p class="form-label">Password</p>
+                <input name="password" class="form-input" type="password" placeholder="Enter your password" required />
+                <x-input-error :messages="$errors->get('password')" class="mt-2" />
+            </label>
+            <label class="form-checkbox-wrapper">
+                <input name="remember" class="form-checkbox" id="remember_me" type="checkbox" />
+                <span class="form-checkbox-label">Remember me next time</span>
+            </label>
+            <button type="submit" class="form-btn primary-default-btn transparent-btn">
+                Sign in
+            </button>
+        </form>
+    </article>
 </x-guest-layout>

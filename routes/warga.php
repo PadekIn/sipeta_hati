@@ -2,13 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Warga\ProfileController;
-use App\Http\Controllers\Warga\PbbController;
-use App\Http\Controllers\Warga\AsetController;
 use App\Http\Controllers\Warga\DashboardController;
 use App\Http\Controllers\Warga\LaporanController;
-use App\Http\Controllers\Warga\SaparodikController;
 
-Route::prefix('admin')->middleware(['auth', 'isWarga'])->group(function () {
+Route::middleware(['auth', 'isWarga'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::get('/pbb', [LaporanController::class, 'pbb'])->name('pbb');

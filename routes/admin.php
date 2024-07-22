@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\Admin\Dashboard;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PbbController;
 use App\Http\Controllers\Admin\AsetController;
 use App\Http\Controllers\Admin\WargaController;
@@ -10,7 +10,7 @@ use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\SaparodikController;
 
 Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
-    Route::get('/dashboard', [Dashboard::class, 'index'])->name('admin.dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 
     Route::get('/pbb', [PbbController::class, 'index'])->name('admin.pbb');
 

@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
-class Dashboard extends Controller
+class DashboardController extends Controller
 {
     public function index()
     {
