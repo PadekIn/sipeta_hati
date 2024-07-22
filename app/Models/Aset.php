@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Vinkla\Hashids\Facades\Hashids;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Aset extends Model
 {
@@ -17,6 +18,11 @@ class Aset extends Model
         'luas',
         'alamat',
     ];
+
+    public function getHashidAttribute()
+    {
+        return Hashids::encode($this->id);
+    }
 
     public function warga():BelongsTo
     {
