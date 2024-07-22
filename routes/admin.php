@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('admin')->middleware(['auth'])->group(function () {
+Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/dashboard', [Dashboard::class, 'index'])->name('admin.dashboard');
 
     Route::get('/pbb', [PbbController::class, 'index'])->name('admin.pbb');
