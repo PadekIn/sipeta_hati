@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Aset;
 use App\Models\User;
 use App\Models\Warga;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -18,5 +19,7 @@ class DatabaseSeeder extends Seeder
         User::factory()->admin()->create();
 
         Warga::factory()->create();
+        Aset::factory()->create();
+
     }
 }
