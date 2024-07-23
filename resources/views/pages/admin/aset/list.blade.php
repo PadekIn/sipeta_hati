@@ -5,8 +5,7 @@
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('admin.aset') }}">Aset</a></li>
-                <li class="breadcrumb-item">Detail Aset</li>
+                <li class="breadcrumb-item">Aset</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -62,21 +61,21 @@
     <script>
         document.getElementById('deleteBtn').addEventListener('click', function() {
             Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
+                title: 'Apakah Kamu Yakin?',
+                text: "Ingin menghapus data Aset Ini!",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!',
-                cancelButtonText: 'No, cancel!'
+                confirmButtonText: 'Ya, Aku Yakin!',
+                cancelButtonText: 'Tidak, Batalkan!'
             }).then((result) => {
                 if (result.isConfirmed) {
                     // Perform the delete action here
                     Swal.fire(
-                        'Deleted!',
-                        'Your file has been deleted.',
-                        'success'
+                        'Terhapus!',
+                        'Data Aset Telah di Hapus.',
+                        'Berhasil'
                     )
                 }
             })

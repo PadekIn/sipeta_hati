@@ -24,22 +24,22 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
     // Saparodik
     Route::prefix('saparodik')->group(function () {
         Route::get('/', [SaparodikController::class, 'index'])->name('admin.saparodik');
-        Route::get('/{id}', [SaparodikController::class, 'detail'])->name('admin.saparodik.detail');
-        Route::get('/create', [SaparodikController::class, 'createSaparodik'])->name('admin.saparodik.create');
-        Route::post('/store', [SaparodikController::class, 'storeSaparodik'])->name('admin.saparodik.store');
-        Route::get('/edit/{id}', [SaparodikController::class, 'editSaparodik'])->name('admin.saparodik.edit');
-        Route::patch('/update/{id}', [SaparodikController::class, 'updateSaparodik'])->name('admin.saparodik.update');
-        Route::delete('/destroy/{id}', [SaparodikController::class, 'destroySaparodik'])->name('admin.saparodik.destroy');
+        Route::get('/detail/{id}', [SaparodikController::class, 'detail'])->name('admin.saparodik.detail');
+        Route::get('/create', [SaparodikController::class, 'create'])->name('admin.saparodik.create');
+        Route::post('/store', [SaparodikController::class, 'store'])->name('admin.saparodik.store');
+        Route::get('/edit/{id}', [SaparodikController::class, 'edit'])->name('admin.saparodik.edit');
+        Route::patch('/update/{id}', [SaparodikController::class, 'update'])->name('admin.saparodik.update');
+        Route::delete('/destroy/{id}', [SaparodikController::class, 'destroy'])->name('admin.saparodik.destroy');
     });
     // pbb
     Route::prefix('pbb')->group(function () {
         Route::get('/', [PbbController::class, 'index'])->name('admin.pbb');
-        Route::get('/{id}', [PbbController::class, 'detail'])->name('admin.pbb.detail');
-        Route::get('/create', [PbbController::class, 'createPbb'])->name('admin.pbb.create');
-        Route::post('/store', [PbbController::class, 'storePbb'])->name('admin.pbb.store');
-        Route::get('/edit/{id}', [PbbController::class, 'editPbb'])->name('admin.pbb.edit');
-        Route::patch('/update/{id}', [PbbController::class, 'updatePbb'])->name('admin.pbb.update');
-        Route::delete('/destroy/{id}', [PbbController::class, 'destroyPbb'])->name('admin.pbb.destroy');
+        Route::get('/detail/{id}', [PbbController::class, 'detail'])->name('admin.pbb.detail');
+        Route::get('/create', [PbbController::class, 'create'])->name('admin.pbb.create');
+        Route::post('/store', [PbbController::class, 'store'])->name('admin.pbb.store');
+        Route::get('/edit/{id}', [PbbController::class, 'edit'])->name('admin.pbb.edit');
+        Route::patch('/update/{id}', [PbbController::class, 'update'])->name('admin.pbb.update');
+        Route::delete('/destroy/{id}', [PbbController::class, 'destroy'])->name('admin.pbb.destroy');
     });
     // warga
     Route::prefix('warga')->group(function () {

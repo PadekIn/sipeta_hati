@@ -4,9 +4,9 @@
         <h1>Detail Data Assets</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                <li class="breadcrumb-item">Assets</li>
+                <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('admin.aset') }}">Assets</a></li>
+                <li class="breadcrumb-item">Assets Detail</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
