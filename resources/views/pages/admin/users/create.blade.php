@@ -36,7 +36,7 @@
                                 <input type="password" name="confPassword" class="form-control" id="confPassword">
                             </div>
                             {{-- role --}}
-                            <div class="col-12">
+                            {{-- <div class="col-12">
                                 <label class="col-sm-2 col-form-label">Select</label>
                                 <div class="col-12">
                                     <select class="form-select" aria-label="Default select example">
@@ -45,7 +45,7 @@
                                         <option value="warga">Warga</option>
                                     </select>
                                 </div>
-                            </div>
+                            </div> --}}
 
 
                             <div class="text-center">

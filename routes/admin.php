@@ -45,7 +45,7 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
     // warga
     Route::prefix('warga')->group(function () {
         Route::get('/', [WargaController::class, 'index'])->name('admin.warga');
-        Route::get('/{id}', [WargaController::class, 'detail'])->name('admin.warga.detail');
+        Route::get('/{id}/detail', [WargaController::class, 'detail'])->name('admin.warga.detail');
         Route::get('/create', [WargaController::class, 'create'])->name('admin.warga.create');
         Route::get('/create/bio', [WargaController::class, 'createBio'])->name('admin.warga.createBio');
         Route::post('/store', [WargaController::class, 'store'])->name('admin.warga.store');
@@ -54,7 +54,7 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
         Route::patch('/update/{id}', [WargaController::class, 'update'])->name('admin.warga.update');
         Route::delete('/destroy/{id}', [WargaController::class, 'destroy'])->name('admin.warga.destroy');
     });
-    // admin
+    // user
     Route::prefix('admin')->group(function () {
         Route::get('/', [UserController::class, 'index'])->name('admin.user');
         Route::get('/create', [UserController::class, 'create'])->name('admin.user.create');
