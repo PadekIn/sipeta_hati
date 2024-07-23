@@ -66,7 +66,7 @@
                                     <td>22-Januari-2024</td>
                                     <td>
                                         <div class="d-flex">
-                                            <button class="btn btn-sm btn-warning">Edit</button>
+                                            <a href="{{ route('admin.warga.edit', 1) }}" class="btn btn-sm btn-warning">Edit</a>
                                             <div style="width: 10px;"></div>
                                             <button class="btn btn-sm btn-danger">Delete</button>
                                         </div>
