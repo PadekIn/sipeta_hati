@@ -4,8 +4,9 @@
         <h1>Data Assets</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                <li class="breadcrumb-item">Assets</li>
+                <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('admin.aset') }}">Aset</a></li>
+                <li class="breadcrumb-item">Detail Aset</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -26,61 +27,23 @@
                                     <th>Nomor</th>
                                     <th>Nama Pemilik</th>
                                     <th>Jenis Barang</th>
-                                    <th>No Surat Pajak</th>
                                     <th>Alamat</th>
-                                    <th>Completion</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>1</td>
-                                    <td>Budi Harjo</td>
-                                    <td>Tanah</td>
                                     <td>
-                                        <a href="">
+                                        <a href="{{ route('admin.aset.detail',1) }}">
                                             H3298R-2TR8G
                                         </a>
                                     </td>
-                                    <td>Jln. Lorem ipsum dolor sit amet consectetur.</td>
-                                    <td>
-                                        <div class="d-flex">
-                                            <button class="btn btn-sm btn-warning">Edit</button>
-                                            <div style="width: 10px;"></div>
-                                            <button class="btn btn-sm btn-danger">Delete</button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
                                     <td>Budi Harjo</td>
                                     <td>Tanah</td>
-                                    <td>
-                                        <a href="">
-                                            H3298R-2TR8G
-                                        </a>
-                                    </td>
                                     <td>Jln. Lorem ipsum dolor sit amet consectetur.</td>
                                     <td>
                                         <div class="d-flex">
-                                            <button class="btn btn-sm btn-warning">Edit</button>
-                                            <div style="width: 10px;"></div>
-                                            <button class="btn btn-sm btn-danger">Delete</button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Budi Harjo</td>
-                                    <td>Tanah</td>
-                                    <td>
-                                        <a href="">
-                                            H3298R-2TR8G
-                                        </a>
-                                    </td>
-                                    <td>Jln. Lorem ipsum dolor sit amet consectetur.</td>
-                                    <td>
-                                        <div class="d-flex">
-                                            <button class="btn btn-sm btn-warning">Edit</button>
+                                            <a href="{{ route('admin.aset.edit', 1) }}" class="btn btn-sm btn-warning">Edit</a>
                                             <div style="width: 10px;"></div>
                                             <button class="btn btn-sm btn-danger">Delete</button>
                                         </div>

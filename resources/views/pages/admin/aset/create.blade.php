@@ -27,7 +27,7 @@
                                 <label class="col-sm-2 col-form-label">Pemilik</label>
                                 <div class="col-12">
                                     <select class="form-select" aria-label="Default select example">
-                                        <option selected hiddenP>ilih Pemilik Aset</option>
+                                        <option selected hidden>Pilih Pemilik Aset</option>
                                         <option value="">Megawati</option>
                                         <option value="">Soekarno</option>
                                         <option value="">Putri</option>
@@ -40,7 +40,7 @@
                                 <label class="col-sm-2 col-form-label">Jenis Barang</label>
                                 <div class="col-12">
                                     <select class="form-select" aria-label="Default select example">
-                                        <option selected hiddenP>ilih Jenis Aset</option>
+                                        <option selected hidden>Pilih Jenis Aset</option>
                                         <option value="">Tanah</option>
                                         <option value="">Bangunan</option>
                                     </select>

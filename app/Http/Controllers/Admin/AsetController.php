@@ -15,6 +15,12 @@ class AsetController extends Controller
         return view('pages.admin.aset.list', compact('aset'));
     }
 
+    public function detail($id)
+    {
+        $aset = Aset::all();
+        return view('pages.admin.aset.detail', compact('aset', 'id'));
+    }
+
     public function create()
     {
         $warga = Warga::all();
