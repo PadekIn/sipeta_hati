@@ -9,6 +9,10 @@
     <title>{{ config('app.name', 'Sipeta Hati') }}</title>
     <!-- Custom styles -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.min.css') }}" />
+
+    {{-- data table --}}
+    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css"> --}}
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.0/css/dataTables.bootstrap5.css.css">
 </head>
 
 <body>
