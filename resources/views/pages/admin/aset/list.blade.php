@@ -16,7 +16,9 @@
     
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Assets</h5>
+                        <h5 class="card-title">
+                            <a href="{{ route('admin.aset.create') }}" class="btn btn-primary">Daftarkan Aset Baru</a>
+                        </h5>
                         <!-- Table with stripped rows -->
                         <table class="table datatable">
                             <thead>
