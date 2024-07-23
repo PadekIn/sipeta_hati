@@ -23,7 +23,7 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
     });
     // Saparodik
     Route::prefix('saparodik')->group(function () {
-        Route::get('/', [SaparodikController::class, 'saparodik'])->name('admin.saparodik');
+        Route::get('/', [SaparodikController::class, 'index'])->name('admin.saparodik');
         Route::get('/{id}', [SaparodikController::class, 'detail'])->name('admin.saparodik.detail');
         Route::get('/create', [SaparodikController::class, 'createSaparodik'])->name('admin.saparodik.create');
         Route::post('/store', [SaparodikController::class, 'storeSaparodik'])->name('admin.saparodik.store');
@@ -33,7 +33,7 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
     });
     // pbb
     Route::prefix('pbb')->group(function () {
-        Route::get('/', [PbbController::class, 'pbb'])->name('admin.pbb');
+        Route::get('/', [PbbController::class, 'index'])->name('admin.pbb');
         Route::get('/{id}', [PbbController::class, 'detail'])->name('admin.pbb.detail');
         Route::get('/create', [PbbController::class, 'createPbb'])->name('admin.pbb.create');
         Route::post('/store', [PbbController::class, 'storePbb'])->name('admin.pbb.store');

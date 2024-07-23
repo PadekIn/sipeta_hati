@@ -60,15 +60,15 @@
                             <hr class="dropdown-divider">
                         </li>
 
-                        <li>
-                            <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                        {{-- <li>
+                            <a class="dropdown-item d-flex align-items-center" href="">
                                 <i class="bi bi-person"></i>
                                 <span>My Profile</span>
                             </a>
                         </li>
                         <li>
                             <hr class="dropdown-divider">
-                        </li>
+                        </li> --}}
 
                         <li>
                             <a class="dropdown-item d-flex align-items-center" href="/logout">
@@ -101,6 +101,20 @@
                     <span>Assets</span>
                 </a>
             </li><!-- End Assets Page Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{{ route('admin.saparodik') }}">
+                    <i class="bi bi-journal-text"></i>
+                    <span>Saparodik</span>
+                </a>
+            </li><!-- End Saparodik Page Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{{ route('admin.pbb') }}">
+                    <i class="bi bi-card-list"></i>
+                    <span>PBB</span>
+                </a>
+            </li><!-- End PBB Page Nav -->
 
             <li class="nav-heading">Pages</li>
 

@@ -14,13 +14,13 @@ class PbbController extends Controller
         $pbbs = Pbb::all();
 
         // Return the view with the retrieved PBB records
-        return view('pages.admin.pbbs.list', compact('pbbs'));
+        return view('pages.admin.pbb.list', compact('pbbs'));
     }
 
     public function create()
     {
         // Return the view for creating a new PBB record
-        return view('pages.admin.pbbs.create');
+        return view('pages.admin.pbb.create');
     }
 
     public function store(Request $request)
@@ -34,7 +34,7 @@ class PbbController extends Controller
         Pbb::create($validatedData);
 
         // Redirect to the index page with a success message
-        return redirect()->route('pbbs.index')->with('success', 'PBB record created successfully');
+        return redirect()->route('pbb.index')->with('success', 'PBB record created successfully');
     }
 
     public function show($id)
@@ -43,7 +43,7 @@ class PbbController extends Controller
         $pbb = Pbb::findOrFail($id);
 
         // Return the view with the retrieved PBB record
-        return view('pages.admin.pbbs.show', compact('pbb'));
+        return view('pages.admin.pbb.show', compact('pbb'));
     }
 
     public function edit($id)
@@ -52,7 +52,7 @@ class PbbController extends Controller
         $pbb = Pbb::findOrFail($id);
 
         // Return the view for editing the PBB record
-        return view('pages.admin.pbbs.edit', compact('pbb'));
+        return view('pages.admin.pbb.edit', compact('pbb'));
     }
 
     public function update(Request $request, $id)
@@ -69,7 +69,7 @@ class PbbController extends Controller
         $pbb->update($validatedData);
 
         // Redirect to the index page with a success message
-        return redirect()->route('pbbs.index')->with('success', 'PBB record updated successfully');
+        return redirect()->route('pbb.index')->with('success', 'PBB record updated successfully');
     }
 
     public function destroy($id)
@@ -81,6 +81,6 @@ class PbbController extends Controller
         $pbb->delete();
 
         // Redirect to the index page with a success message
-        return redirect()->route('pbbs.index')->with('success', 'PBB record deleted successfully');
+        return redirect()->route('pbb.index')->with('success', 'PBB record deleted successfully');
     }
 }
