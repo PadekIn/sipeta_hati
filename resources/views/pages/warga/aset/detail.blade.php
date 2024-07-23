@@ -65,17 +65,29 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <th>782WGH98JI</th>
+                                <th>
+                                    <a href="{{ route('aset.saporadik.detail', ['id_aset' => 111, 'id_saporadik' => 222]) }}">
+                                        782WGH98JI
+                                    </a>
+                                </th>
                                 <td>Surat Hutang</td>
                                 <td>20 November 1997</td>
                             </tr>
                             <tr>
-                                <th>782WGH98JI</th>
+                                <th>
+                                    <a href="{{ route('aset.saporadik.detail', ['id_aset' => 111, 'id_saporadik' => 222]) }}">
+                                        782WGH98JI
+                                    </a>
+                                </th>
                                 <td>Surat Hutang</td>
                                 <td>20 November 1997</td>
                             </tr>
                             <tr>
-                                <th>782WGH98JI</th>
+                                <th>
+                                    <a href="{{ route('aset.saporadik.detail', ['id_aset' => 111, 'id_saporadik' => 222]) }}">
+                                        782WGH98JI
+                                    </a>
+                                </th>
                                 <td>Surat Hutang</td>
                                 <td>20 November 1997</td>
                             </tr>
@@ -98,22 +110,38 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <th>782WGH98JI</th>
+                                <th>
+                                    <a href="{{ route('aset.pbb.detail', ['id_aset' => 999, 'id_pbb' => 999]) }}">
+                                        782WGH98JI
+                                    </a>
+                                </th>
                                 <td>Laporan</td>
                                 <td>Lain-lain</td>
                             </tr>
                             <tr>
-                                <th>782WGH98JI</th>
+                                <th>
+                                    <a href="{{ route('aset.pbb.detail', ['id_aset' => 999, 'id_pbb' => 999]) }}">
+                                        782WGH98JI
+                                    </a>
+                                </th>
                                 <td>Laporan</td>
                                 <td>Lain-lain</td>
                             </tr>
                             <tr>
-                                <th>782WGH98JI</th>
+                                <th>
+                                    <a href="{{ route('aset.pbb.detail', ['id_aset' => 999, 'id_pbb' => 999]) }}">
+                                        782WGH98JI
+                                    </a>
+                                </th>
                                 <td>Laporan</td>
                                 <td>Lain-lain</td>
                             </tr>
                             <tr>
-                                <th>782WGH98JI</th>
+                                <th>
+                                    <a href="{{ route('aset.pbb.detail', ['id_aset' => 999, 'id_pbb' => 999]) }}">
+                                        782WGH98JI
+                                    </a>
+                                </th>
                                 <td>Laporan</td>
                                 <td>Lain-lain</td>
                             </tr>

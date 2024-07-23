@@ -14,4 +14,12 @@ class AsetController
     {
         return view('pages.warga.aset.detail');
     }
+    public function detailSaporadik($id_aset, $id_saporadik)
+    {
+        return view('pages.warga.aset.saporadik');
+    }
+    public function detailPbb($id_aset, $id_pbb)
+    {
+        return view('pages.warga.aset.pbb');
+    }
 }
