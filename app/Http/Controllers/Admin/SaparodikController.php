@@ -18,6 +18,11 @@ class SaparodikController extends Controller
         return view('pages.admin.saparodiks.list', compact('saparodiks'));
     }
 
+    public function detail($id)
+    {
+        return view('pages.admin.saparodiks.detail');
+    }
+
     // Display a listing of the saparodik for a specific asset
     public function saparodik($id_aset)
     {
@@ -58,11 +63,7 @@ class SaparodikController extends Controller
 
     public function edit($id)
     {
-        // Retrieve the Saparodik record with the given ID from the database
-        $saparodik = Saparodik::findOrFail($id);
-
-        // Return the view for editing the Saparodik record
-        return view('pages.admin.saparodiks.edit', compact('saparodik'));
+        return view('pages.admin.saparodiks.edit');
     }
 
     public function update(Request $request, $id)
