@@ -129,7 +129,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="">
+                        <a href="{{ route('admin.user') }}">
                             <i class="bi bi-circle"></i><span>Admin</span>
                         </a>
                     </li>

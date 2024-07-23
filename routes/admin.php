@@ -2,11 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PbbController;
 use App\Http\Controllers\Admin\AsetController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\WargaController;
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\SaparodikController;
 
 Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
@@ -53,6 +54,16 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
         Route::patch('/update/{id}', [WargaController::class, 'update'])->name('admin.warga.update');
         Route::delete('/destroy/{id}', [WargaController::class, 'destroy'])->name('admin.warga.destroy');
     });
+    // user
+    Route::prefix('user')->group(function () {
+        Route::get('/', [UserController::class, 'index'])->name('admin.user');
+        Route::get('/create', [UserController::class, 'create'])->name('admin.user.create');
+        Route::post('/store', [UserController::class, 'store'])->name('admin.user.store');
+        Route::get('/edit/{id}', [UserController::class, 'edit'])->name('admin.user.edit');
+        Route::patch('/update/{id}', [UserController::class, 'update'])->name('admin.user.update');
+        Route::delete('/destroy/{id}', [UserController::class, 'destroy'])->name('admin.user.destroy');
+    });
+
     // profile
     Route::prefix('profile')->group(function () {
         Route::get('/', [ProfileController::class, 'index'])->name('admin.profile');

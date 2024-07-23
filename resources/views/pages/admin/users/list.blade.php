@@ -1,11 +1,11 @@
 <x-app-layout>
 
     <div class="pagetitle">
-        <h1>Data Warga</h1>
+        <h1>Data Admin</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
-                <li class="breadcrumb-item">Warga</li>
+                <li class="breadcrumb-item">Admin</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -18,7 +18,7 @@
                     <div class="card-body">
                         <div class="d-flex justify-between content-center w-full">
                             <h5 class="card-title">
-                                <a href="{{ route('admin.warga.create') }}" class="btn btn-primary">Tambah Warga</a>
+                                <a href="{{ route('admin.user.create') }}" class="btn btn-primary">Tambah Admin</a>
                             </h5>
                         </div>
                         <!-- Table with stripped rows -->
@@ -26,47 +26,25 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Nama</th>
                                     <th>Username</th>
-                                    <th>Alamat</th>
-                                    <th>No Handphone</th>
-                                    <th>Jenis Kelamin</th>
-                                    <th>Tanggal Lahir</th>
+                                    <th>Role</th>
+                                    <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {{-- <tr>
-                                    <td>1</td>
-                                    <td>Budi Harjo</td>
-                                    <td>budiJee</td>
-                                    <td>Jln. Lorem ipsum dolor sit amet consectetur.</td>
-                                    <td>08223648718</td>
-                                    <td>
-                                        <span class="badge rounded-pill bg-primary">Laki-Laki</span>
-                                    </td>
-                                    <td>22-Januari-2024</td>
-                                    <td>
-                                        <div class="d-flex">
-                                            <button class="btn btn-sm btn-warning">Edit</button>
-                                            <div style="width: 10px;"></div>
-                                            <button id="deleteBtn" class="btn btn-sm btn-danger">Delete</button>
-                                        </div>
-                                    </td>
-                                </tr> --}}
                                 <tr>
                                     <td>1</td>
                                     <td>Budi Harjo</td>
-                                    <td>budiJee</td>
-                                    <td>Jln. Lorem ipsum dolor sit amet consectetur.</td>
-                                    <td>08223648718</td>
                                     <td>
-                                        <span class="badge rounded-pill bg-success">Perempuan</span>
+                                        <span class="badge rounded-pill bg-primary">Admin</span>
                                     </td>
-                                    <td>22-Januari-2024</td>
+                                    <td>
+                                        <span class="badge rounded-pill bg-success">Active</span>
+                                    </td>
                                     <td>
                                         <div class="d-flex">
-                                            <a href="{{ route('admin.warga.edit', 1) }}" class="btn btn-sm btn-warning">Edit</a>
+                                            <button class="btn btn-sm btn-warning">Edit</button>
                                             <div style="width: 10px;"></div>
                                             <button id="deleteBtn" class="btn btn-sm btn-danger">Delete</button>
                                         </div>
@@ -86,7 +64,7 @@
         document.getElementById('deleteBtn').addEventListener('click', function() {
             Swal.fire({
                 title: 'Apakah Kamu Yakin?',
-                text: "Ingin menghapus data Pengguna Ini!",
+                text: "Ingin menghapus data Admin Ini!",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -98,7 +76,7 @@
                     // Perform the delete action here
                     Swal.fire(
                         'Terhapus!',
-                        'Data Pengguna Telah di Hapus.',
+                        'Data Admin Telah di Hapus.',
                         'Berhasil'
                     )
                 }
