@@ -49,10 +49,10 @@ class PbbController extends Controller
     public function edit($id)
     {
         // Retrieve the PBB record with the given ID from the database
-        $pbb = Pbb::findOrFail($id);
+        // $pbb = Pbb::findOrFail($id);
 
         // Return the view for editing the PBB record
-        return view('pages.admin.pbb.edit', compact('pbb'));
+        return view('pages.admin.pbb.edit');
     }
 
     public function update(Request $request, $id)
