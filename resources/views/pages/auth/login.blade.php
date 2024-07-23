@@ -1,4 +1,4 @@
-<x-guest-layout>
+<x-auth-layout>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
@@ -8,6 +8,7 @@
                 <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
                     <div class="d-flex justify-content-center py-4">
                         <span class="logo d-flex align-items-center w-auto">
+                            <img src="{{ asset('img/logo/logo_jambi2.png') }}" alt="">
                             <span class="d-none d-lg-block">Welcome back!</span>
                         </span>
                     </div>
@@ -57,4 +58,4 @@
         </div>
     </section>
 
-</x-guest-layout>
+</x-auth-layout>
