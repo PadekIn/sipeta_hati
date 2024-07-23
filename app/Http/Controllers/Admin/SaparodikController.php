@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Aset;
 use App\Models\Saparodik;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -15,6 +16,15 @@ class SaparodikController extends Controller
 
         // Return the view with the retrieved Saparodik records
         return view('pages.admin.saparodiks.list', compact('saparodiks'));
+    }
+
+    // Display a listing of the saparodik for a specific asset
+    public function saparodik($id_aset)
+    {
+        $aset = Aset::findOrFail($id_aset);
+        $saparodiks = $aset->saparodiks; // Assuming you have a relationship defined
+
+        // return view('admin.aset.saparodik.index', compact('aset', 'saparodiks'));
     }
 
     public function create()
