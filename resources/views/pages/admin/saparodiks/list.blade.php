@@ -35,9 +35,10 @@
                             <tbody>
                                 <tr>
                                     <td>
-                                        <a href="{{ route('admin.saparodik.detail',1) }}">
+                                        {{-- <a href="{{ route('admin.saparodik.detail',1) }}">
                                             H3298R-2TR8G
-                                        </a>
+                                        </a> --}}
+                                        H3298R-2TR8G
                                     </td>
                                     <td>Budi Harjo</td>
                                     <td>Megawrjo</td>
