@@ -46,7 +46,7 @@
                             </tbody>
                         </table>
                         <!-- End Table with stripped rows -->
-                        <a href="" class="btn btn-warning">Edit</a>
+                        <a href="{{ route('admin.aset.edit',1) }}" class="btn btn-warning">Edit</a>
                     </div>
                 </div>
             </div>
@@ -66,11 +66,17 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>
-                                    <a href="">
-                                        782WGH98JI
-                                    </a>
-                                </td>
+                                <th>782WGH98JI</th>
+                                <td>Surat Cerai</td>
+                                <td>20 November 1997</td>
+                            </tr>
+                            <tr>
+                                <th>782WGH98JI</th>
+                                <td>Surat Cerai</td>
+                                <td>20 November 1997</td>
+                            </tr>
+                            <tr>
+                                <th>782WGH98JI</th>
                                 <td>Surat Cerai</td>
                                 <td>20 November 1997</td>
                             </tr>
@@ -93,11 +99,22 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>
-                                    <a href="">
-                                        782WGH98JI
-                                    </a>
-                                </td>
+                                <th>782WGH98JI</th>
+                                <td>Laporan</td>
+                                <td>Lain-lain</td>
+                            </tr>
+                            <tr>
+                                <th>782WGH98JI</th>
+                                <td>Laporan</td>
+                                <td>Lain-lain</td>
+                            </tr>
+                            <tr>
+                                <th>782WGH98JI</th>
+                                <td>Laporan</td>
+                                <td>Lain-lain</td>
+                            </tr>
+                            <tr>
+                                <th>782WGH98JI</th>
                                 <td>Laporan</td>
                                 <td>Lain-lain</td>
                             </tr>

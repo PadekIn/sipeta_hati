@@ -14,7 +14,7 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
     // dashboard
     Route::prefix('aset')->group(function () {
         Route::get('/', [AsetController::class, 'index'])->name('admin.aset');
-        Route::get('/{id}', [AsetController::class, 'detail'])->name('admin.aset.detail');
+        Route::get('/detail/{id}', [AsetController::class, 'detail'])->name('admin.aset.detail');
         Route::get('/create', [AsetController::class, 'create'])->name('admin.aset.create');
         Route::post('/store', [AsetController::class, 'store'])->name('admin.aset.store');
         Route::get('/edit/{id}', [AsetController::class, 'edit'])->name('admin.aset.edit');
