@@ -25,7 +25,13 @@
                         <span class="icon logo" aria-hidden="true"></span>
                         <div class="logo-text">
                             <span class="logo-title">Elegant</span>
-                            <span class="logo-subtitle">Dashboard</span>
+                            <span class="logo-subtitle">
+                                @if (Auth::user()->role == 'admin')
+                                    Admin
+                                @else
+                                    Warga
+                                @endif
+                            </span>
                         </div>
                     </a>
                     <button class="sidebar-toggle transparent-btn" title="Menu" type="button">
@@ -36,11 +42,11 @@
                 <div class="sidebar-body">
                     <ul class="sidebar-body-menu">
                         <li>
-                            <a class="active" href="/"><span class="icon home"
+                            <a class="active" href="{{ route('admin.dashboard') }}"><span class="icon home"
                                     aria-hidden="true"></span>Dashboard</a>
                         </li>
                         <li>
-                            <a href=""><span class="icon folder" aria-hidden="true"></span>Appearance</a>
+                            <a href="{{ route('admin.aset') }}"><span class="icon folder" aria-hidden="true"></span>Assets</a>
                         </li>
                     </ul>
                     <span class="system-menu__title">Pengguna</span>
@@ -58,12 +64,9 @@
                                     <a href="">Admin</a>
                                 </li>
                                 <li>
-                                    <a href="">Warga</a>
+                                    <a href="{{ route('admin.warga') }}">Warga</a>
                                 </li>
                             </ul>
-                        </li>
-                        <li>
-                            <a href=""><span class="icon setting" aria-hidden="true"></span>Settings</a>
                         </li>
                     </ul>
                 </div>
@@ -89,6 +92,7 @@
                             <i class="sun-icon" data-feather="sun" aria-hidden="true"></i>
                             <i class="moon-icon" data-feather="moon" aria-hidden="true"></i>
                         </button>
+                        <span class="stat-cards-info__num">{{ Auth::user()->username }}</span>
                         <div class="nav-user-wrapper">
                             <button href="##" class="nav-user-btn dropdown-btn" title="My profile"
                                 type="button">
@@ -102,13 +106,13 @@
                             </button>
                             <ul class="users-item-dropdown nav-user-dropdown dropdown">
                                 <li>
-                                    <a href="##">
+                                    <a href="{{ route('profile.edit') }}">
                                         <i data-feather="user" aria-hidden="true"></i>
                                         <span>Profile</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="danger" href="##">
+                                    <a class="danger" href="/logout">
                                         <i data-feather="log-out" aria-hidden="true"></i>
                                         <span>Log out</span>
                                     </a>
