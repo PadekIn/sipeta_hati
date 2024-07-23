@@ -45,13 +45,16 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
     Route::prefix('warga')->group(function () {
         Route::get('/', [WargaController::class, 'index'])->name('admin.warga');
         Route::get('/create', [WargaController::class, 'create'])->name('admin.warga.create');
+        Route::get('/create/bio', [WargaController::class, 'createBio'])->name('admin.warga.createBio');
         Route::post('/store', [WargaController::class, 'store'])->name('admin.warga.store');
+        Route::post('/store/bio', [WargaController::class, 'storeBio'])->name('admin.warga.storeBio');
         Route::get('/edit/{id}', [WargaController::class, 'edit'])->name('admin.warga.edit');
         Route::patch('/update/{id}', [WargaController::class, 'update'])->name('admin.warga.update');
         Route::delete('/destroy/{id}', [WargaController::class, 'destroy'])->name('admin.warga.destroy');
     });
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 

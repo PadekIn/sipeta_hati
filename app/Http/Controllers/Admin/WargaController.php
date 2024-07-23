@@ -19,6 +19,11 @@ class WargaController extends Controller
         return view('pages.admin.warga.create');
     }
 
+    public function createBio()
+    {
+        return view('pages.admin.warga.bio');
+    }
+
     public function store(Request $request)
     {
         $request->validate([
