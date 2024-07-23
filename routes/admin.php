@@ -54,8 +54,8 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
         Route::patch('/update/{id}', [WargaController::class, 'update'])->name('admin.warga.update');
         Route::delete('/destroy/{id}', [WargaController::class, 'destroy'])->name('admin.warga.destroy');
     });
-    // user
-    Route::prefix('user')->group(function () {
+    // admin
+    Route::prefix('admin')->group(function () {
         Route::get('/', [UserController::class, 'index'])->name('admin.user');
         Route::get('/create', [UserController::class, 'create'])->name('admin.user.create');
         Route::post('/store', [UserController::class, 'store'])->name('admin.user.store');

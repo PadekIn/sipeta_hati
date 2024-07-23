@@ -44,7 +44,7 @@
                                     </td>
                                     <td>
                                         <div class="d-flex">
-                                            <button class="btn btn-sm btn-warning">Edit</button>
+                                            <a href="{{ route('admin.user.edit',1) }}" class="btn btn-sm btn-warning">Edit</a>
                                             <div style="width: 10px;"></div>
                                             <button id="deleteBtn" class="btn btn-sm btn-danger">Delete</button>
                                         </div>
