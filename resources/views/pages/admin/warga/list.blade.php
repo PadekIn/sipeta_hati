@@ -36,42 +36,36 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {{-- <tr>
-                                    <td>1</td>
-                                    <td>Budi Harjo</td>
-                                    <td>budiJee</td>
-                                    <td>Jln. Lorem ipsum dolor sit amet consectetur.</td>
-                                    <td>08223648718</td>
-                                    <td>
-                                        <span class="badge rounded-pill bg-primary">Laki-Laki</span>
-                                    </td>
-                                    <td>22-Januari-2024</td>
-                                    <td>
-                                        <div class="d-flex">
-                                            <button class="btn btn-sm btn-warning">Edit</button>
-                                            <div style="width: 10px;"></div>
-                                            <button id="deleteBtn" class="btn btn-sm btn-danger">Delete</button>
-                                        </div>
-                                    </td>
-                                </tr> --}}
-                                <tr>
-                                    <td>1</td>
-                                    <td>Budi Harjo</td>
-                                    <td>budiJee</td>
-                                    <td>Jln. Lorem ipsum dolor sit amet consectetur.</td>
-                                    <td>08223648718</td>
-                                    <td>
-                                        <span class="badge rounded-pill bg-success">Perempuan</span>
-                                    </td>
-                                    <td>22-Januari-2024</td>
-                                    <td>
-                                        <div class="d-flex">
-                                            <a href="{{ route('admin.warga.edit', 1) }}" class="btn btn-sm btn-warning">Edit</a>
-                                            <div style="width: 10px;"></div>
-                                            <button id="deleteBtn" class="btn btn-sm btn-danger">Delete</button>
-                                        </div>
-                                    </td>
-                                </tr>
+                                @if (count($warga) !== 0)
+                                    @foreach ($warga as $user)    
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $user->nama }}</td>
+                                        <td>{{ $user->users->username }}</td>
+                                        <td>{{ $user->alamat }}</td>
+                                        <td>{{ $user->no_telp }}</td>
+                                        <td>
+                                            @if ($user->jenis_kelamin == 'laki-laki')
+                                                <span class="badge rounded-pill bg-primary">Laki-laki</span>
+                                            @else
+                                                <span class="badge rounded-pill bg-warning">Perempuan</span>
+                                            @endif
+                                        </td>
+                                        <td>{{ $user->tanggal_lahir }}</td>
+                                        <td>
+                                            <div class="d-flex">
+                                                <a href="{{ route('admin.warga.edit', 1) }}" class="btn btn-sm btn-warning">Edit</a>
+                                                <div style="width: 10px;"></div>
+                                                <button id="deleteBtn" class="btn btn-sm btn-danger">Delete</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                @else
+                                    <tr rowspan="8">
+                                        <td>Data Warga Masih Kosong</td>
+                                    </tr>
+                                @endif
                             </tbody>
                         </table>
                         <!-- End Table with stripped rows -->

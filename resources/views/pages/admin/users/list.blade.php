@@ -33,23 +33,34 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach ($admin as $user)
                                 <tr>
-                                    <td>1</td>
-                                    <td>Budi Harjo</td>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $user->username }}</td>
                                     <td>
-                                        <span class="badge rounded-pill bg-primary">Admin</span>
+                                        @if ($user->role == 'admin')
+                                            <span class="badge rounded-pill bg-primary">{{ $user->role }}</span>
+                                        @elseif ($user->role == 'user')
+                                            <span class="badge rounded-pill bg-warning">{{ $user->role }}</span>
+                                        @endif
                                     </td>
                                     <td>
-                                        <span class="badge rounded-pill bg-success">Active</span>
+                                        @if ($user->status == 1)
+                                            <span class="badge rounded-pill bg-success">Aktif</span>
+                                            
+                                        @elseif ($user->status == 0)
+                                            <span class="badge rounded-pill bg-danger">Tidak Aktif</span>
+                                        @endif
                                     </td>
                                     <td>
                                         <div class="d-flex">
-                                            <a href="{{ route('admin.user.edit',1) }}" class="btn btn-sm btn-warning">Edit</a>
+                                            <a href="{{ route('admin.user.edit',$user->id) }}" class="btn btn-sm btn-warning">Edit</a>
                                             <div style="width: 10px;"></div>
                                             <button id="deleteBtn" class="btn btn-sm btn-danger">Delete</button>
                                         </div>
                                     </td>
-                                </tr>
+                                    
+                                @endforeach
                             </tbody>
                         </table>
                         <!-- End Table with stripped rows -->

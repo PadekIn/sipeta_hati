@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserController
 {
     public function index()
     {
-        return view('pages.admin.users.list');
+        $admin = User::where('role', 'admin')->get();
+        return view('pages.admin.users.list', compact('admin'));
     }
 
     public function create()
