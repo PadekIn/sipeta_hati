@@ -10,11 +10,12 @@ class PbbController extends Controller
 {
     public function index()
     {
-        // Retrieve all PBB records from the database
-        $pbbs = Pbb::all();
-
-        // Return the view with the retrieved PBB records
-        return view('pages.admin.pbb.list', compact('pbbs'));
+        try {
+            $pbbs = Pbb::with('aset', 'user')->get();
+            return view('pages.admin.pbb.list', compact('pbbs'));
+        } catch (\Throwable $th) {
+            return redirect()->route('admin.dashboard')->with('error', 'Server Error');
+        }
     }
 
     public function create()

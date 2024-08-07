@@ -13,7 +13,7 @@
     <section class="section">
         <div class="row">
             <div class="col-lg-12">
-    
+
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">
@@ -33,42 +33,41 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach ($pbbs as $pbb)
                                 <tr>
                                     <td>
-                                        {{-- <a href="{{ route('admin.pbb.detail',1) }}">
-                                            H3298R-2TR8G
-                                        </a> --}}
-                                        H3298R-2TR8G
+                                        <a href="{{ route('admin.aset.detail', $pbb->hashid) }}">{{ $pbb->no_surat }}</a>
                                     </td>
-                                    <td>Tahunan</td>
-                                    <td>Pembayaran untuk 5 tahu kedepan</td>
+                                    <td>{{ $pbb->perihal }}</td>
+                                    <td>{{ $pbb->keterangan }}</td>
                                     <td>
-                                        <a href="{{ route('admin.aset.detail',1) }}">
-                                            H3298R-2TR8G
+                                        <a href="{{ route('admin.aset.detail', $pbb->aset->hashid) }}">
+                                            {{ $pbb->aset->hashid }}
                                         </a>
                                     </td>
-                                    <td>20, Juli 2020</td>
-                                    <td>Super Admin</td>
+                                    <td>{{ $pbb->tanggal_surat }}</td>
+                                    <td>{{ $pbb->user->role }}</td>
                                     <td>
                                         <div class="d-flex">
-                                            <a href="{{ route('admin.pbb.edit', 1) }}" class="btn btn-sm btn-warning">Edit</a>
+                                            <a href="{{ route('admin.pbb.edit', $pbb->hashid) }}" class="btn btn-sm btn-warning">Edit</a>
                                             <div style="width: 10px;"></div>
-                                            <button id="deleteBtn" class="btn btn-sm btn-danger">Delete</button>
+                                            <button onclick="destroy('{{ $pbb->hashid }}')" class="btn btn-sm btn-danger">Delete</button>
                                         </div>
                                     </td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                         <!-- End Table with stripped rows -->
                     </div>
                 </div>
-    
+
             </div>
         </div>
     </section>
 
     <script>
-        document.getElementById('deleteBtn').addEventListener('click', function() {
+        function destroy(id) {
             Swal.fire({
                 title: 'Apakah Kamu Yakin?',
                 text: "Ingin menghapus data Pajak Bumi Bangunan Ini!",
@@ -80,15 +79,10 @@
                 cancelButtonText: 'Tidak, Batalkan!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    // Perform the delete action here
-                    Swal.fire(
-                        'Terhapus!',
-                        'Data Pajak Bumi Bangunan Telah di Hapus.',
-                        'Berhasil'
-                    )
+                    window.location.href = `/admin/pbb/destroy/${id}`;
                 }
             })
-        });
+        };
     </script>
 
 </x-app-layout>
