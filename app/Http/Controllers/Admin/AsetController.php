@@ -24,11 +24,15 @@ class AsetController extends Controller
 
     public function detail($id)
     {
-        $unhashed = Hashids::decode($id)[0];
-        $aset = Aset::with('warga')->find($unhashed);
-        $pbb = Pbb::with('aset')->where('aset_id', $unhashed)->get();
-        $sporadik = Sporadik::with('aset')->where('aset_id', $unhashed)->get();
-        return view('pages.admin.aset.detail', compact('aset', 'pbb', 'sporadik'));
+        try {
+            $unhashed = Hashids::decode($id)[0];
+            $aset = Aset::with('warga')->find($unhashed);
+            $pbb = Pbb::with('aset')->where('aset_id', $unhashed)->get();
+            $sporadik = Sporadik::with('aset')->where('aset_id', $unhashed)->get();
+            return view('pages.admin.aset.detail', compact('aset', 'pbb', 'sporadik'));
+        } catch (\Throwable $th) {
+            return redirect()->route('admin.aset')->with('error', 'Server Error');
+        }
     }
 
     public function create()
