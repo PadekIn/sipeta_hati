@@ -13,7 +13,7 @@
     <section class="section">
         <div class="row">
             <div class="col-lg-12">
-    
+
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex justify-between content-center w-full">
@@ -26,7 +26,7 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Username</th>
+                                    <th>NIK</th>
                                     <th>Role</th>
                                     <th>Status</th>
                                     <th>Action</th>
@@ -36,7 +36,7 @@
                                 @foreach ($admin as $user)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $user->username }}</td>
+                                    <td>{{ $user->nik }}</td>
                                     <td>
                                         @if ($user->role == 'admin')
                                             <span class="badge rounded-pill bg-primary">{{ $user->role }}</span>
@@ -47,7 +47,7 @@
                                     <td>
                                         @if ($user->status == 1)
                                             <span class="badge rounded-pill bg-success">Aktif</span>
-                                            
+
                                         @elseif ($user->status == 0)
                                             <span class="badge rounded-pill bg-danger">Tidak Aktif</span>
                                         @endif
@@ -59,14 +59,14 @@
                                             <button id="deleteBtn" class="btn btn-sm btn-danger">Delete</button>
                                         </div>
                                     </td>
-                                    
+
                                 @endforeach
                             </tbody>
                         </table>
                         <!-- End Table with stripped rows -->
                     </div>
                 </div>
-    
+
             </div>
         </div>
     </section>
