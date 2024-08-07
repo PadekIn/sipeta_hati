@@ -106,13 +106,13 @@ class PbbController extends Controller
 
     public function destroy($id)
     {
-        // Retrieve the PBB record with the given ID from the database
-        $pbb = Pbb::findOrFail($id);
-
-        // Delete the PBB record
-        $pbb->delete();
-
-        // Redirect to the index page with a success message
-        return redirect()->route('pbb.index')->with('success', 'PBB record deleted successfully');
+        try {
+            $unhashed = Hashids::decode($id)[0];
+            $pbb = Pbb::findOrFail($unhashed);
+            $pbb->delete();
+            return redirect()->route('admin.pbb')->with('success', 'Berhasil menghapus surat PBB');
+        } catch (\Throwable $th) {
+            return redirect()->route('admin.pbb')->with('error', 'Server Error');
+        }
     }
 }
