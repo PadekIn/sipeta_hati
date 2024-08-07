@@ -13,7 +13,7 @@
     <section class="section">
         <div class="row">
             <div class="col-lg-12">
-    
+
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">
@@ -30,22 +30,24 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach ($asets as $aset)
                                 <tr>
                                     <td>
-                                        <a href="{{ route('aset.detail',1) }}">
-                                            H3298R-2TR8G
+                                        <a href="{{ route('aset.detail', $aset->hashid) }}">
+                                            {{ $aset->hashid }}
                                         </a>
                                     </td>
-                                    <td>Budi Harjo</td>
-                                    <td>Tanah</td>
-                                    <td>Jln. Lorem ipsum dolor sit amet consectetur.</td>
+                                    <td>{{ $aset->warga->nama }}</td>
+                                    <td>{{ $aset->jenis_barang }}</td>
+                                    <td>{{ $aset->alamat }}</td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                         <!-- End Table with stripped rows -->
                     </div>
                 </div>
-    
+
             </div>
         </div>
     </section>

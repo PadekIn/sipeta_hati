@@ -76,7 +76,7 @@ class SporadikController extends Controller
     public function detail($id)
     {
         try {
-            $unhashed = Hashids::decode($id);
+            $unhashed = Hashids::decode($id)[0];
             $sporadik = Sporadik::with('aset', 'pemilik_lama', 'pemilik_baru')->where('id', $unhashed)->first();
             // Return the view with the retrieved Sporadik record
             return view('pages.admin.sporadiks.detail', compact('sporadik'));

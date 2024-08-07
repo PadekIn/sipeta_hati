@@ -68,7 +68,7 @@ class PbbController extends Controller
     public function detail($id)
     {
         try {
-            $unhashed = Hashids::decode($id);
+            $unhashed = Hashids::decode($id)[0];
             $pbb = Pbb::with('aset', 'user')->where('id', $unhashed)->first();
 
             // Return the view with the retrieved PBB record

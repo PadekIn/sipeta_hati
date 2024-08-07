@@ -17,35 +17,36 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">NIK: {{ Auth::user()->nik }}</h5>
+                        <h5 class="card-title">NIK: {{ $aset->warga->user->nik }}</h5>
                         <!-- Table with stripped rows -->
                         <table class="table table-striped">
                             <tbody>
-                                {{-- <tr>
-                                    <th class="col-3">NIK</td>
-                                    <td>bumeg</td>
-                                </tr> --}}
                                 <tr>
                                     <th class="col-2">Nama</td>
-                                    <td>MegaWarso</td>
+                                    <td>{{ $aset->warga->nama }}</td>
                                 </tr>
                                 <tr>
                                     <th>Jenis Barang</td>
                                     <td>
-                                        <span class="badge rounded-pill bg-primary">Tanah</span>
+                                        @if ($aset->jenis_barang == 'tanah')
+                                        <span class="badge rounded-pill bg-warning">Tanah</span>
+                                        @else
+                                        <span class="badge rounded-pill bg-info">Bangunan</span>
+                                        @endif
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>Luas</td>
-                                    <td>3000 Meters</td>
+                                    <td>{{ number_format($aset->luas, 0, ',','.') }} Meters</td>
                                 </tr>
                                 <tr>
                                     <th>Alamat</td>
-                                    <td>Jln. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nam ipsa aliquam explicabo doloremque, doloribus, a quasi quaerat earum quisquam error dolor, natus illo voluptatem fugit consectetur similique dicta perspiciatis reprehenderit.</td>
+                                    <td>{{ $aset->alamat }}</td>
                                 </tr>
                             </tbody>
                         </table>
                         <!-- End Table with stripped rows -->
+                        <a href="{{ route('admin.aset.edit',$aset->hashid) }}" class="btn btn-warning">Edit</a>
                     </div>
                 </div>
             </div>
@@ -64,33 +65,13 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($sporadik as $item)
                             <tr>
-                                <th>
-                                    <a href="{{ route('aset.sporadik.detail', ['id_aset' => 111, 'id_sporadik' => 222]) }}">
-                                        782WGH98JI
-                                    </a>
-                                </th>
-                                <td>Surat Hutang</td>
-                                <td>20 November 1997</td>
+                                <th><a href="{{ route('aset.sporadik.detail', ['id_aset' => $aset->hashid, 'id_sporadik' => $item->hashid]) }}">{{ $item->no_surat }}</a></th>
+                                <td>{{ $item->jenis_surat }}</td>
+                                <td>{{ $item->tanggal_surat }}</td>
                             </tr>
-                            <tr>
-                                <th>
-                                    <a href="{{ route('aset.sporadik.detail', ['id_aset' => 111, 'id_sporadik' => 222]) }}">
-                                        782WGH98JI
-                                    </a>
-                                </th>
-                                <td>Surat Hutang</td>
-                                <td>20 November 1997</td>
-                            </tr>
-                            <tr>
-                                <th>
-                                    <a href="{{ route('aset.sporadik.detail', ['id_aset' => 111, 'id_sporadik' => 222]) }}">
-                                        782WGH98JI
-                                    </a>
-                                </th>
-                                <td>Surat Hutang</td>
-                                <td>20 November 1997</td>
-                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -109,42 +90,13 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($pbb as $item)
                             <tr>
-                                <th>
-                                    <a href="{{ route('aset.pbb.detail', ['id_aset' => 999, 'id_pbb' => 999]) }}">
-                                        782WGH98JI
-                                    </a>
-                                </th>
-                                <td>Laporan</td>
-                                <td>Lain-lain</td>
+                                <th><a href="{{ route('aset.pbb.detail', ['id_aset' => $aset->hashid, 'id_pbb' => $item->hashid]) }}">{{ $item->no_surat }}</a></th>
+                                <td>{{ $item->perihal }}</td>
+                                <td>{{ $item->keterangan }}</td>
                             </tr>
-                            <tr>
-                                <th>
-                                    <a href="{{ route('aset.pbb.detail', ['id_aset' => 999, 'id_pbb' => 999]) }}">
-                                        782WGH98JI
-                                    </a>
-                                </th>
-                                <td>Laporan</td>
-                                <td>Lain-lain</td>
-                            </tr>
-                            <tr>
-                                <th>
-                                    <a href="{{ route('aset.pbb.detail', ['id_aset' => 999, 'id_pbb' => 999]) }}">
-                                        782WGH98JI
-                                    </a>
-                                </th>
-                                <td>Laporan</td>
-                                <td>Lain-lain</td>
-                            </tr>
-                            <tr>
-                                <th>
-                                    <a href="{{ route('aset.pbb.detail', ['id_aset' => 999, 'id_pbb' => 999]) }}">
-                                        782WGH98JI
-                                    </a>
-                                </th>
-                                <td>Laporan</td>
-                                <td>Lain-lain</td>
-                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
