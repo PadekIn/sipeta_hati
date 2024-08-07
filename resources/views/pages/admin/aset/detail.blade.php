@@ -54,7 +54,7 @@
             <div class="col-6">
                 <div class="card p-4">
                     <h5 class="card-title">
-                        Surat Saparodik
+                        Surat Sporadik
                     </h5>
                     <table class="table datatable">
                         <thead>

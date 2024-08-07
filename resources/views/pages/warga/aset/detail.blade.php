@@ -17,12 +17,12 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Username: {{ Auth::user()->username }}</h5>
+                        <h5 class="card-title">NIK: {{ Auth::user()->nik }}</h5>
                         <!-- Table with stripped rows -->
                         <table class="table table-striped">
                             <tbody>
                                 {{-- <tr>
-                                    <th class="col-3">Username</td>
+                                    <th class="col-3">NIK</td>
                                     <td>bumeg</td>
                                 </tr> --}}
                                 <tr>
@@ -53,7 +53,7 @@
             <div class="col-6">
                 <div class="card p-4">
                     <h5 class="card-title">
-                        Surat Saparodik
+                        Surat Sporadik
                     </h5>
                     <table class="table datatable">
                         <thead>
@@ -66,7 +66,7 @@
                         <tbody>
                             <tr>
                                 <th>
-                                    <a href="{{ route('aset.saporadik.detail', ['id_aset' => 111, 'id_saporadik' => 222]) }}">
+                                    <a href="{{ route('aset.sporadik.detail', ['id_aset' => 111, 'id_sporadik' => 222]) }}">
                                         782WGH98JI
                                     </a>
                                 </th>
@@ -75,7 +75,7 @@
                             </tr>
                             <tr>
                                 <th>
-                                    <a href="{{ route('aset.saporadik.detail', ['id_aset' => 111, 'id_saporadik' => 222]) }}">
+                                    <a href="{{ route('aset.sporadik.detail', ['id_aset' => 111, 'id_sporadik' => 222]) }}">
                                         782WGH98JI
                                     </a>
                                 </th>
@@ -84,7 +84,7 @@
                             </tr>
                             <tr>
                                 <th>
-                                    <a href="{{ route('aset.saporadik.detail', ['id_aset' => 111, 'id_saporadik' => 222]) }}">
+                                    <a href="{{ route('aset.sporadik.detail', ['id_aset' => 111, 'id_sporadik' => 222]) }}">
                                         782WGH98JI
                                     </a>
                                 </th>

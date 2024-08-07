@@ -15,7 +15,7 @@ Route::middleware(['auth', 'isWarga'])->group(function () {
     Route::prefix('asets')->group(function () {
         Route::get('/', [AsetController::class, 'index'])->name('asets');
         Route::get('/{id}', [AsetController::class, 'detail'])->name('aset.detail');
-        Route::get('/{id_aset}/saporadik/{id_saporadik}', [AsetController::class, 'detailSaporadik'])->name('aset.saporadik.detail');
+        Route::get('/{id_aset}/sporadik/{id_sporadik}', [AsetController::class, 'detailSporadik'])->name('aset.sporadik.detail');
         Route::get('/{id_aset}/pbb/{id_pbb}', [AsetController::class, 'detailPbb'])->name('aset.pbb.detail');
     });
 

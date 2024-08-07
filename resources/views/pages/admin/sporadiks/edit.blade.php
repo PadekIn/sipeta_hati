@@ -1,12 +1,12 @@
 <x-app-layout>
 
     <div class="pagetitle">
-        <h1>Edit Data Saparodik</h1>
+        <h1>Edit Data Sporadik</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('admin.saparodik') }}">Saparodik</a></li>
-                <li class="breadcrumb-item">Edit Saparodik</li>
+                <li class="breadcrumb-item"><a href="{{ route('admin.sporadik') }}">Sporadik</a></li>
+                <li class="breadcrumb-item">Edit Sporadik</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -17,8 +17,8 @@
 
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Form Edit Saparodik</h5>
-            
+                        <h5 class="card-title">Form Edit Sporadik</h5>
+
                         <!-- Vertical Form -->
                         <form class="row g-3">
 
@@ -92,7 +92,7 @@
                             <button type="submit" class="btn btn-primary">Ubah</button>
                             </div>
                         </form><!-- Vertical Form -->
-        
+
                     </div>
                 </div>
 

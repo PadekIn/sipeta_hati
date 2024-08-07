@@ -8,7 +8,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\WargaController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\SaparodikController;
+use App\Http\Controllers\Admin\SporadikController;
 
 Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
@@ -22,15 +22,15 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
         Route::patch('/update/{id}', [AsetController::class, 'update'])->name('admin.aset.update');
         Route::delete('/destroy/{id}', [AsetController::class, 'destroy'])->name('admin.aset.destroy');
     });
-    // Saparodik
-    Route::prefix('saparodik')->group(function () {
-        Route::get('/', [SaparodikController::class, 'index'])->name('admin.saparodik');
-        Route::get('/detail/{id}', [SaparodikController::class, 'detail'])->name('admin.saparodik.detail');
-        Route::get('/create', [SaparodikController::class, 'create'])->name('admin.saparodik.create');
-        Route::post('/store', [SaparodikController::class, 'store'])->name('admin.saparodik.store');
-        Route::get('/edit/{id}', [SaparodikController::class, 'edit'])->name('admin.saparodik.edit');
-        Route::patch('/update/{id}', [SaparodikController::class, 'update'])->name('admin.saparodik.update');
-        Route::delete('/destroy/{id}', [SaparodikController::class, 'destroy'])->name('admin.saparodik.destroy');
+    // sporadik
+    Route::prefix('sporadik')->group(function () {
+        Route::get('/', [SporadikController::class, 'index'])->name('admin.sporadik');
+        Route::get('/detail/{id}', [SporadikController::class, 'detail'])->name('admin.sporadik.detail');
+        Route::get('/create', [SporadikController::class, 'create'])->name('admin.sporadik.create');
+        Route::post('/store', [SporadikController::class, 'store'])->name('admin.sporadik.store');
+        Route::get('/edit/{id}', [SporadikController::class, 'edit'])->name('admin.sporadik.edit');
+        Route::patch('/update/{id}', [SporadikController::class, 'update'])->name('admin.sporadik.update');
+        Route::delete('/destroy/{id}', [SporadikController::class, 'destroy'])->name('admin.sporadik.destroy');
     });
     // pbb
     Route::prefix('pbb')->group(function () {

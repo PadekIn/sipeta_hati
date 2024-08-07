@@ -12,9 +12,9 @@ class LaporanController extends Controller
         return view('pages.warga.laporan.pbb');
     }
 
-    public function saparodik()
+    public function sporadik()
     {
-        return view('pages.warga.laporan.saparodik');
+        return view('pages.warga.laporan.sporadik');
     }
 
     public function aset()
