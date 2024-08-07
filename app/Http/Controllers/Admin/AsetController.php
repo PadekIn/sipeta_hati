@@ -58,13 +58,16 @@ class AsetController extends Controller
         return redirect()->route('admin.aset')->with('success', 'Data aset berhasil ditambahkan');
     }
 
-    public function edit(Aset $aset)
+    public function edit($id)
     {
+        $unhashed = Hashids::decode($id)[0];
         $warga = Warga::all();
+        $aset = Aset::find($unhashed);
+
         return view('pages.admin.aset.edit', compact('aset', 'warga'));
     }
 
-    public function update(Request $request, Aset $aset)
+    public function update(Request $request, $id)
     {
         $request->validate([
             'warga_id' => 'required',
@@ -72,13 +75,24 @@ class AsetController extends Controller
             'luas' => 'required',
             'alamat' => 'required',
         ]);
+        $unhashed = Hashids::decode($id)[0];
+        $aset = Aset::find($unhashed);
+        $warga_id = Hashids::decode($request->warga_id)[0];
 
-        $aset->update($request->all());
-        return redirect()->route('admin.aset');
+        $aset->update([
+            'warga_id' => $warga_id,
+            'jenis_barang' => $request->jenis_barang,
+            'luas' => $request->luas,
+            'alamat' => $request->alamat,
+        ]);
+
+        return redirect()->route('admin.aset')->with('success', 'Data aset berhasil diubah');
     }
 
-    public function destroy(Aset $aset)
+    public function destroy($id)
     {
+        $unhashed = Hashids::decode($id)[0];
+        $aset = Aset::find($unhashed);
         $aset->delete();
         return redirect()->route('admin.aset');
     }

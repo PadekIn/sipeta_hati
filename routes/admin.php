@@ -25,7 +25,7 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
     // sporadik
     Route::prefix('sporadik')->group(function () {
         Route::get('/', [SporadikController::class, 'index'])->name('admin.sporadik');
-        Route::get('/detail/{id}', [SporadikController::class, 'detail'])->name('admin.sporadik.detail');
+        Route::get('/detail/{rjid}', [SporadikController::class, 'detail'])->name('admin.sporadik.detail');
         Route::get('/create', [SporadikController::class, 'create'])->name('admin.sporadik.create');
         Route::post('/store', [SporadikController::class, 'store'])->name('admin.sporadik.store');
         Route::get('/edit/{id}', [SporadikController::class, 'edit'])->name('admin.sporadik.edit');
