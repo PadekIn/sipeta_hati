@@ -17,7 +17,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">NIK: {{ Auth::user()->nik }}</h5>
+                        <h5 class="card-title">NIK: {{ $aset->warga->user->nik }}</h5>
                         <!-- Table with stripped rows -->
                         <table class="table table-striped">
                             <tbody>

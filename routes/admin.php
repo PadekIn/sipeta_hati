@@ -40,7 +40,7 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
         Route::post('/store', [PbbController::class, 'store'])->name('admin.pbb.store');
         Route::get('/edit/{id}', [PbbController::class, 'edit'])->name('admin.pbb.edit');
         Route::patch('/update/{id}', [PbbController::class, 'update'])->name('admin.pbb.update');
-        Route::delete('/destroy/{id}', [PbbController::class, 'destroy'])->name('admin.pbb.destroy');
+        Route::get('/destroy/{id}', [PbbController::class, 'destroy'])->name('admin.pbb.destroy');
     });
     // warga
     Route::prefix('warga')->group(function () {

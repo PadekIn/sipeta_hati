@@ -65,13 +65,17 @@ class PbbController extends Controller
         }
     }
 
-    public function show($id)
+    public function detail($id)
     {
-        // Retrieve the PBB record with the given ID from the database
-        $pbb = Pbb::findOrFail($id);
+        try {
+            $unhashed = Hashids::decode($id);
+            $pbb = Pbb::with('aset', 'user')->where('id', $unhashed)->first();
 
-        // Return the view with the retrieved PBB record
-        return view('pages.admin.pbb.show', compact('pbb'));
+            // Return the view with the retrieved PBB record
+            return view('pages.admin.pbb.detail', compact('pbb'));
+        } catch (\Throwable $th) {
+            return redirect()->route('admin.pbb')->with('error', 'Server Error');
+        }
     }
 
     public function edit($id)

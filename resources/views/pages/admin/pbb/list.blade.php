@@ -36,7 +36,7 @@
                                 @foreach ($pbbs as $pbb)
                                 <tr>
                                     <td>
-                                        <a href="{{ route('admin.aset.detail', $pbb->hashid) }}">{{ $pbb->no_surat }}</a>
+                                        <a href="{{ route('admin.pbb.detail', $pbb->hashid) }}">{{ $pbb->no_surat }}</a>
                                     </td>
                                     <td>{{ $pbb->perihal }}</td>
                                     <td>{{ $pbb->keterangan }}</td>
