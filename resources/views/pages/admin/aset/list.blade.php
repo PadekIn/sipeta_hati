@@ -13,7 +13,7 @@
     <section class="section">
         <div class="row">
             <div class="col-lg-12">
-    
+
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">
@@ -23,37 +23,42 @@
                         <table class="table datatable">
                             <thead>
                                 <tr>
-                                    <th>Nomor</th>
+                                    <th>ID</th>
                                     <th>Nama Pemilik</th>
                                     <th>Jenis Barang</th>
+                                    <th>Luas</th>
                                     <th>Alamat</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach ($asets as $aset)
                                 <tr>
                                     <td>
-                                        <a href="{{ route('admin.aset.detail',1) }}">
-                                            H3298R-2TR8G
+                                        <a href="{{ route('admin.aset.detail',$aset->hashid) }}">
+                                            {{ $aset->hashid }}
                                         </a>
                                     </td>
-                                    <td>Budi Harjo</td>
-                                    <td>Tanah</td>
-                                    <td>Jln. Lorem ipsum dolor sit amet consectetur.</td>
+                                    <td>{{ $aset->warga->nama }}</td>
+                                    <td>{{ $aset->jenis_barang }}</td>
+                                    <td>{{ $aset->luas }}</td>
+                                    <td>{{ $aset->alamat }}</td>
                                     <td>
                                         <div class="d-flex">
-                                            <a href="{{ route('admin.aset.edit', 1) }}" class="btn btn-sm btn-warning">Edit</a>
+                                            <a href="{{ route('admin.aset.edit', $aset->hashid) }}" class="btn btn-sm btn-warning">Edit</a>
                                             <div style="width: 10px;"></div>
                                             <button id="deleteBtn" class="btn btn-sm btn-danger">Delete</button>
                                         </div>
                                     </td>
                                 </tr>
+                                @endforeach
+
                             </tbody>
                         </table>
                         <!-- End Table with stripped rows -->
                     </div>
                 </div>
-    
+
             </div>
         </div>
     </section>
@@ -72,11 +77,12 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     // Perform the delete action here
-                    Swal.fire(
-                        'Terhapus!',
-                        'Data Aset Telah di Hapus.',
-                        'Berhasil'
-                    )
+                    window.location.href = "{{ route('admin.aset.destroy', $aset->hashid) }}";
+                    // Swal.fire(
+                    //     'Terhapus!',
+                    //     'Data Aset Telah di Hapus.',
+                    //     'Berhasil'
+                    // )
                 }
             })
         });

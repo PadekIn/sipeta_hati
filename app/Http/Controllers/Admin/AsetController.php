@@ -11,8 +11,8 @@ class AsetController extends Controller
 {
     public function index()
     {
-        $aset = Aset::all();
-        return view('pages.admin.aset.list', compact('aset'));
+        $asets = Aset::all();
+        return view('pages.admin.aset.list', compact('asets'));
     }
 
     public function detail($id)
