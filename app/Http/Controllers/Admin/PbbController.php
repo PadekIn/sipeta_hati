@@ -80,28 +80,51 @@ class PbbController extends Controller
 
     public function edit($id)
     {
-        // Retrieve the PBB record with the given ID from the database
-        // $pbb = Pbb::findOrFail($id);
-
-        // Return the view for editing the PBB record
-        return view('pages.admin.pbb.edit');
+        try {
+            $unhashed = Hashids::decode($id)[0];
+            $pbb = Pbb::with('aset')->findOrFail($unhashed);
+            $asets = Aset::with('warga')->get();
+            return view('pages.admin.pbb.edit', compact('pbb', 'asets'));
+        } catch (\Throwable $th) {
+            return redirect()->route('admin.pbb')->with('error', 'Server Error');
+        }
     }
 
     public function update(Request $request, $id)
     {
-        // Validate the request data
-        $validatedData = $request->validate([
-            // Define your validation rules here
-        ]);
+        try {
+            $validatedData = $request->validate([
+                'aset_id' => 'required|string',
+                'no_surat' => 'required|string',
+                'tanggal_surat' => 'required|date',
+                'perihal' => 'required|string',
+                'keterangan' => 'required|string',
+            ]);
 
-        // Retrieve the PBB record with the given ID from the database
-        $pbb = Pbb::findOrFail($id);
+            $aset_id = Hashids::decode($validatedData['aset_id'])[0];
+            $user_id = auth()->user()->id;
 
-        // Update the PBB record with the validated data
-        $pbb->update($validatedData);
+            $surat = Pbb::where('no_surat', $validatedData['no_surat'])->first();
 
-        // Redirect to the index page with a success message
-        return redirect()->route('pbb.index')->with('success', 'PBB record updated successfully');
+            if ($surat) {
+                return redirect()->back()->with('error', 'Nomor Surat sudah ada');
+            }
+
+            $unhashed = Hashids::decode($id)[0];
+            $pbb = Pbb::findOrFail($unhashed);
+            $pbb->update([
+                'aset_id' => $aset_id,
+                'user_id' => $user_id,
+                'no_surat' => $validatedData['no_surat'],
+                'tanggal_surat' => $validatedData['tanggal_surat'],
+                'perihal' => $validatedData['perihal'],
+                'keterangan' => $validatedData['keterangan'],
+            ]);
+
+            return redirect()->route('admin.pbb')->with('success', 'Berhasil memperbarui surat PBB');
+        } catch (\Exception $th) {
+            return redirect()->route('admin.pbb')->with('error', 'Server Error'.$th->getMessage());
+        }
     }
 
     public function destroy($id)
