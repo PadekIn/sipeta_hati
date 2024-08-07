@@ -8,7 +8,7 @@
     <title>{{ config('app.name', 'Sipeta Hati') }}</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
-    
+
     <!-- Custom styles -->
     {{-- <link rel="stylesheet" href="{{ asset('assets/css/style.min.css') }}" /> --}}
 
@@ -76,9 +76,9 @@
                     <span>Assets</span>
                 </a>
             </li><!-- End Assets Page Nav -->
-            
+
             <li class="nav-heading">Profile</li>
-            
+
             <li class="nav-item">
                 <a class="nav-link collapsed" href="{{ route('profile') }}">
                     <i class="bi bi-person"></i>
@@ -123,6 +123,38 @@
 
     <!-- Template Main JS File -->
     <script src="{{ asset('assets/js/main.js') }}"></script>
+    <script>
+        @if(session('warning'))
+            Swal.fire({
+                icon: 'warning',
+                title: 'Warning',
+                text: '{{ session('warning') }}',
+            });
+        @endif
+        @if(session('info'))
+            Swal.fire({
+                icon: 'info',
+                title: 'Info',
+                text: '{{ session('info') }}',
+            });
+        @endif
+
+        @if(session('success'))
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: '{{ session('success') }}',
+            });
+        @endif
+
+        @if(session('error'))
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: '{{ session('error') }}',
+            });
+        @endif
+    </script>
 </body>
 
 </html>

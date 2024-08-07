@@ -6,6 +6,7 @@ use App\Models\Aset;
 use App\Models\Warga;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Vinkla\Hashids\Facades\Hashids;
 
 class AsetController extends Controller
 {
@@ -36,8 +37,25 @@ class AsetController extends Controller
             'alamat' => 'required',
         ]);
 
-        Aset::create($request->all());
-        return redirect()->route('aset.index');
+        $aset = Aset::where('warga_id', Hashids::decode($request->warga_id)[0])
+                    ->where('jenis_barang', $request->jenis_barang)
+                    ->where('luas', $request->luas)
+                    ->first();
+
+        if ($aset) {
+            return redirect()->route('admin.aset')->with('error', 'Data aset sudah ada');
+        }
+
+        $warga_id = Hashids::decode($request->warga_id)[0];
+
+        Aset::create([
+            'warga_id' => $warga_id,
+            'jenis_barang' => $request->jenis_barang,
+            'luas' => $request->luas,
+            'alamat' => $request->alamat,
+        ]);
+
+        return redirect()->route('admin.aset')->with('success', 'Data aset berhasil ditambahkan');
     }
 
     public function edit(Aset $aset)
@@ -56,12 +74,12 @@ class AsetController extends Controller
         ]);
 
         $aset->update($request->all());
-        return redirect()->route('aset.index');
+        return redirect()->route('admin.aset');
     }
 
     public function destroy(Aset $aset)
     {
         $aset->delete();
-        return redirect()->route('aset.index');
+        return redirect()->route('admin.aset');
     }
 }
