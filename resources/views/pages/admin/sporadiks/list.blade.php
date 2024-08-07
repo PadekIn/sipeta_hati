@@ -24,8 +24,8 @@
                             <thead>
                                 <tr>
                                     <th>No Surat</th>
-                                    <th>Pemilik Baru</th>
                                     <th>Pemilik Lama</th>
+                                    <th>Pemilik Baru</th>
                                     <th>Id Aset</th>
                                     <th>Jenis Surat</th>
                                     <th>Tanggal Surat</th>
@@ -33,30 +33,31 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach ($sporadiks as $sporadik)
                                 <tr>
                                     <td>
-                                        {{-- <a href="{{ route('admin.sporadik.detail',1) }}">
-                                            H3298R-2TR8G
-                                        </a> --}}
-                                        H3298R-2TR8G
+                                       <a href="{{ route('admin.sporadik.detail', $sporadik->hashid) }}">
+                                        {{ $sporadik->no_surat }}
+                                       </a>
                                     </td>
-                                    <td>Budi Harjo</td>
-                                    <td>Megawrjo</td>
+                                    <td>{{ $sporadik->pemilik_lama->nama }}</td>
+                                    <td>{{ $sporadik->pemilik_baru->nama }}</td>
                                     <td>
-                                        <a href="{{ route('admin.aset.detail',1) }}">
-                                            H3298R-2TR8G
+                                        <a href="{{ route('admin.aset.detail', $sporadik->aset->hashid) }}">
+                                            {{ $sporadik->aset->hashid }}
                                         </a>
                                     </td>
-                                    <td>Surat Masuk</td>
-                                    <td>20, Juli 2020</td>
+                                    <td>{{ $sporadik->jenis_surat }}</td>
+                                    <td>{{ $sporadik->tanggal_surat }}</td>
                                     <td>
                                         <div class="d-flex">
-                                            <a href="{{ route('admin.sporadik.edit', 1) }}" class="btn btn-sm btn-warning">Edit</a>
+                                            <a href="{{ route('admin.sporadik.edit', $sporadik->hashid) }}" class="btn btn-sm btn-warning">Edit</a>
                                             <div style="width: 10px;"></div>
-                                            <button id="deleteBtn" class="btn btn-sm btn-danger">Delete</button>
+                                            <button onclick="destroy('{{ $sporadik->hashid }}')" class="btn btn-sm btn-danger">Delete</button>
                                         </div>
                                     </td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                         <!-- End Table with stripped rows -->
@@ -68,10 +69,10 @@
     </section>
 
     <script>
-        document.getElementById('deleteBtn').addEventListener('click', function() {
+        function destroy(id) {
             Swal.fire({
                 title: 'Apakah Kamu Yakin?',
-                text: "Ingin menghapus data Sporadik Ini!",
+                text: "Ingin menghapus data Pajak Bumi Bangunan Ini!",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -80,15 +81,10 @@
                 cancelButtonText: 'Tidak, Batalkan!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    // Perform the delete action here
-                    Swal.fire(
-                        'Terhapus!',
-                        'Data Sporadik Telah di Hapus.',
-                        'Berhasil'
-                    )
+                    window.location.href = `/admin/sporadik/destroy/${id}`;
                 }
             })
-        });
+        };
     </script>
 
 </x-app-layout>

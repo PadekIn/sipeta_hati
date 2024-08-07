@@ -20,17 +20,28 @@
                         <h5 class="card-title">Form Buat Sporadik</h5>
 
                         <!-- Vertical Form -->
-                        <form class="row g-3">
+                        <form class="row g-3" action="{{ route('admin.sporadik.store') }}" method="post">
+                            @csrf
+
+                            {{-- aset --}}
+                            <div class="col-12">
+                                <label class="col-sm-2 col-form-label">Pilih Aset</label>
+                                <div class="col-12">
+                                    <select name="aset_id" class="form-select" aria-label="Default select example">
+                                        <option>Pilih Aset</option>
+                                        @foreach ($asets as $aset)
+                                            <option value="{{ $aset->hashid }}" data-warga-id="{{ $aset->warga->hashid }}">{{ $aset->warga->nama }}-{{ $aset->jenis_barang }}-{{ $aset->luas }}meter</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
 
                             {{-- pemilik lama --}}
                             <div class="col-12">
                                 <label class="col-sm-2 col-form-label">Pemilik Lama</label>
                                 <div class="col-12">
-                                    <select class="form-select" aria-label="Default select example">
-                                        <option selected hidden>Pilih Pemilik Lama</option>
-                                        <option value="">Joko</option>
-                                        <option value="">Budi</option>
-                                    </select>
+                                    <input type="text" name="pemilik_lama_id" class="d-none" id="pemilik_lama_id">
+                                    <span class="form-control" id="pemilik_lama">Pemilik Lama</span>
                                 </div>
                             </div>
 
@@ -38,58 +49,36 @@
                             <div class="col-12">
                                 <label class="col-sm-2 col-form-label">Pemilik Baru</label>
                                 <div class="col-12">
-                                    <select class="form-select" aria-label="Default select example">
-                                        <option selected hidden>Pilih Pemilik Baru</option>
-                                        <option value="">Joko</option>
-                                        <option value="">Budi</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            {{-- aset --}}
-                            <div class="col-12">
-                                <label class="col-sm-2 col-form-label">Pilih Aset</label>
-                                <div class="col-12">
-                                    <select class="form-select" aria-label="Default select example">
-                                        <option selected hidden>Pilih Aset</option>
-                                        <option value="">Joko - Tanah - 2000m2</option>
-                                        <option value="">Joko - Tanah - 2000m2</option>
-                                        <option value="">Joko - Tanah - 2000m2</option>
+                                    <select name="pemilik_baru_id" class="form-select" aria-label="Default select example">
+                                        <option>Pilih Pemilik Baru</option>
+                                        @foreach ($warga as $people)
+                                        <option value="{{ $people->hashid }}">{{ $people->nama }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
 
                             {{-- no_surat --}}
                             <div class="col-12">
-                                <label class="col-sm-2 col-form-label">Nomer Surat</label>
-                                <input type="text" class="form-control" placeholder="BCY8922V2Y" aria-label="BCY8922V2Y" aria-describedby="basic-addon2">
+                                <label class="col-sm-2 col-form-label">Nomor Surat</label>
+                                <input type="text" name="no_surat" class="form-control" placeholder="01/SPORADIK/VIII/2024" aria-label="01/SPORADIK/VIII/2024" aria-describedby="basic-addon2">
                             </div>
 
-                            {{-- jenis --}}
-                            {{-- <div class="col-12">
-                                <label class="col-sm-2 col-form-label">Jenis Surat</label>
-                                <div class="col-12">
-                                    <select class="form-select" aria-label="Default select example">
-                                        <option selected hidden>Pilih Jenis Surat</option>
-                                        <option value="">Surat Masuk</option>
-                                        <option value="">Surat Keluar</option>
-                                    </select>
-                                </div>
-                            </div> --}}
                             <div class="col-12">
                                 <label class="col-sm-2 col-form-label">Jenis Surat</label>
-                                <input type="text" class="form-control" placeholder="Masukan Jenis Surat" aria-label="Masukan Jenis Surat" aria-describedby="basic-addon2">
+                                <input type="text" name="jenis_surat" class="form-control" placeholder="Masukan Jenis Surat" aria-label="Masukan Jenis Surat" aria-describedby="basic-addon2">
                             </div>
 
                             {{-- tanggal --}}
                             <div class="col-12">
                                 <label class="col-sm-2 col-form-label">Tanggal Surat</label>
-                                <input type="date" class="form-control" placeholder="20, Juli 2020" aria-label="20, Juli 2020" aria-describedby="basic-addon2">
+                                <input type="date" name="tanggal_surat" class="form-control" placeholder="20, Juli 2020" aria-label="20, Juli 2020" aria-describedby="basic-addon2">
                             </div>
 
 
                             <div class="text-center">
-                            <button type="submit" class="btn btn-primary">Buat</button>
+                                <button type="submit" class="btn btn-primary">Buat</button>
+                                <button type="button" class="btn btn-warning">Kembali</button>
                             </div>
                         </form><!-- Vertical Form -->
 
@@ -101,3 +90,44 @@
     </section>
 
 </x-app-layout>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        let selectAset = document.querySelector('select[name="aset_id"]');
+        let pemilikLamaId = document.querySelector('#pemilik_lama_id');
+        let pemilikLama = document.querySelector('#pemilik_lama');
+        let pemilikBaru = document.querySelector('select[name="pemilik_baru_id"]');
+
+        selectAset.addEventListener('change', function() {
+            let wargaId = this.options[this.selectedIndex].getAttribute('data-warga-id');
+            let wargaName = this.options[this.selectedIndex].text;
+
+            pemilikLamaId.value = wargaId;
+            pemilikLama.textContent = wargaName.split('-')[0];
+
+            if(pemilikLama.textContent == pemilikBaru.options[pemilikBaru.selectedIndex].text) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Pemilik Baru tidak boleh sama dengan Pemilik Lama',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                pemilikLamaId.value = '';
+                pemilikLama.textContent = 'Pemilik Lama';
+            }
+        });
+
+        pemilikBaru.addEventListener('change', function() {
+            if(pemilikLama.textContent === pemilikBaru.options[pemilikBaru.selectedIndex].text) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Pemilik Baru tidak boleh sama dengan Pemilik Lama',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                pemilikBaru.selectedIndex = 0;
+            }
+
+        });
+    });
+</script>
