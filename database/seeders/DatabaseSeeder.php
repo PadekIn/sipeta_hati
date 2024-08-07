@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Pbb;
 use App\Models\Aset;
-use App\Models\Saparodik;
+use App\Models\Sporadik;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Warga;
@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
         Warga::factory()->create();
         Aset::factory()->create();
         Pbb::factory()->create();
-        Saparodik::factory()->create();
+        Sporadik::factory()->create();
 
     }
 }

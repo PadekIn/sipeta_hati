@@ -21,12 +21,12 @@
                             <form class="row g-3 needs-validation" novalidate method="POST" action="{{ route('login') }}">
                                 @csrf
                                 <div class="col-12">
-                                    <label for="yourUsername" class="form-label">Username</label>
+                                    <label for="yourNik" class="form-label">NIK</label>
                                     <div class="input-group has-validation">
                                         <span class="input-group-text" id="inputGroupPrepend">@</span>
-                                        <input type="text" name="username" class="form-control" id="yourUsername" placeholder="Enter your username" required>
-                                        <div class="invalid-feedback">Please enter your username.</div>
-                                        <x-input-error :messages="$errors->get('username')" class="mt-2" />
+                                        <input type="text" name="nik" class="form-control" id="yourNik" placeholder="Enter your NIK" required>
+                                        <div class="invalid-feedback">Please enter your NIK.</div>
+                                        <x-input-error :messages="$errors->get('nik')" class="mt-2" />
                                     </div>
                                 </div>
 

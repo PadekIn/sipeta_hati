@@ -34,9 +34,9 @@ class Aset extends Model
         return $this->hasMany(Pbb::class);
     }
 
-    public function saparodik():HasMany
+    public function sporadik():HasMany
     {
-        return $this->hasMany(Saparodik::class);
+        return $this->hasMany(Sporadik::class);
     }
 
 }
