@@ -8,7 +8,7 @@
     <title>{{ config('app.name', 'Sipeta Hati') }}</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
-    
+
     <!-- Custom styles -->
     {{-- <link rel="stylesheet" href="{{ asset('assets/css/style.min.css') }}" /> --}}
 
@@ -105,11 +105,11 @@
             </li><!-- End Assets Page Nav -->
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="{{ route('admin.saparodik') }}">
+                <a class="nav-link collapsed" href="{{ route('admin.sporadik') }}">
                     <i class="bi bi-journal-text"></i>
-                    <span>Saparodik</span>
+                    <span>Sporadik</span>
                 </a>
-            </li><!-- End Saparodik Page Nav -->
+            </li><!-- End Sporadik Page Nav -->
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="{{ route('admin.pbb') }}">
