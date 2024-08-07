@@ -47,7 +47,7 @@
                                         <div class="d-flex">
                                             <a href="{{ route('admin.aset.edit', $aset->hashid) }}" class="btn btn-sm btn-warning">Edit</a>
                                             <div style="width: 10px;"></div>
-                                            <button id="deleteBtn" class="btn btn-sm btn-danger">Delete</button>
+                                            <button type="button" onclick="destroy('{{ $aset->hashid }}')" class="btn btn-sm btn-danger">Delete</button>
                                         </div>
                                     </td>
                                 </tr>
@@ -64,7 +64,7 @@
     </section>
 
     <script>
-        document.getElementById('deleteBtn').addEventListener('click', function() {
+        function destroy(id) {
             Swal.fire({
                 title: 'Apakah Kamu Yakin?',
                 text: "Ingin menghapus data Aset Ini!",
@@ -77,15 +77,10 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     // Perform the delete action here
-                    window.location.href = "{{ route('admin.aset.destroy', $aset->hashid) }}";
-                    // Swal.fire(
-                    //     'Terhapus!',
-                    //     'Data Aset Telah di Hapus.',
-                    //     'Berhasil'
-                    // )
+                    window.location.href = `/admin/aset/destroy/${id}`;
                 }
             })
-        });
+        };
     </script>
 
 </x-app-layout>

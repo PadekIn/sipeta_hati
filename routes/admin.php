@@ -20,7 +20,7 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
         Route::post('/store', [AsetController::class, 'store'])->name('admin.aset.store');
         Route::get('/edit/{id}', [AsetController::class, 'edit'])->name('admin.aset.edit');
         Route::patch('/update/{id}', [AsetController::class, 'update'])->name('admin.aset.update');
-        Route::delete('/destroy/{id}', [AsetController::class, 'destroy'])->name('admin.aset.destroy');
+        Route::get('/destroy/{id}', [AsetController::class, 'destroy'])->name('admin.aset.destroy');
     });
     // sporadik
     Route::prefix('sporadik')->group(function () {

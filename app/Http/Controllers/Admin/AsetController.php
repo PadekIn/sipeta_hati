@@ -69,31 +69,39 @@ class AsetController extends Controller
 
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'warga_id' => 'required',
-            'jenis_barang' => 'required',
-            'luas' => 'required',
-            'alamat' => 'required',
-        ]);
-        $unhashed = Hashids::decode($id)[0];
-        $aset = Aset::find($unhashed);
-        $warga_id = Hashids::decode($request->warga_id)[0];
+        try {
+            $request->validate([
+                'warga_id' => 'required',
+                'jenis_barang' => 'required',
+                'luas' => 'required',
+                'alamat' => 'required',
+            ]);
+            $unhashed = Hashids::decode($id)[0];
+            $aset = Aset::find($unhashed);
+            $warga_id = Hashids::decode($request->warga_id)[0];
 
-        $aset->update([
-            'warga_id' => $warga_id,
-            'jenis_barang' => $request->jenis_barang,
-            'luas' => $request->luas,
-            'alamat' => $request->alamat,
-        ]);
+            $aset->update([
+                'warga_id' => $warga_id,
+                'jenis_barang' => $request->jenis_barang,
+                'luas' => $request->luas,
+                'alamat' => $request->alamat,
+            ]);
 
-        return redirect()->route('admin.aset')->with('success', 'Data aset berhasil diubah');
+            return redirect()->route('admin.aset')->with('success', 'Data aset berhasil diubah');
+        } catch (\Throwable $th) {
+            return redirect()->route('admin.aset')->with('error', 'Data aset gagal diubah');
+        }
     }
 
     public function destroy($id)
     {
-        $unhashed = Hashids::decode($id)[0];
-        $aset = Aset::find($unhashed);
-        $aset->delete();
-        return redirect()->route('admin.aset');
+        try {
+            $unhashed = Hashids::decode($id)[0];
+            $aset = Aset::find($unhashed);
+            $aset->delete();
+            return redirect()->route('admin.aset')->with('success', 'Data aset berhasil dihapus');
+        } catch (\Throwable $th) {
+            return redirect()->route('admin.aset')->with('error', 'Data aset gagal dihapus');
+        }
     }
 }
