@@ -1,7 +1,7 @@
 <x-app-layout>
 
     <div class="pagetitle">
-        <h1>Buat Pengguna</h1>
+        <h1>Buat Warga</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>

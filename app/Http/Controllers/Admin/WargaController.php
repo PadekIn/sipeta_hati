@@ -30,6 +30,14 @@ class WargaController extends Controller
         return view('pages.admin.warga.bio');
     }
 
+    public function detail($id)
+    {
+        $validId = Hashids::decode($id)[0];
+        $warga = Warga::findOrFail($validId);
+
+        return view('pages.admin.warga.detail', compact('warga'));
+    }
+
     public function store(Request $request) : RedirectResponse
     {
         $request->validate([

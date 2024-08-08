@@ -40,7 +40,9 @@
                                     @foreach ($warga as $user)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $user->nama }}</td>
+                                        <td>
+                                            <a href="{{ route('admin.warga.detail', $user->hashId) }}">{{ $user->nama }}</a>
+                                        </td>
                                         <td>{{ $user->user->nik }}</td>
                                         <td>{{ $user->alamat }}</td>
                                         <td>{{ $user->no_telp }}</td>
@@ -54,7 +56,7 @@
                                         <td>{{ $user->tanggal_lahir }}</td>
                                         <td>
                                             <div class="d-flex">
-                                                <a href="{{ route('admin.warga.edit', 1) }}" class="btn btn-sm btn-warning">Edit</a>
+                                                <a href="{{ route('admin.warga.edit', $user->hashId) }}" class="btn btn-sm btn-warning">Edit</a>
                                                 <div style="width: 10px;"></div>
                                                 <button onclick="destroy('{{ $user->hashid }}')" class="btn btn-sm btn-danger">Delete</button>
                                             </div>
