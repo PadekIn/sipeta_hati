@@ -112,9 +112,24 @@ class WargaController extends Controller
         }
     }
 
-    public function destroy(Warga $warga)
+    public function destroy($id)
     {
-        $warga->delete();
-        return redirect()->route('warga.index');
+        try {
+            $validId = Hashids::decode($id)[0];
+
+            $warga = Warga::findOrFail($validId);
+            // Find and delete the associated User record
+            if ($warga->user_id) {
+                $user = User::findOrFail($warga->user_id);
+                $user->delete();
+            }
+
+            // Delete the Warga record
+            // $warga->delete();
+
+            return redirect()->route('admin.warga')->with('success', 'Berhasil menghapus Data Warga');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Gagal menghapus Warga: ' . $e->getMessage());
+        }
     }
 }

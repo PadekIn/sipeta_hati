@@ -56,11 +56,12 @@
                                         <div class="d-flex">
                                             <a href="{{ route('admin.user.edit',$user->hashId) }}" class="btn btn-sm btn-warning">Edit</a>
                                             <div style="width: 10px;"></div>
-                                            <form action="{{ route('admin.user.destroy',$user->hashId) }}" method="POST">
+                                            {{-- <form action="{{ route('admin.user.destroy',$user->hashId) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                                            </form>
+                                            </form> --}}
+                                            <button onclick="destroy('{{ $user->hashid }}')" class="btn btn-sm btn-danger">Delete</button>
                                         </div>
                                     </td>
 
@@ -97,6 +98,22 @@
                 }
             })
         });
+        function destroy(id) {
+            Swal.fire({
+                title: 'Apakah Kamu Yakin?',
+                text: "Ingin menghapus data Pajak Bumi Bangunan Ini!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, Aku Yakin!',
+                cancelButtonText: 'Tidak, Batalkan!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = `/admin/admin/destroy/${id}`;
+                }
+            })
+        };
     </script>
 
 </x-app-layout>

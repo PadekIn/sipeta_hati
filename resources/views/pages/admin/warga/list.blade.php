@@ -58,7 +58,7 @@
                                             <div class="d-flex">
                                                 <a href="{{ route('admin.warga.edit', $user->hashId) }}" class="btn btn-sm btn-warning">Edit</a>
                                                 <div style="width: 10px;"></div>
-                                                <button onclick="destroy('{{ $user->hashid }}')" class="btn btn-sm btn-danger">Delete</button>
+                                                {{-- <button onclick="destroy('{{ $user->hashid }}')" class="btn btn-sm btn-danger">Delete</button> --}}
                                             </div>
                                         </td>
                                     </tr>
