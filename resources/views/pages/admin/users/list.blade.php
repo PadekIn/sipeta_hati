@@ -54,9 +54,13 @@
                                     </td>
                                     <td>
                                         <div class="d-flex">
-                                            <a href="{{ route('admin.user.edit',$user->id) }}" class="btn btn-sm btn-warning">Edit</a>
+                                            <a href="{{ route('admin.user.edit',$user->hashId) }}" class="btn btn-sm btn-warning">Edit</a>
                                             <div style="width: 10px;"></div>
-                                            <button id="deleteBtn" class="btn btn-sm btn-danger">Delete</button>
+                                            <form action="{{ route('admin.user.destroy',$user->hashId) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                            </form>
                                         </div>
                                     </td>
 

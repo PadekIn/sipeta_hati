@@ -61,6 +61,7 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
         Route::post('/store', [UserController::class, 'store'])->name('admin.user.store');
         Route::get('/edit/{id}', [UserController::class, 'edit'])->name('admin.user.edit');
         Route::patch('/update/{id}', [UserController::class, 'update'])->name('admin.user.update');
+        Route::patch('/updatePass/{id}', [UserController::class, 'updatePass'])->name('admin.user.updatePass');
         Route::delete('/destroy/{id}', [UserController::class, 'destroy'])->name('admin.user.destroy');
     });
 
