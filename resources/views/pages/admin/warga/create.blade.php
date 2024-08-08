@@ -6,7 +6,7 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
                 <li class="breadcrumb-item"><a href="{{ route('admin.warga') }}">Warga</a></li>
-                <li class="breadcrumb-item">Buat Pengguna</li>
+                <li class="breadcrumb-item">Buat Warga</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -17,42 +17,107 @@
 
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Form Tambah Pengguna</h5>
+                        <h5 class="card-title mb-3">Form Tambah Warga</h5>
             
                         <!-- Vertical Form -->
-                        <form class="row g-3">
-                            {{-- username --}}
-                            <div class="col-12">
-                                <label for="username" class="form-label">Username</label>
-                                <input type="text" name="username" class="form-control" id="username">
+                        <form class="row g-3" action="{{ route('admin.warga.store') }}" method="POST">
+                            @csrf 
+                        
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+                        
+                            @if (session('success'))
+                                <div class="alert alert-success">
+                                    {{ session('success') }}
+                                </div>
+                            @endif
+                        
+                            @if (session('error'))
+                                <div class="alert alert-danger">
+                                    {{ session('error') }}
+                                </div>
+                            @endif
+                        
+                            {{-- NIK --}}
+                            <div class="row mb-3">
+                                <label for="nik" class="col-sm-2 col-form-label">NIK</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="nik" class="form-control" id="nik" value="{{ old('nik') }}" required>
+                                </div>
                             </div>
-                            {{-- password --}}
-                            <div class="col-12">
-                                <label for="password" class="form-label">Password</label>
-                                <input type="password" name="password" class="form-control" id="password">
+                            
+                            {{-- Password --}}
+                            <div class="row mb-3">
+                                <label for="password" class="col-sm-2 col-form-label">Password</label>
+                                <div class="col-sm-10">
+                                    <input type="password" name="password" class="form-control" id="password" required>
+                                </div>
                             </div>
-                            <div class="col-12">
-                                <label for="confPassword" class="form-label">Konfirmasi Password</label>
-                                <input type="password" name="confPassword" class="form-control" id="confPassword">
+                            
+                            {{-- Konfirmasi Password --}}
+                            <div class="row mb-3">
+                                <label for="password_confirmation" class="col-sm-2 col-form-label">Konfirmasi Password</label>
+                                <div class="col-sm-10">
+                                    <input type="password" name="password_confirmation" class="form-control" id="password_confirmation" required>
+                                </div>
                             </div>
-                            {{-- role --}}
-                            <div class="col-12">
-                                <label class="col-sm-2 col-form-label">Select</label>
-                                <div class="col-12">
-                                    <select class="form-select" aria-label="Default select example">
-                                        <option selected hidden>Pilih Role</option>
-                                        <option value="admin">Admin</option>
-                                        <option value="warga">Warga</option>
+                            
+                            {{-- Nama --}}
+                            <div class="row mb-3">
+                                <label for="nama" class="col-sm-2 col-form-label">Nama</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="nama" class="form-control" id="nama" value="{{ old('nama') }}" required>
+                                </div>
+                            </div>
+
+                            {{-- Alamat --}}
+                            <div class="row mb-3">
+                                <label for="alamat" class="col-sm-2 col-form-label">Alamat</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="alamat" class="form-control" id="alamat" value="{{ old('alamat') }}" required>
+                                </div>
+                            </div>
+
+                            {{-- No HP --}}
+                            <div class="row mb-3">
+                                <label for="no_telp" class="col-sm-2 col-form-label">No Handphone</label>
+                                <div class="col-sm-10">
+                                    <input type="number" name="no_telp" class="form-control" id="no_telp" value="{{ old('no_telp') }}" required>
+                                </div>
+                            </div>
+
+                            {{-- Jenis Kelamin --}}
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label">Jenis Kelamin</label>
+                                <div class="col-sm-10">
+                                    <select class="form-select" aria-label="Default select example" name="jenis_kelamin" required>
+                                        <option value="" disabled>Jenis Kelamin</option>
+                                        <option value="laki-laki">Laki-Laki</option>
+                                        <option value="perempuan">Perempuan</option>
                                     </select>
                                 </div>
                             </div>
 
-
-                            <div class="text-center">
-                            {{-- <button type="submit" class="btn btn-primary">Buat</button> --}}
-                            <a  href="{{ route('admin.warga.createBio') }}" class="btn btn-primary">Buat</a>
+                            {{-- Tanggal Lahir --}}
+                            <div class="row mb-3">
+                                <label for="tanggal_lahir" class="col-sm-2 col-form-label">Tangal Lahir</label>
+                                <div class="col-sm-10">
+                                    <input type="date" name="tanggal_lahir" class="form-control" id="tanggal_lahir" value="{{ old('tanggal_lahir') }}" required>
+                                </div>
                             </div>
-                        </form><!-- Vertical Form -->
+                        
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary">Buat</button>
+                            </div>
+                        </form>
+                        <!-- Vertical Form -->
         
                     </div>
                 </div>
