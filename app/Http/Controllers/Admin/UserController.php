@@ -37,11 +37,11 @@ class UserController
             User::create([
                 'nik' => $request->nik,
                 'password' => Hash::make($request->password),
-                'role' => 'warga',
+                'role' => 'admin',
                 'status' => 1
             ]);
     
-            return redirect()->back()->with('success', 'Data Admin berhasil ditambahkan');
+            return redirect()->route('admin.user')->with('success', 'Data Admin berhasil ditambahkan');
         } catch (\Throwable $th) {
             // Tangani error lain yang tidak terkait validasi
             return redirect()->back()->with('error', 'Server Error, data Admin gagal ditambahkan');
