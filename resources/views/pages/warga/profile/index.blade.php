@@ -14,7 +14,7 @@
     <section class="section profile">
         <div class="row">
             {{-- muka --}}
-            <div class="col-xl-4">
+            {{-- <div class="col-xl-4">
                 <div class="card">
                     <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
                         <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
@@ -28,7 +28,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
             {{-- content --}}
             <div class="col-xl-8">
@@ -48,40 +48,41 @@
                             {{-- profile --}}
                             <div class="tab-pane fade show active profile-overview" id="profile-overview">
                                 <h5 class="card-title">Profile Details</h5>
-
+                                {{-- NIK --}}
                                 <div class="row">
-                                    <div class="col-lg-3 col-md-4 label ">Full Name</div>
-                                    <div class="col-lg-9 col-md-8">Kevin Anderson</div>
+                                    <div class="col-lg-3 col-md-4 label ">NIK</div>
+                                    <div class="col-lg-9 col-md-8">{{ Auth::user()->nik }}</div>
                                 </div>
-
+                                {{-- Nama --}}
                                 <div class="row">
-                                    <div class="col-lg-3 col-md-4 label">Company</div>
-                                    <div class="col-lg-9 col-md-8">Lueilwitz, Wisoky and Leuschke</div>
+                                    <div class="col-lg-3 col-md-4 label">Nama Lengkap</div>
+                                    <div class="col-lg-9 col-md-8">{{ Auth::user()->warga->nama }}</div>
                                 </div>
-
+                                {{-- Alamat --}}
                                 <div class="row">
-                                    <div class="col-lg-3 col-md-4 label">Job</div>
-                                    <div class="col-lg-9 col-md-8">Web Designer</div>
+                                    <div class="col-lg-3 col-md-4 label">Alamat</div>
+                                    <div class="col-lg-9 col-md-8">{{ Auth::user()->warga->alamat }}</div>
                                 </div>
-
+                                {{-- no_telp --}}
                                 <div class="row">
-                                    <div class="col-lg-3 col-md-4 label">Country</div>
-                                    <div class="col-lg-9 col-md-8">USA</div>
+                                    <div class="col-lg-3 col-md-4 label">Nomor Telephone</div>
+                                    <div class="col-lg-9 col-md-8">{{ Auth::user()->warga->no_telp }}</div>
                                 </div>
-
+                                {{-- jenis kelamin --}}
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 label">Address</div>
                                     <div class="col-lg-9 col-md-8">A108 Adam Street, New York, NY 535022</div>
                                 </div>
-
+                                {{-- tanggal_lahir --}}
                                 <div class="row">
-                                    <div class="col-lg-3 col-md-4 label">Phone</div>
-                                    <div class="col-lg-9 col-md-8">(436) 486-3538 x29071</div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-lg-3 col-md-4 label">Email</div>
-                                    <div class="col-lg-9 col-md-8">k.anderson@example.com</div>
+                                    <div class="col-lg-3 col-md-4 label">Jenis Kelamin</div>
+                                    <div class="col-lg-9 col-md-8">
+                                        @if (Auth::user()->warga->jenis_kelamin === 'perempuan')
+                                        <span class="badge rounded-pill bg-danger">Perempuan</span>
+                                        @else
+                                        <span class="badge rounded-pill bg-warning">Laki-laki</span>
+                                        @endif
+                                    </div>
                                 </div>
                             </div>
                             {{-- Ganti PW --}}
