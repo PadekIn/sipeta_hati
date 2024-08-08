@@ -77,24 +77,39 @@ class WargaController extends Controller
 
     }
 
-    public function edit(Warga $warga)
+    public function edit($id)
     {
+        $validId = Hashids::decode($id)[0];
+        $warga = Warga::findOrFail($validId);
         return view('pages.admin.warga.edit', compact('warga'));
     }
 
-    public function update(Request $request, Warga $warga)
+    public function update(Request $request, $id)
     {
+        $validId = Hashids::decode($id)[0];
         $request->validate([
-            'user_id' => 'required',
-            'nama' => 'required',
-            'alamat' => 'required',
-            'no_telp' => 'required',
-            'jenis_kelamin' => 'required',
-            'tanggal_lahir' => 'required',
+            'nama' => 'required|string|max:255',
+            'alamat' => 'required|string|max:255',
+            'no_telp' => 'required|string|max:20',
+            'jenis_kelamin' => 'required|in:laki-laki,perempuan',
+            'tanggal_lahir' => 'required|date',
         ]);
 
-        $warga->update($request->all());
-        return redirect()->route('warga.index');
+        try {
+            $warga = Warga::findOrFail($validId);
+
+            $warga->update([
+                'nama' => $request->nama,
+                'alamat' => $request->alamat,
+                'no_telp' => $request->no_telp,
+                'jenis_kelamin' => $request->jenis_kelamin,
+                'tanggal_lahir' => $request->tanggal_lahir
+            ]);
+
+            return redirect()->route('admin.warga.detail', $warga->hashId)->with('success', 'Data Warga berhasil diperbarui');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Gagal mengubah data Warga: ' . $e->getMessage());
+        }
     }
 
     public function destroy(Warga $warga)
