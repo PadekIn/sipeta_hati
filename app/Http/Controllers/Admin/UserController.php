@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rules;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\RedirectResponse;
 
 class UserController
 {
@@ -18,10 +21,33 @@ class UserController
         return view('pages.admin.users.create');
     }
 
-    public function store(Request $request)
+    public function store(Request $request) : RedirectResponse
     {
-        // store user
+        // Validasi data
+        $request->validate([
+            'nik' => 'required|unique:users,nik',
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ], [
+            'nik.unique' => 'NIK ini sudah terdaftar. Silakan gunakan NIK yang berbeda.',
+            'password.confirmed' => 'Konfirmasi password tidak sama dengan password yang dimasukkan.',
+        ]);
+    
+        // Jika validasi lolos, lanjutkan ke operasi berikutnya
+        try {
+            User::create([
+                'nik' => $request->nik,
+                'password' => Hash::make($request->password),
+                'role' => 'warga',
+                'status' => 1
+            ]);
+    
+            return redirect()->back()->with('success', 'Data Admin berhasil ditambahkan');
+        } catch (\Throwable $th) {
+            // Tangani error lain yang tidak terkait validasi
+            return redirect()->back()->with('error', 'Server Error, data Admin gagal ditambahkan');
+        }
     }
+
 
     public function edit($id)
     {

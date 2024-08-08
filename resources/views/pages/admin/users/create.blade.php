@@ -20,38 +20,54 @@
                         <h5 class="card-title">Form Tambah Admin</h5>
             
                         <!-- Vertical Form -->
-                        <form class="row g-3">
-                            {{-- username --}}
+                        <form class="row g-3" action="{{ route('admin.user.store') }}" method="POST">
+                            @csrf 
+                        
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+                        
+                            @if (session('success'))
+                                <div class="alert alert-success">
+                                    {{ session('success') }}
+                                </div>
+                            @endif
+                        
+                            @if (session('error'))
+                                <div class="alert alert-danger">
+                                    {{ session('error') }}
+                                </div>
+                            @endif
+                        
+                            {{-- NIK --}}
                             <div class="col-12">
-                                <label for="username" class="form-label">Username</label>
-                                <input type="text" name="username" class="form-control" id="username">
+                                <label for="nik" class="form-label">NIK</label>
+                                <input type="text" name="nik" class="form-control" id="nik" value="{{ old('nik') }}" required>
                             </div>
-                            {{-- password --}}
+                        
+                            {{-- Password --}}
                             <div class="col-12">
                                 <label for="password" class="form-label">Password</label>
-                                <input type="password" name="password" class="form-control" id="password">
+                                <input type="password" name="password" class="form-control" id="password" required>
                             </div>
+                        
+                            {{-- Konfirmasi Password --}}
                             <div class="col-12">
-                                <label for="confPassword" class="form-label">Konfirmasi Password</label>
-                                <input type="password" name="confPassword" class="form-control" id="confPassword">
+                                <label for="password_confirmation" class="form-label">Konfirmasi Password</label>
+                                <input type="password" name="password_confirmation" class="form-control" id="password_confirmation" required>
                             </div>
-                            {{-- role --}}
-                            {{-- <div class="col-12">
-                                <label class="col-sm-2 col-form-label">Select</label>
-                                <div class="col-12">
-                                    <select class="form-select" aria-label="Default select example">
-                                        <option selected hidden>Pilih Role</option>
-                                        <option value="admin">Admin</option>
-                                        <option value="warga">Warga</option>
-                                    </select>
-                                </div>
-                            </div> --}}
-
-
+                        
                             <div class="text-center">
-                            <button type="submit" class="btn btn-primary">Buat</button>
+                                <button type="submit" class="btn btn-primary">Buat</button>
                             </div>
-                        </form><!-- Vertical Form -->
+                        </form>
+                        <!-- Vertical Form -->
         
                     </div>
                 </div>

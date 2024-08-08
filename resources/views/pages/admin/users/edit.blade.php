@@ -20,11 +20,11 @@
                         <h5 class="card-title">Form Edit Admin</h5>
             
                         <!-- Vertical Form -->
-                        <form class="row g-3">
-                            {{-- username --}}
+                        <form class="row g-3" action="">
+                            {{-- nik --}}
                             <div class="col-12">
-                                <label for="username" class="form-label">Username</label>
-                                <input type="text" name="username" class="form-control" id="username">
+                                <label for="nik" class="form-label">NIK</label>
+                                <input type="text" name="nik" class="form-control" id="nik">
                             </div>
                             {{-- password --}}
                             <div class="col-12">
@@ -46,21 +46,9 @@
                                     </select>
                                 </div>
                             </div> --}}
-                            {{-- active --}}
-                            <div class="col-12">
-                                <label class="col-sm-2 col-form-label">Status</label>
-                                <div class="col-12">
-                                    <select class="form-select" aria-label="Default select example">
-                                        <option selected hidden>Pilih Status</option>
-                                        <option value="">Aktif</option>
-                                        <option value="">Non Aktif</option>
-                                    </select>
-                                </div>
-                            </div>
-
 
                             <div class="text-center">
-                            <button type="submit" class="btn btn-primary">Ubah</button>
+                            <button type="submit" class="btn btn-primary">Buat</button>
                             </div>
                         </form><!-- Vertical Form -->
         
