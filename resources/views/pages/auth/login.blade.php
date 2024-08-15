@@ -23,7 +23,6 @@
                                 <div class="col-12">
                                     <label for="yourNik" class="form-label">NIK</label>
                                     <div class="input-group has-validation">
-                                        <span class="input-group-text" id="inputGroupPrepend">@</span>
                                         <input type="text" name="nik" class="form-control" id="yourNik" placeholder="Enter your NIK" required>
                                         <div class="invalid-feedback">Please enter your NIK.</div>
                                         <x-input-error :messages="$errors->get('nik')" class="mt-2" />
@@ -46,9 +45,9 @@
                                 <div class="col-12">
                                 <button class="btn btn-primary w-100" type="submit">Login</button>
                                 </div>
-                                {{-- <div class="col-12">
-                                    <p class="small mb-0">Don't have account? <a href="pages-register.html">Create an account</a></p>
-                                </div> --}}
+                                <div class="col-12">
+                                    <p class="small mb-0">Don't have account? <a href="/register">Create an account</a></p>
+                                </div>
                             </form>
                         </div>
                     </div>

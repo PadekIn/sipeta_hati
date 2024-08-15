@@ -8,6 +8,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Models\User;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -24,20 +25,31 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
-        $request->authenticate();
+       try{
+            $isUser = User::where('nik', $request->nik)->where('status', true)->first();
 
-        $request->session()->regenerate();
+            if(!$isUser){
+                return redirect()->back()
+                                ->with('error', 'Akun anda belum aktif, silahkan hubungi admin.');
+            }
 
-        $user = Auth::user();
+            $request->authenticate();
+            $request->session()->regenerate();
 
-        if ($user->role==="admin") {
-            return redirect()->intended(route('admin.dashboard', absolute: false));
-        } elseif ($user->role==="warga") {
-            return redirect()->intended(route('dashboard', absolute: false));
-        } else {
-            return redirect()->intended(route('login'));
+            $user = Auth::user();
+
+            if ($user->role==="admin") {
+                return redirect()->intended(route('admin.dashboard', absolute: false));
+            } elseif ($user->role==="warga") {
+                return redirect()->intended(route('dashboard', absolute: false));
+            } else {
+                return redirect()->intended(route('login'));
+            }
+        } catch (\Exception $e) {
+            return redirect()->back()
+                            ->with('error', 'Server error, gagal menambahkan data.'. $e->getMessage());
+
         }
-
     }
 
     /**
