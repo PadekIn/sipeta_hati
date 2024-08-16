@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-guest-layout>
 
     <div class="pagetitle">
         <h1>Data Pengajuan Surat</h1>
