@@ -32,16 +32,32 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $request->validate([
+        // Validate the incoming request data
+        $validator = Validator::make($request->all(), [
             'nik' => ['required', 'string', 'max:16', 'unique:'.User::class],
             'nama' => ['required', 'string', 'max:50'],
             'jenis_kelamin' => ['required', 'string', 'in:laki-laki,perempuan'],
             'no_telp' => ['required', 'string', 'max:15'],
             'alamat' => ['required', 'string', 'max:255'],
             'tanggal_lahir' => ['required', 'date'],
+            'lampiran' => 'required|mimes:pdf',
             'password' => ['required', Rules\Password::defaults()],
         ]);
 
+        if ($validator->fails()) {
+            return redirect()->back()
+                            ->withErrors($validator)
+                            ->withInput();
+        }
+
+        // Handle image upload
+        if ($request->hasFile('lampiran')) {
+            $lampiran = $request->file('lampiran');
+            $lampiranName = time() . '_' . $lampiran->getClientOriginalName();
+            $lampiran->storeAs('/warga/data', $lampiranName, 'public_custom');
+        } else {
+            $lampiranName = null;
+        }
 
         // Create and save the event
         try {
@@ -50,6 +66,7 @@ class RegisteredUserController extends Controller
                 'password' => Hash::make($request->input('password')),
                 'role' => 'warga',
                 'status' => 0,
+                'lampiran' => $lampiranName,
             ]);
 
             Warga::create([

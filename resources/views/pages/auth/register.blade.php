@@ -18,7 +18,7 @@
                             <div class="pt-4 pb-2">
                                 <h5 class="card-title text-center pb-0 fs-5">Register to Create Account</h5>
                             </div>
-                            <form class="row g-3 needs-validation" novalidate method="POST" action="{{ route('register') }}">
+                            <form class="row g-3 needs-validation" novalidate method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                                 @csrf
                                 <div class="col-12">
                                     <label for="nik" class="form-label">NIK</label>
@@ -75,6 +75,15 @@
                                         <div class="invalid-feedback">Masukkan Alamat</div>
                                     </div>
                                     <x-input-error :messages="$errors->get('alamat')" class="mt-2" />
+                                </div>
+
+                                <div class="col-12">
+                                    <label for="alamat" class="form-label">Lampiran</label>
+                                    <div class="input-group has-validation">
+                                        <input type="file" name="lampiran" class="form-control" id="lampiran" required />
+                                        <div class="invalid-feedback">Lampirkan Kelengkapan Data</div>
+                                    </div>
+                                    <p style="color: red; font-size: 10px; font-style: italic; margin-left: 5px">noted: Lampirkan berkas biodata seperti KK atau KTP dalam 1 format pdf</p>
                                 </div>
 
                                 <div class="col-12">

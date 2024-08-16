@@ -49,7 +49,7 @@ class PengajuanController extends Controller
             if ($request->hasFile('lampiran')) {
                 $lampiran = $request->file('lampiran');
                 $lampiranName = time() . '_' . $lampiran->getClientOriginalName();
-                $lampiran->storeAs('/lampiran_warga', $lampiranName, 'public_custom');
+                $lampiran->storeAs('/warga/pengajuan', $lampiranName, 'public_custom');
             } else {
                 $lampiranName = null;
             }
