@@ -35,11 +35,11 @@
                                 </tr>
                                 <tr>
                                     <th>Perihal</td>
-                                    <td>{{ $pbb->perihal }}</td>
+                                    <td>{{ $pbb->pengajuan->perihal }}</td>
                                 </tr>
                                 <tr>
                                     <th>Keterangan</td>
-                                    <td>{{ $pbb->keterangan }}</td>
+                                    <td>{{ $pbb->pengajuan->keterangan }}</td>
                                 </tr>
                                 <tr>
                                     <th>Lampiran</td>

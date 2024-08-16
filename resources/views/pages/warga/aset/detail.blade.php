@@ -68,7 +68,7 @@
                         <tbody>
                             @foreach ($sporadik as $item)
                             <tr>
-                                <th><a href="{{ route('aset.sporadik.detail', ['id_aset' => $aset->hashid, 'id_sporadik' => $item->hashid]) }}">{{ $item->no_surat }}</a></th>
+                                <th><a href="{{ route('aset.sporadik.detail', $item->hashid) }}">{{ $item->no_surat }}</a></th>
                                 <td>{{ $item->jenis_surat }}</td>
                                 <td>{{ $item->tanggal_surat }}</td>
                                 <td>
@@ -90,16 +90,16 @@
                             <tr>
                                 <th>No Surat</th>
                                 <th>Perihal</th>
-                                <th>Keterangan</th>
+                                <th>Tanggal Surat</th>
                                 <th>Lampiran</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($pbb as $item)
                             <tr>
-                                <th><a href="{{ route('aset.pbb.detail', ['id_aset' => $aset->hashid, 'id_pbb' => $item->hashid]) }}">{{ $item->no_surat }}</a></th>
-                                <td>{{ $item->perihal }}</td>
-                                <td>{{ $item->keterangan }}</td>
+                                <th><a href="{{ route('aset.pbb.detail', $item->hashid) }}">{{ $item->no_surat }}</a></th>
+                                <td>{{ $item->pengajuan->perihal }}</td>
+                                <td>{{ $item->tanggal_surat }}</td>
                                 <td>
                                     <a target="_blank" href="{{ asset('lampiran/admin/pbb').'/'.$item->lampiran }}">Lihat Berkas <img src="{{ asset('img/pdf-download.png') }}" width="23px"></a>
                                 </td>

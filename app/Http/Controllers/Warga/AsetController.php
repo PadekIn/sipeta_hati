@@ -136,7 +136,7 @@ class AsetController
         }
     }
 
-    public function detailSporadik($id_aset, $id_sporadik)
+    public function detailSporadik($id_sporadik)
     {
         try {
             $unhashed = Hashids::decode($id_sporadik)[0];
@@ -147,7 +147,7 @@ class AsetController
         }
     }
 
-    public function detailPbb($id_aset, $id_pbb)
+    public function detailPbb($id_pbb)
     {
         try {
             $unhashed = Hashids::decode($id_pbb)[0];

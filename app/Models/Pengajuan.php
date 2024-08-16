@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Pengajuan extends Model
 {
@@ -28,14 +29,14 @@ class Pengajuan extends Model
         return Hashids::encode($this->id);
     }
 
-    public function pbb(): HasMany
+    public function pbb(): HasOne
     {
-        return $this->hasMany(Pbb::class);
+        return $this->hasOne(Pbb::class);
     }
 
-    public function sporadik(): HasMany
+    public function sporadik(): HasOne
     {
-        return $this->hasMany(Sporadik::class);
+        return $this->hasOne(Sporadik::class);
     }
 
     public function warga(): BelongsTo

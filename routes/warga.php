@@ -16,6 +16,7 @@ Route::middleware(['auth', 'isWarga'])->group(function () {
 
     Route::prefix('pengajuan')->group(function () {
         Route::get('/', [PengajuanController::class, 'index'])->name('pengajuan');
+        Route::get('/detail/{id}', [PengajuanController::class, 'detail'])->name('pengajuan.detail');
         Route::get('/create', [PengajuanController::class, 'create'])->name('pengajuan.create');
         Route::post('/store', [PengajuanController::class, 'store'])->name('pengajuan.store');
     });
@@ -28,8 +29,8 @@ Route::middleware(['auth', 'isWarga'])->group(function () {
         Route::patch('/update', [AsetController::class, 'udpate'])->name('asets.update');
         Route::delete('/destroy', [AsetController::class, 'destroy'])->name('asets.destroy');
         Route::get('/{id}', [AsetController::class, 'detail'])->name('aset.detail');
-        Route::get('/{id_aset}/sporadik/{id_sporadik}', [AsetController::class, 'detailSporadik'])->name('aset.sporadik.detail');
-        Route::get('/{id_aset}/pbb/{id_pbb}', [AsetController::class, 'detailPbb'])->name('aset.pbb.detail');
+        Route::get('/pbb/{id_pbb}', [AsetController::class, 'detailPbb'])->name('aset.pbb.detail');
+        Route::get('/sporadik/{id_sporadik}', [AsetController::class, 'detailSporadik'])->name('aset.sporadik.detail');
     });
 
     Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan');

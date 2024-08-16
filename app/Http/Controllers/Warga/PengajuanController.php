@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Warga;
 use App\Models\Pengajuan;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Vinkla\Hashids\Facades\Hashids;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
@@ -17,6 +18,18 @@ class PengajuanController extends Controller
             $pengajuans = Pengajuan::with('warga')->where('warga_id', $id)->get();
 
             return view('pages.warga.pengajuan.list', compact('pengajuans'));
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
+        }
+    }
+
+    public function detail($id)
+    {
+        try {
+            $unhashed = Hashids::decode($id)[0];
+            $pengajuan = Pengajuan::with('warga')->find($unhashed);
+
+            return view('pages.warga.pengajuan.detail', compact('pengajuan'));
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
         }
