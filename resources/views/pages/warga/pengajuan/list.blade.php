@@ -23,7 +23,7 @@
                         <table class="table datatable">
                             <thead>
                                 <tr>
-                                    <th>No Surat</th>
+                                    <th>Tiket Pengajuan</th>
                                     <th>Pemohon</th>
                                     <th>Jenis Surat</th>
                                     <th>Tanggal</th>
@@ -31,30 +31,32 @@
                                     <th>Keterangan</th>
                                     <th>Lampiran</th>
                                     <th>Status</th>
-                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($pbbs as $pbb)
+                                @foreach ($pengajuans as $pengajuan)
                                 <tr>
+                                    <td>#{{ $pengajuan->hashid }}</td>
+                                    <td>{{ $pengajuan->warga->nama }}</td>
                                     <td>
-                                        <a href="{{ route('admin.pbb.detail', $pbb->hashid) }}">{{ $pbb->no_surat }}</a>
+                                        @if ($pengajuan->jenis_surat == 'pbb')
+                                        <span class="badge bg-primary">PBB</span>
+                                        @elseif ($pengajuan->jenis_surat == 'sporadik')
+                                        <span class="badge bg-success">Sporadik</span>
+                                        @endif
                                     </td>
-                                    <td>{{ $pbb->perihal }}</td>
-                                    <td>{{ $pbb->keterangan }}</td>
+                                    <td>{{ $pengajuan->tanggal }}</td>
+                                    <td>{{ $pengajuan->perihal }}</td>
+                                    <td>{{ $pengajuan->keterangan }}</td>
+                                    <td>{{ $pengajuan->lampiran }}</td>
                                     <td>
-                                        <a href="{{ route('admin.aset.detail', $pbb->aset->hashid) }}">
-                                            {{ $pbb->aset->hashid }}
-                                        </a>
-                                    </td>
-                                    <td>{{ $pbb->tanggal_surat }}</td>
-                                    <td>{{ $pbb->user->role }}</td>
-                                    <td>
-                                        <div class="d-flex">
-                                            <a href="{{ route('admin.pbb.edit', $pbb->hashid) }}" class="btn btn-sm btn-warning">Edit</a>
-                                            <div style="width: 10px;"></div>
-                                            <button onclick="destroy('{{ $pbb->hashid }}')" class="btn btn-sm btn-danger">Delete</button>
-                                        </div>
+                                        @if ($pengajuan->status == 'Diproses')
+                                        <span class="badge bg-warning">Diproses</span>
+                                        @elseif ($pengajuan->status == 'Diterima')
+                                        <span class="badge bg-success">Diterima</span>
+                                        @elseif ($pengajuan->status == 'Ditolak')
+                                        <span class="badge bg-danger">Ditolak</span>
+                                        @endif
                                     </td>
                                 </tr>
                                 @endforeach
@@ -67,24 +69,5 @@
             </div>
         </div>
     </section>
-
-    <script>
-        function destroy(id) {
-            Swal.fire({
-                title: 'Apakah Kamu Yakin?',
-                text: "Ingin menghapus data Pajak Bumi Bangunan Ini!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Ya, Aku Yakin!',
-                cancelButtonText: 'Tidak, Batalkan!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = `/admin/pbb/destroy/${id}`;
-                }
-            })
-        };
-    </script>
 
 </x-app-layout>

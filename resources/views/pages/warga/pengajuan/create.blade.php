@@ -36,7 +36,7 @@
                             {{-- tanggal --}}
                             <div class="col-12">
                                 <label class="col-sm-2 col-form-label">Tanggal Surat</label>
-                                <input type="date" name="tanggal_surat" class="form-control" aria-describedby="basic-addon2">
+                                <input type="date" name="tanggal" class="form-control" aria-describedby="basic-addon2">
                             </div>
 
                             {{-- Perihal --}}
@@ -53,6 +53,13 @@
                                 </div>
                             </div>
 
+                            {{-- Perihal --}}
+                            <div class="col-12">
+                                <label class="col-sm-2 col-form-label">Lampiran</label>
+                                <input type="file" name="lampiran" class="form-control" aria-describedby="basic-addon2">
+                                <p style="color: red; font-size: 10px; font-style: italic; margin-left: 5px">noted: Lampirkan berkas persyaratan dan kelengkapan pengajuan dalam 1 format pdf</p>
+                            </div>
+                            </div>
 
                             <div class="text-center">
                                 <button type="submit" class="btn btn-primary">Buat</button>

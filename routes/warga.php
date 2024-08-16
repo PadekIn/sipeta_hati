@@ -16,7 +16,8 @@ Route::middleware(['auth', 'isWarga'])->group(function () {
 
     Route::prefix('pengajuan')->group(function () {
         Route::get('/', [PengajuanController::class, 'index'])->name('pengajuan');
-        Route::get('/surat', [PengajuanController::class, 'surat'])->name('pengajuan.surat');
+        Route::get('/create', [PengajuanController::class, 'create'])->name('pengajuan.create');
+        Route::post('/store', [PengajuanController::class, 'store'])->name('pengajuan.store');
     });
 
     Route::prefix('asets')->group(function () {
