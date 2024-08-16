@@ -39,9 +39,9 @@
                             <li class="nav-item">
                                 <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Overview</button>
                             </li>
-                            <li class="nav-item">
+                            {{-- <li class="nav-item">
                                 <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">Change Password</button>
-                            </li>
+                            </li> --}}
                         </ul>
                         {{-- body --}}
                         <div class="tab-content pt-2">
@@ -84,9 +84,14 @@
                                         @endif
                                     </div>
                                 </div>
+                                {{-- Lampiran --}}
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-4 label">Lampiran</div>
+                                    <div class="col-lg-9 col-md-8"><a target="_blank" href="{{ asset('lampiran/warga/pengajuan').'/'.Auth::user()->warga->lampiran }}">Lihat Berkas <img src="{{ asset('img/pdf-download.png') }}" width="23px"></a></div>
+                                </div>
                             </div>
                             {{-- Ganti PW --}}
-                            <div class="tab-pane fade pt-3" id="profile-change-password">
+                            {{-- <div class="tab-pane fade pt-3" id="profile-change-password">
                                 <!-- Change Password Form -->
                                 <form>
                                     <div class="row mb-3">
@@ -115,7 +120,7 @@
                                     </div>
                                 </form><!-- End Change Password Form -->
 
-                            </div>
+                            </div> --}}
                         </div><!-- End Bordered Tabs -->
                     </div>
                 </div>
