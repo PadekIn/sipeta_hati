@@ -91,6 +91,16 @@
                 text: '{{ session('error') }}',
             });
         @endif
+
+        @if ($errors->any())
+            @foreach ($errors->all() as $error)
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: '{{ $error }}',
+                });
+            @endforeach
+        @endif
     </script>
 </body>
 

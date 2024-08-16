@@ -20,36 +20,36 @@
                         <h5 class="card-title">Form Pengajuan Pembuatan Surat</h5>
 
                         <!-- Vertical Form -->
-                        <form class="row g-3" action="{{ route('pengajuan.store') }}" method="post">
+                        <form class="row g-3" action="{{ route('pengajuan.store') }}" method="post" enctype="multipart/form-data">
                             @csrf
 
                             {{-- no_surat --}}
                             <div class="col-12">
                                 <label class="col-sm-2 col-form-label">Jenis Surat</label>
-                                <select name="jenis" id="jenis" class="form-control">
+                                <select name="jenis_surat" id="jenis_surat" class="form-control">
                                     <option>Pilih Jenis Surat</option>
-                                    <option value="pbb">PBB</option>
-                                    <option value="sporadik">Sporadik</option>
+                                    <option value="pbb" {{ old('jenis_surat') == 'pbb'?'selected':'' }}>PBB</option>
+                                    <option value="sporadik" {{ old('jenis_surat') == 'sporadik'?'selected':'' }}>Sporadik</option>
                                 </select>
                             </div>
 
                             {{-- tanggal --}}
                             <div class="col-12">
                                 <label class="col-sm-2 col-form-label">Tanggal Surat</label>
-                                <input type="date" name="tanggal" class="form-control" aria-describedby="basic-addon2">
+                                <input type="date" name="tanggal" value="{{ old('date') }}" class="form-control" aria-describedby="basic-addon2">
                             </div>
 
                             {{-- Perihal --}}
                             <div class="col-12">
                                 <label class="col-sm-2 col-form-label">Perihal</label>
-                                <input type="text" name="perihal" class="form-control" placeholder="Masukan Perihal Surat" aria-label="Masukan Perihal Surat" aria-describedby="basic-addon2">
+                                <input type="text" name="perihal" value="{{ old('perihal') }}" class="form-control" placeholder="Masukan Perihal Surat" aria-label="Masukan Perihal Surat" aria-describedby="basic-addon2">
                             </div>
 
                             {{-- keterangan --}}
                             <div class="col-12">
                                 <label class="col-sm-2 col-form-label">Keterangan</label>
                                 <div class="col-12">
-                                    <textarea class="form-control" name="keterangan" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                    <textarea class="form-control" name="keterangan" id="exampleFormControlTextarea1" rows="3">{{ old('keterangan') }}</textarea>
                                 </div>
                             </div>
 
@@ -61,7 +61,7 @@
                             </div>
                             </div>
 
-                            <div class="text-center">
+                            <div class="text-center mb-4">
                                 <button type="submit" class="btn btn-primary">Buat</button>
                                 <button type="button" class="btn btn-warning" onclick="history.back()">Kembali</button>
                             </div>
@@ -73,5 +73,13 @@
             </div>
         </div>
     </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tanggal = document.querySelector('input[type="date"]');
+            const today = new Date();
+            tanggal.value = today.toISOString().substr(0, 10);
+        });
+    </script>
 
 </x-guest-layout>

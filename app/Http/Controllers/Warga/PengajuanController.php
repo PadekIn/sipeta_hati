@@ -6,6 +6,7 @@ use App\Models\Pengajuan;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class PengajuanController extends Controller
 {
@@ -29,24 +30,39 @@ class PengajuanController extends Controller
     public function store(Request $request)
     {
         try {
-            $request->validate([
-                'jenis_surat' => 'required',
-                'tanggal' => 'required',
-                'perihal' => 'required',
-                'keterangan' => 'required',
-                'lampiran' => 'required',
+            // Validate the incoming request data
+            $validator = Validator::make($request->all(), [
+                'jenis_surat' => 'required|string|in:pbb,sporadik',
+                'tanggal' => 'required|date',
+                'perihal' => 'required|string',
+                'keterangan' => 'required|string',
+                'lampiran' => 'required|mimes:pdf',
             ]);
 
+            if ($validator->fails()) {
+                return redirect()->back()
+                                ->withErrors($validator)
+                                ->withInput();
+            }
+
+            // Handle image upload
+            if ($request->hasFile('lampiran')) {
+                $lampiran = $request->file('lampiran');
+                $lampiranName = time() . '_' . $lampiran->getClientOriginalName();
+                $lampiran->storeAs('/lampiran_warga', $lampiranName, 'public_custom');
+            } else {
+                $lampiranName = null;
+            }
+
             $id = Auth::user()->warga->id;
-            $pengajuan = new Pengajuan();
-            $pengajuan->warga_id = $id;
-            $pengajuan->jenis_surat = $request->jenis_surat;
-            $pengajuan->tanggal = $request->tanggal;
-            $pengajuan->perihal = $request->perihal;
-            $pengajuan->keterangan = $request->keterangan;
-            $pengajuan->lampiran = $request->lampiran;
-            $pengajuan->status = 'Diproses';
-            $pengajuan->save();
+
+            $pengajuan = array_merge($request->all(), [
+                'warga_id' => $id,
+                'lampiran' => $lampiranName,
+                'status' => 'Diproses',
+            ]);
+
+            Pengajuan::create($pengajuan);
 
             return redirect()->route('pengajuan')->with('success', 'Pengajuan berhasil disimpan');
         } catch (\Exception $e) {

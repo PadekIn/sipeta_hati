@@ -56,6 +56,13 @@ return [
             'throw' => false,
         ],
 
+        'public_custom' => [
+            'driver' => 'local',
+            'root' => public_path('img'), // Path to your custom upload directory
+            'url' => env('APP_URL').'/img', // URL to your custom upload directory
+            'visibility' => 'public',
+        ],
+
     ],
 
     /*

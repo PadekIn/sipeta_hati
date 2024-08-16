@@ -20,6 +20,7 @@ class Pengajuan extends Model
         'keterangan',
         'lampiran',
         'status',
+        'pesan',
     ];
 
     public function getHashidAttribute()

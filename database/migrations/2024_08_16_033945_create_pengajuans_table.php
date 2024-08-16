@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('keterangan', 50);
             $table->string('lampiran', 255);
             $table->enum('status', ['Diterima', 'Ditolak', 'Diproses']);
+            $table->string('pesan', 150)->nullable();
             $table->timestamps();
         });
     }

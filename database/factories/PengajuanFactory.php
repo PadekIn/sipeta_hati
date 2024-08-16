@@ -25,6 +25,7 @@ class PengajuanFactory extends Factory
             'keterangan' => $this->faker->word(),
             'lampiran' => $this->faker->word(),
             'status' => $this->faker->randomElement(['Diterima', 'Ditolak', 'Diproses']),
+            'pesan' => $this->faker->word(),
         ];
     }
 }

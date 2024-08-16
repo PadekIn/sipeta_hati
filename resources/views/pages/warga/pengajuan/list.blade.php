@@ -48,7 +48,7 @@
                                     <td>{{ $pengajuan->tanggal }}</td>
                                     <td>{{ $pengajuan->perihal }}</td>
                                     <td>{{ $pengajuan->keterangan }}</td>
-                                    <td>{{ $pengajuan->lampiran }}</td>
+                                    <td><a target="_blank" href="{{ asset('img/lampiran_warga').'/'.$pengajuan->lampiran }}">Preview</a></td>
                                     <td>
                                         @if ($pengajuan->status == 'Diproses')
                                         <span class="badge bg-warning">Diproses</span>
