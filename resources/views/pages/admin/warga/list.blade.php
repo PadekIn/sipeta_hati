@@ -31,7 +31,7 @@
                                     <th>Alamat</th>
                                     <th>No Handphone</th>
                                     <th>Jenis Kelamin</th>
-                                    <th>Tanggal Lahir</th>
+                                    <th>Status Akun</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -53,7 +53,13 @@
                                                 <span class="badge rounded-pill bg-warning">Perempuan</span>
                                             @endif
                                         </td>
-                                        <td>{{ $user->tanggal_lahir }}</td>
+                                        <td>
+                                            @if ($user->user->status == 1)
+                                                <span class="badge rounded-pill bg-success">Aktif</span>
+                                            @else
+                                                <span class="badge rounded-pill bg-danger">Non-Aktif</span>
+                                            @endif
+                                        </td>
                                         <td>
                                             <div class="d-flex">
                                                 <a href="{{ route('admin.warga.edit', $user->hashId) }}" class="btn btn-sm btn-warning">Edit</a>

@@ -85,6 +85,7 @@
                         </div>
                         <hr>
                         <a href="{{ route('admin.warga.edit', $warga->hashId) }}" class="btn btn-sm btn-primary">Edit</a>
+                        <button type="button" class="btn btn-sm btn-warning text-white" onclick="window.location.href='/admin/warga'">Kembali</button>
 
                     </div>
                 </div>

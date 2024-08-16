@@ -68,7 +68,7 @@ class WargaController extends Controller
                 'jenis_kelamin' => $request->jenis_kelamin,
                 'tanggal_lahir' => $request->tanggal_lahir
             ]);
-            
+
             return redirect()->route('admin.warga')->with('success', 'Data Warga berhasil ditambahkan');
         } catch (\Throwable $th) {
             // Tangani error lain yang tidak terkait validasi
@@ -93,6 +93,7 @@ class WargaController extends Controller
             'no_telp' => 'required|string|max:20',
             'jenis_kelamin' => 'required|in:laki-laki,perempuan',
             'tanggal_lahir' => 'required|date',
+            'status' => 'required|in:0,1',
         ]);
 
         try {
@@ -104,6 +105,11 @@ class WargaController extends Controller
                 'no_telp' => $request->no_telp,
                 'jenis_kelamin' => $request->jenis_kelamin,
                 'tanggal_lahir' => $request->tanggal_lahir
+            ]);
+
+            $user = User::findOrFail($warga->user_id);
+            $user->update([
+                'status' => $request->status
             ]);
 
             return redirect()->route('admin.warga.detail', $warga->hashId)->with('success', 'Data Warga berhasil diperbarui');
