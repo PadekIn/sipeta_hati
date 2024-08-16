@@ -12,12 +12,16 @@ class Sporadik extends Model
     use HasFactory;
 
     protected $fillable = [
+        'pengajuan_id',
         'pemilik_lama_id',
         'pemilik_baru_id',
-        'aset_id',
+        'jenis_barang',
+        'luas',
+        'alamat',
         'no_surat',
         'jenis_surat',
         'tanggal_surat',
+        'lampiran',
     ];
 
 

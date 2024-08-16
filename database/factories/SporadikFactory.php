@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Aset;
 use App\Models\Warga;
+use App\Models\Pengajuan;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,12 +20,16 @@ class SporadikFactory extends Factory
     public function definition(): array
     {
         return [
+            'jenis_barang' => $this->faker->randomElement(['tanah', 'bangunan']),
+            'luas' => $this->faker->randomFloat(2, 0, 999.99),
+            'alamat' => $this->faker->word(),
+            'no_surat' => $this->faker->word(),
+            'jenis_surat' => $this->faker->word(),
+            'tanggal_surat' => $this->faker->date(),
+            'lampiran' => $this->faker->word(),
+            'pengajuan_id' => Pengajuan::factory(),
             'pemilik_lama_id' => Warga::factory(),
             'pemilik_baru_id' => Warga::factory(),
-            'aset_id' => Aset::factory(),
-            'no_surat' => fake()->word,
-            'jenis_surat' => fake()->randomElement(['tanah', 'bangunan']),
-            'tanggal_surat' => fake()->date(),
         ];
     }
 }

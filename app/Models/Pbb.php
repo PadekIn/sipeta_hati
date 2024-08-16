@@ -12,12 +12,13 @@ class Pbb extends Model
     use HasFactory;
 
     protected $fillable = [
-        'aset_id',
+        'pengajuan_id',
+        'jenis_barang',
+        'luas',
+        'alamat',
         'no_surat',
         'tanggal_surat',
-        'perihal',
-        'keterangan',
-        'user_id',
+        'lampiran',
     ];
 
     public function getHashidAttribute()
@@ -25,14 +26,9 @@ class Pbb extends Model
         return Hashids::encode($this->id);
     }
 
-    public function aset(): BelongsTo
+    public function pengajuan(): BelongsTo
     {
-        return $this->belongsTo(Aset::class);
-    }
-
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Pengajuan::class);
     }
 
 }

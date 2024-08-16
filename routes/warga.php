@@ -1,16 +1,23 @@
 <?php
 
-use App\Http\Controllers\Warga\AsetController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Warga\AsetController;
+use App\Http\Controllers\Warga\SuratController;
+use App\Http\Controllers\Warga\LaporanController;
 use App\Http\Controllers\Warga\ProfileController;
 use App\Http\Controllers\Warga\DashboardController;
-use App\Http\Controllers\Warga\LaporanController;
+use App\Http\Controllers\Warga\PengajuanController;
 
 Route::middleware(['auth', 'isWarga'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::get('/pbb', [LaporanController::class, 'pbb'])->name('pbb');
     Route::get('/aset', [LaporanController::class, 'saparodik'])->name('saparodik');
+
+    Route::prefix('pengajuan')->group(function () {
+        Route::get('/', [PengajuanController::class, 'index'])->name('pengajuan');
+        Route::get('/surat', [PengajuanController::class, 'surat'])->name('pengajuan.surat');
+    });
 
     Route::prefix('asets')->group(function () {
         Route::get('/', [AsetController::class, 'index'])->name('asets');

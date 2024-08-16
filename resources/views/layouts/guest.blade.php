@@ -71,9 +71,16 @@
             </li><!-- End Dashboard Nav -->
 
             <li class="nav-item">
+                <a class="nav-link collapsed" href="{{ route('pengajuan') }}">
+                    <i class="bi bi-menu-button-wide"></i>
+                    <span>Pengajuan Surat</span>
+                </a>
+            </li><!-- End Assets Page Nav -->
+
+            <li class="nav-item">
                 <a class="nav-link collapsed" href="{{ route('asets') }}">
                     <i class="bi bi-menu-button-wide"></i>
-                    <span>Assets</span>
+                    <span>Aset</span>
                 </a>
             </li><!-- End Assets Page Nav -->
 

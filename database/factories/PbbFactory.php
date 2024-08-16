@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Aset;
+use App\Models\Pengajuan;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -19,12 +20,13 @@ class PbbFactory extends Factory
     public function definition(): array
     {
         return [
-            'aset_id' => Aset::factory(),
-            'no_surat' => fake()->word,
-            'tanggal_surat' => fake()->date(),
-            'perihal' => fake()->word,
-            'keterangan' => fake()->word,
-            'user_id' => User::factory(),
+            'jenis_barang' => $this->faker->randomElement(['tanah', 'bangunan']),
+            'luas' => $this->faker->randomFloat(2, 0, 999.99),
+            'alamat' => $this->faker->word(),
+            'no_surat' => $this->faker->word(),
+            'tanggal_surat' => $this->faker->date(),
+            'lampiran' => $this->faker->word(),
+            'pengajuan_id' => Pengajuan::factory(),
         ];
     }
 }

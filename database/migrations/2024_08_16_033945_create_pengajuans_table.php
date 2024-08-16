@@ -11,14 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pbbs', function (Blueprint $table) {
+        Schema::create('pengajuans', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('aset_id')->constrained(table:'asets', indexName:'pbbs_aset_id_foreign');
-            $table->string('no_surat', 25);
-            $table->date('tanggal_surat');
+            $table->foreignId('warga_id')->constrained(table: 'wargas', indexName: 'pengajuans_warga_id_foreign');
+            $table->enum('jenis_surat', ['pbb', 'sporadik']);
+            $table->date('tanggal');
             $table->string('perihal', 50);
             $table->string('keterangan', 50);
-            $table->foreignId('user_id')->constrained(table: 'users', indexName: 'pbbs_user_id_foreign');
+            $table->string('lampiran', 255);
+            $table->boolean('status')->default(false);
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pbbs');
+        Schema::dropIfExists('pengajuans');
     }
 };

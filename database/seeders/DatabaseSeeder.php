@@ -17,10 +17,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory()->create();
         User::factory()->admin()->create();
-
-        Warga::factory()->create();
         Aset::factory()->create();
         Pbb::factory()->create();
         Sporadik::factory()->create();
