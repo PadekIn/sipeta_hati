@@ -46,7 +46,7 @@
                             </tbody>
                         </table>
                         <!-- End Table with stripped rows -->
-                        <a href="{{ route('admin.aset.edit',$aset->hashid) }}" class="btn btn-warning">Edit</a>
+                        {{-- <a href="{{ route('admin.aset.edit',$aset->hashid) }}" class="btn btn-warning">Edit</a> --}}
                     </div>
                 </div>
             </div>
@@ -62,6 +62,7 @@
                                 <th>No Surat</th>
                                 <th>Jenis Surat</th>
                                 <th>Tanggal Surat</th>
+                                <th>Lampiran</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -70,6 +71,9 @@
                                 <th><a href="{{ route('aset.sporadik.detail', ['id_aset' => $aset->hashid, 'id_sporadik' => $item->hashid]) }}">{{ $item->no_surat }}</a></th>
                                 <td>{{ $item->jenis_surat }}</td>
                                 <td>{{ $item->tanggal_surat }}</td>
+                                <td>
+                                    <a target="_blank" href="{{ asset('lampiran/admin/sporadik').'/'.$item->lampiran }}">Lihat Berkas <img src="{{ asset('img/pdf-download.png') }}" width="23px"></a>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -87,6 +91,7 @@
                                 <th>No Surat</th>
                                 <th>Perihal</th>
                                 <th>Keterangan</th>
+                                <th>Lampiran</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -95,6 +100,9 @@
                                 <th><a href="{{ route('aset.pbb.detail', ['id_aset' => $aset->hashid, 'id_pbb' => $item->hashid]) }}">{{ $item->no_surat }}</a></th>
                                 <td>{{ $item->perihal }}</td>
                                 <td>{{ $item->keterangan }}</td>
+                                <td>
+                                    <a target="_blank" href="{{ asset('lampiran/admin/pbb').'/'.$item->lampiran }}">Lihat Berkas <img src="{{ asset('img/pdf-download.png') }}" width="23px"></a>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>

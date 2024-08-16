@@ -30,7 +30,7 @@
                                 </tr>
                                 <tr>
                                     <th>Aset</td>
-                                    <td>{{ $sporadik->aset->jenis_barang }} - {{ $sporadik->aset->luas }} meter</td>
+                                    <td>{{ $sporadik->pengajuan->jenis_barang }} - {{ $sporadik->pengajuan->luas }} meter</td>
                                 </tr>
                                 <tr>
                                     <th>Tanggal Surat</td>
@@ -39,6 +39,12 @@
                                 <tr>
                                     <th>Jenis Surat</td>
                                     <td>{{ $sporadik->jenis_surat }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Lampiran</td>
+                                    <td>
+                                        <a target="_blank" href="{{ asset('lampiran/admin/sporadik').'/'.$sporadik->lampiran }}">Lihat Berkas <img src="{{ asset('img/pdf-download.png') }}" width="23px"></a>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>

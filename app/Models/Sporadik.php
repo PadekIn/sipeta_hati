@@ -30,9 +30,9 @@ class Sporadik extends Model
         return Hashids::encode($this->id);
     }
 
-    public function aset(): BelongsTo
+    public function pengajuan(): BelongsTo
     {
-        return $this->belongsTo(Aset::class);
+        return $this->belongsTo(Pengajuan::class);
     }
 
     public function pemilik_lama(): BelongsTo

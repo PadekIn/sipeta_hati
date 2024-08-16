@@ -24,9 +24,11 @@
                             <thead>
                                 <tr>
                                     <th>Nomor</th>
-                                    <th>Nama Pemilik</th>
                                     <th>Jenis Barang</th>
+                                    <th>Luas</th>
                                     <th>Alamat</th>
+                                    <th>Lampiran</th>
+                                    {{-- <th>Aksi</th> --}}
                                 </tr>
                             </thead>
                             <tbody>
@@ -34,12 +36,22 @@
                                 <tr>
                                     <td>
                                         <a href="{{ route('aset.detail', $aset->hashid) }}">
-                                            {{ $aset->hashid }}
+                                            #{{ $aset->hashid }}
                                         </a>
                                     </td>
-                                    <td>{{ $aset->warga->nama }}</td>
                                     <td>{{ $aset->jenis_barang }}</td>
+                                    <td>{{ $aset->luas }} meter</td>
                                     <td>{{ $aset->alamat }}</td>
+                                    <td>
+                                        <a target="_blank" href="{{ asset('lampiran/warga/aset').'/'.$aset->lampiran }}">Lihat Berkas <img src="{{ asset('img/pdf-download.png') }}" width="23px"></a>
+                                    </td>
+                                    {{-- <td>
+                                        <div class="d-flex">
+                                            <a href="{{ route('asets.edit', $aset->hashid) }}" class="btn btn-sm btn-warning">Edit</a>
+                                            <div style="width: 10px;"></div>
+                                            <button type="button" onclick="destroy('{{ $aset->hashid }}')" class="btn btn-sm btn-danger">Delete</button>
+                                        </div>
+                                    </td> --}}
                                 </tr>
                                 @endforeach
                             </tbody>

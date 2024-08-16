@@ -23,11 +23,11 @@
                             <tbody>
                                 <tr>
                                     <th class="col-2">Nama</td>
-                                    <td>{{ $pbb->aset->warga->nama }}</td>
+                                    <td>{{ $pbb->pengajuan->warga->nama }}</td>
                                 </tr>
                                 <tr>
                                     <th>Aset</td>
-                                    <td>{{ $pbb->aset->jenis_barang }} - {{ $pbb->aset->luas }} meter</td>
+                                    <td>{{ $pbb->jenis_barang }} - {{ $pbb->luas }} meter</td>
                                 </tr>
                                 <tr>
                                     <th>Tanggal Surat</td>
@@ -41,10 +41,17 @@
                                     <th>Keterangan</td>
                                     <td>{{ $pbb->keterangan }}</td>
                                 </tr>
+                                <tr>
+                                    <th>Lampiran</td>
+                                    <td>
+                                        <a target="_blank" href="{{ asset('lampiran/admin/pbb').'/'.$pbb->lampiran }}">Lihat Berkas <img src="{{ asset('img/pdf-download.png') }}" width="23px"></a>
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                         <!-- End Table with stripped rows -->
-                        <a href="{{ route('admin.pbb.edit',$pbb->hashid) }}" class="btn btn-warning">Edit</a>
+                        {{-- <a href="{{ route('admin.pbb.edit',$pbb->hashid) }}" class="btn btn-warning">Edit</a> --}}
+                        <button class="btn btn-warning text-white" onclick="history.back()">Kembali</button>
                     </div>
                 </div>
             </div>
