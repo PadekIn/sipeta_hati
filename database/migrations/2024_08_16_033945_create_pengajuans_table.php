@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('perihal', 50);
             $table->string('keterangan', 50);
             $table->string('lampiran', 255);
-            $table->boolean('status')->default(false);
+            $table->enum('status', ['Diteima', 'Ditolak', 'Diproses']);
             $table->timestamps();
         });
     }
