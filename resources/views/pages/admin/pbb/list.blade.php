@@ -1,11 +1,11 @@
 <x-app-layout>
 
     <div class="pagetitle">
-        <h1>Data Pajak Bumi Bangunan</h1>
+        <h1>Data Surat Pajak Bumi Bangunan</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
-                <li class="breadcrumb-item">Pajak Bumi Bangunan</li>
+                <li class="breadcrumb-item">Surat Pajak Bumi Bangunan</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -17,18 +17,18 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">
-                            <a href="{{ route('admin.pbb.create') }}" class="btn btn-primary">Buat Data Pajak Baru</a>
+                            <a href="{{ route('admin.pbb.create') }}" class="btn btn-primary">Buat Surat Baru</a>
                         </h5>
                         <!-- Table with stripped rows -->
                         <table class="table datatable">
                             <thead>
                                 <tr>
                                     <th>No Surat</th>
+                                    <th>Tiket Pengajuan</th>
+                                    <th>Pemohon</th>
                                     <th>Perihal</th>
                                     <th>Keterangan</th>
-                                    <th>Id Aset</th>
                                     <th>Tanggal Surat</th>
-                                    <th>Pembuat</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -38,18 +38,16 @@
                                     <td>
                                         <a href="{{ route('admin.pbb.detail', $pbb->hashid) }}">{{ $pbb->no_surat }}</a>
                                     </td>
-                                    <td>{{ $pbb->perihal }}</td>
-                                    <td>{{ $pbb->keterangan }}</td>
                                     <td>
-                                        <a href="{{ route('admin.aset.detail', $pbb->aset->hashid) }}">
-                                            {{ $pbb->aset->hashid }}
-                                        </a>
+                                        <a href="{{ route('admin.pengajuan.detail', $pbb->pengajuan->hashid) }}">#{{ $pbb->pengajuan->hashid }}</a>
                                     </td>
+                                    <td>{{ $pbb->pengajuan->warga->nama }}</td>
+                                    <td>{{ $pbb->pengajuan->perihal }}</td>
+                                    <td>{{ $pbb->pengajuan->keterangan }}</td>
                                     <td>{{ $pbb->tanggal_surat }}</td>
-                                    <td>{{ $pbb->user->role }}</td>
                                     <td>
                                         <div class="d-flex">
-                                            <a href="{{ route('admin.pbb.edit', $pbb->hashid) }}" class="btn btn-sm btn-warning">Edit</a>
+                                            <a href="{{ route('admin.pbb.edit', $pbb->hashid) }}" class="btn btn-sm btn-warning text-white">Edit</a>
                                             <div style="width: 10px;"></div>
                                             <button onclick="destroy('{{ $pbb->hashid }}')" class="btn btn-sm btn-danger">Delete</button>
                                         </div>

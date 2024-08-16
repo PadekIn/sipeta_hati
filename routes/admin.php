@@ -7,12 +7,23 @@ use App\Http\Controllers\Admin\AsetController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\WargaController;
 use App\Http\Controllers\Admin\ProfileController;
-use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\SporadikController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\PengajuanController;
 
 Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
     // dashboard
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+
+    //Pengajuan
+    Route::prefix('pengajuan')->group(function(){
+        Route::get('/', [PengajuanController::class, 'index'])->name('admin.pengajuan');
+        Route::get('/detail/{id}', [PengajuanController::class, 'detail'])->name('admin.pengajuan.detail');
+        Route::get('/approved/{jenis}/{id}', [PengajuanController::class, 'approved'])->name('admin.pengajuan.approved');
+        Route::patch('/rejected/{id}', [PengajuanController::class, 'rejected'])->name('admin.pengajuan.rejected');
+    });
+
+    //Aset
     Route::prefix('aset')->group(function () {
         Route::get('/', [AsetController::class, 'index'])->name('admin.aset');
         Route::get('/detail/{id}', [AsetController::class, 'detail'])->name('admin.aset.detail');

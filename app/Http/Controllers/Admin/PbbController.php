@@ -4,16 +4,19 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Pbb;
 use App\Models\Aset;
+use App\Models\Pengajuan;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Vinkla\Hashids\Facades\Hashids;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class PbbController extends Controller
 {
     public function index()
     {
         try {
-            $pbbs = Pbb::with('aset', 'user')->get();
+            $pbbs = Pbb::with('pengajuan')->get();
             return view('pages.admin.pbb.list', compact('pbbs'));
         } catch (\Throwable $th) {
             return redirect()->route('admin.dashboard')->with('error', 'Server Error');
@@ -23,41 +26,79 @@ class PbbController extends Controller
     public function create()
     {
         try {
-            $asets = Aset::all();
-            return view('pages.admin.pbb.create', compact('asets'));
+            $pengajuans = Pengajuan::with('warga')->where('jenis_surat', 'pbb')->where('status', 'Diproses')->get();
+            $asets = Aset::with('warga')->get();
+            return view('pages.admin.pbb.create', compact('pengajuans', 'asets'));
         } catch (\Throwable $th) {
-            return redirect()->route('admin.pbb')->with('error', 'Server Error');
+            return redirect()->route('admin.pbb')->with('error', 'Server Error'.$th->getMessage());
         }
     }
 
     public function store(Request $request)
     {
         try {
-            $validatedData = $request->validate([
-                'aset_id' => 'required|string',
+            // Validate the incoming request data
+            $validator = Validator::make($request->all(), [
+                'pengajuan_id' => 'required|string',
                 'no_surat' => 'required|string',
-                'tanggal_surat' => 'required|date',
-                'perihal' => 'required|string',
-                'keterangan' => 'required|string',
+                'tanggal_surat' => ['required', 'date', 'after_or_equal:today'],
+                'aset_id' => 'nullable|string',
+                'jenis_barang' => 'nullable|string',
+                'luas' => 'nullable|string',
+                'alamat' => 'nullable|string',
+                'lampiran' => 'required|file|mimes:pdf',
             ]);
 
-            $aset_id = Hashids::decode($validatedData['aset_id'])[0];
-            $user_id = auth()->user()->id;
+            if ($validator->fails()) {
+                return redirect()->back()
+                                ->withErrors($validator)
+                                ->withInput();
+            }
 
-            $surat = Pbb::where('no_surat', $validatedData['no_surat'])->first();
+            // Handle image upload
+            if ($request->hasFile('lampiran')) {
+                $lampiran = $request->file('lampiran');
+                $lampiranName = time() . '_' . $lampiran->getClientOriginalName();
+                $lampiran->storeAs('/admin/pbb', $lampiranName, 'public_custom');
+            } else {
+                $lampiranName = null;
+            }
+
+            $surat = Pbb::where('no_surat', $request->no_surat)->first();
 
             if ($surat) {
                 return redirect()->route('pbb.create')->with('error', 'Nomor Surat sudah ada');
             }
 
-            Pbb::create([
-                'aset_id' => $aset_id,
-                'user_id' => $user_id,
-                'no_surat' => $validatedData['no_surat'],
-                'tanggal_surat' => $validatedData['tanggal_surat'],
-                'perihal' => $validatedData['perihal'],
-                'keterangan' => $validatedData['keterangan'],
-            ]);
+            $pengajuan_id = Hashids::decode($request->pengajuan_id)[0];
+
+            if($request->aset_id) {
+                $aset_id = Hashids::decode($request->aset_id)[0];
+                $aset = Aset::findOrFail($aset_id);
+                Pbb::create([
+                    'pengajuan_id' => $pengajuan_id,
+                    'no_surat' => $request->no_surat,
+                    'tanggal_surat' => $request->tanggal_surat,
+                    'jenis_barang' => $aset->jenis_barang,
+                    'luas' => $aset->luas,
+                    'alamat' => $aset->alamat,
+                    'lampiran' => $lampiranName,
+                ]);
+            } else {
+                Pbb::create([
+                    'pengajuan_id' => Hashids::decode($request->pengajuan_id)[0],
+                    'no_surat' => $request->no_surat,
+                    'tanggal_surat' => $request->tanggal_surat,
+                    'jenis_barang' => $request->jenis_barang,
+                    'luas' => $request->luas,
+                    'alamat' => $request->alamat,
+                    'lampiran' => $lampiranName,
+                ]);
+            }
+
+            $pengajuan = Pengajuan::find($pengajuan_id);
+            $pengajuan->status = 'Diterima';
+            $pengajuan->save();
 
             return redirect()->route('admin.pbb')->with('success', 'Berhasil membuat surat PBB');
         } catch (\Exception $th) {
@@ -69,7 +110,7 @@ class PbbController extends Controller
     {
         try {
             $unhashed = Hashids::decode($id)[0];
-            $pbb = Pbb::with('aset', 'user')->where('id', $unhashed)->first();
+            $pbb = Pbb::with('pengajuan')->where('id', $unhashed)->first();
 
             // Return the view with the retrieved PBB record
             return view('pages.admin.pbb.detail', compact('pbb'));
@@ -82,9 +123,16 @@ class PbbController extends Controller
     {
         try {
             $unhashed = Hashids::decode($id)[0];
-            $pbb = Pbb::with('aset')->findOrFail($unhashed);
+            $pbb = Pbb::with('pengajuan')->findOrFail($unhashed);
             $asets = Aset::with('warga')->get();
-            return view('pages.admin.pbb.edit', compact('pbb', 'asets'));
+            $aset = Aset::where('jenis_barang', $pbb->jenis_barang)
+                            ->where('luas', $pbb->luas)
+                            ->where('alamat', $pbb->alamat)
+                            ->where('warga_id', $pbb->pengajuan->warga_id)
+                            ->first();
+            $aset_id = $aset->hashid;
+            $pengajuans = Pengajuan::with('warga')->where('jenis_surat', 'pbb')->where('status', 'Diproses')->get();
+            return view('pages.admin.pbb.edit', compact('pbb', 'asets', 'pengajuans', 'aset_id'));
         } catch (\Throwable $th) {
             return redirect()->route('admin.pbb')->with('error', 'Server Error');
         }
@@ -93,33 +141,71 @@ class PbbController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            $validatedData = $request->validate([
-                'aset_id' => 'required|string',
-                'no_surat' => 'required|string',
-                'tanggal_surat' => 'required|date',
-                'perihal' => 'required|string',
-                'keterangan' => 'required|string',
-            ]);
+            $pbb_id = Hashids::decode($id)[0];
+            $pbb = Pbb::findOrFail($pbb_id);
 
-            $aset_id = Hashids::decode($validatedData['aset_id'])[0];
-            $user_id = auth()->user()->id;
-
-            $surat = Pbb::where('no_surat', $validatedData['no_surat'])->first();
-
-            if ($surat) {
-                return redirect()->back()->with('error', 'Nomor Surat sudah ada');
+            if(!$pbb) {
+                return redirect()->route('admin.pbb')->with('error', 'Surat PBB tidak ditemukan');
             }
 
-            $unhashed = Hashids::decode($id)[0];
-            $pbb = Pbb::findOrFail($unhashed);
-            $pbb->update([
-                'aset_id' => $aset_id,
-                'user_id' => $user_id,
-                'no_surat' => $validatedData['no_surat'],
-                'tanggal_surat' => $validatedData['tanggal_surat'],
-                'perihal' => $validatedData['perihal'],
-                'keterangan' => $validatedData['keterangan'],
+            // Validate the incoming request data
+            $validator = Validator::make($request->all(), [
+                'pengajuan_id' => 'required|string',
+                'no_surat' => 'required|string',
+                'tanggal_surat' => ['required', 'date', 'after_or_equal:today'],
+                'aset_id' => 'nullable|string',
+                'jenis_barang' => 'nullable|string',
+                'luas' => 'nullable|string',
+                'alamat' => 'nullable|string',
+                'lampiran' => 'nullable|file|mimes:pdf',
             ]);
+
+            if ($validator->fails()) {
+                return redirect()->back()
+                                ->withErrors($validator)
+                                ->withInput();
+            }
+
+            // Handle image upload
+            if ($request->hasFile('lampiran')) {
+                $lampiran = $request->file('lampiran');
+                $lampiranName = time() . '_' . $lampiran->getClientOriginalName();
+                $lampiran->storeAs('/admin/pbb', $lampiranName, 'public_custom');
+            } else {
+                $lampiranName = $pbb->lampiran;
+            }
+
+            $surat = Pbb::where('no_surat', $request->no_surat)->first();
+
+            if ($surat) {
+                return redirect()->route('pbb.create')->with('error', 'Nomor Surat sudah ada');
+            }
+
+            $pengajuan_id = Hashids::decode($request->pengajuan_id)[0];
+
+            if($request->aset_id) {
+                $aset_id = Hashids::decode($request->aset_id)[0];
+                $aset = Aset::findOrFail($aset_id);
+                $pbb->update([
+                    'pengajuan_id' => $pengajuan_id,
+                    'no_surat' => $request->no_surat,
+                    'tanggal_surat' => $request->tanggal_surat,
+                    'jenis_barang' => $aset->jenis_barang,
+                    'luas' => $aset->luas,
+                    'alamat' => $aset->alamat,
+                    'lampiran' => $lampiranName,
+                ]);
+            } else {
+                $pbb->update([
+                    'pengajuan_id' => Hashids::decode($request->pengajuan_id)[0],
+                    'no_surat' => $request->no_surat,
+                    'tanggal_surat' => $request->tanggal_surat,
+                    'jenis_barang' => $request->jenis_barang,
+                    'luas' => $request->luas,
+                    'alamat' => $request->alamat,
+                    'lampiran' => $lampiranName,
+                ]);
+            }
 
             return redirect()->route('admin.pbb')->with('success', 'Berhasil memperbarui surat PBB');
         } catch (\Exception $th) {

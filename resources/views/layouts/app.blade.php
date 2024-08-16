@@ -98,9 +98,9 @@
             </li><!-- End Dashboard Nav -->
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="{{ route('admin.aset') }}">
+                <a class="nav-link collapsed" href="{{ route('admin.pengajuan') }}">
                     <i class="bi bi-menu-button-wide"></i>
-                    <span>Assets</span>
+                    <span>Pengajuan Surat</span>
                 </a>
             </li><!-- End Assets Page Nav -->
 

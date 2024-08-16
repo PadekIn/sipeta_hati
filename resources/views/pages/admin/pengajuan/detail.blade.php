@@ -1,12 +1,12 @@
 <x-app-layout>
 
     <div class="pagetitle">
-        <h1>Detail Surat PBB</h1>
+        <h1>Detail Pengajuan Surat Warga</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('admin.pbb') }}">Surat</a></li>
-                <li class="breadcrumb-item">PBB</li>
+                <li class="breadcrumb-item"><a href="{{ route('admin.pengajuan') }}">Pengajuan Surat</a></li>
+                <li class="breadcrumb-item">Detail</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -17,38 +17,34 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Nomor Surat: {{ $pbb->no_surat }}</h5>
+                        <h5 class="card-title">Tiket Pengajuan: #{{ $pengajuan->hashid }}</h5>
                         <!-- Table with stripped rows -->
                         <table class="table table-striped">
                             <tbody>
                                 <tr>
-                                    <th class="col-2">Nama Warga</td>
-                                    <td>{{ $pbb->pengajuan->warga->nama }}</td>
+                                    <th class="col-2">Nama Pemohon</td>
+                                    <td>{{ $pengajuan->warga->nama }}</td>
                                 </tr>
                                 <tr>
-                                    <th>Aset</td>
-                                    <td>{{ $pbb->jenis_barang }} - {{ $pbb->luas }} meter</td>
+                                    <th>Jenis Surat</td>
+                                    <td>{{ $pengajuan->jenis_surat }}</td>
                                 </tr>
                                 <tr>
-                                    <th>Lokasi Aset</td>
-                                    <td>{{ $pbb->alamat }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Tanggal Surat</td>
-                                    <td>{{ $pbb->tanggal_surat }}</td>
+                                    <th>Tanggal</td>
+                                    <td>{{ $pengajuan->tanggal }}</td>
                                 </tr>
                                 <tr>
                                     <th>Perihal</td>
-                                    <td>{{ $pbb->pengajuan->perihal }}</td>
+                                    <td>{{ $pengajuan->perihal }}</td>
                                 </tr>
                                 <tr>
                                     <th>Keterangan</td>
-                                    <td>{{ $pbb->pengajuan->keterangan }}</td>
+                                    <td>{{ $pengajuan->keterangan }}</td>
                                 </tr>
                                 <tr>
                                     <th>Lampiran</td>
                                     <td>
-                                        <a target="_blank" href="{{ asset('lampiran/admin/pbb').'/'.$pbb->lampiran }}">Lihat Berkas <img src="{{ asset('img/pdf-download.png') }}" width="23px"></a>
+                                        <a target="_blank" href="{{ asset('lampiran/warga/pengajuan').'/'.$pengajuan->lampiran }}">Lihat Berkas <img src="{{ asset('img/pdf-download.png') }}" width="23px"></a>
                                     </td>
                                 </tr>
                             </tbody>
