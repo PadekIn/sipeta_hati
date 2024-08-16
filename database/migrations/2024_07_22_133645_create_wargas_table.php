@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('no_telp', 16);
             $table->enum('jenis_kelamin', ['laki-laki', 'perempuan']);
             $table->date('tanggal_lahir');
+            $table->string('lampiran', 255)->nullable();
             $table->timestamps();
         });
     }

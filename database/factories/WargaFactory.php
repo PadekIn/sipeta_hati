@@ -24,6 +24,7 @@ class WargaFactory extends Factory
             'no_telp' => fake()->e164PhoneNumber,
             'jenis_kelamin' => fake()->randomElement(['laki-laki', 'perempuan']),
             'tanggal_lahir' => fake()->date(),
+            'lampiran' => $this->faker->word(),
         ];
     }
 }

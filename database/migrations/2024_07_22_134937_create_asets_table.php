@@ -17,6 +17,7 @@ return new class extends Migration
             $table->enum('jenis_barang', ['tanah', 'bangunan']);
             $table->decimal('luas', 8, 2);
             $table->string('alamat');
+            $table->string('lampiran', 255)->nullable();
             $table->timestamps();
         });
     }

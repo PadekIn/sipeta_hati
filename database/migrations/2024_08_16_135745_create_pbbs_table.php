@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('alamat');
             $table->string('no_surat', 25);
             $table->date('tanggal_surat');
-            $table->string('lampiran', 255);
+            $table->string('lampiran', 255)->nullable();
             $table->foreignId('pengajuan_id')->constrained(table: 'pengajuans', indexName: 'pbbs_pengajuan_id_foreign');
             $table->timestamps();
         });

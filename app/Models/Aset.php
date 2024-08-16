@@ -17,6 +17,7 @@ class Aset extends Model
         'jenis_barang',
         'luas',
         'alamat',
+        'lampiran',
     ];
 
     public function getHashidAttribute()

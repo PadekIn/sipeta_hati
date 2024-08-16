@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('no_surat', 25);
             $table->string('jenis_surat', 15);
             $table->date('tanggal_surat');
-            $table->string('lampiran', 255);
+            $table->string('lampiran', 255)->nullable();
             $table->timestamps();
         });
     }

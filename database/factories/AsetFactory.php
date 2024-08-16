@@ -22,6 +22,7 @@ class AsetFactory extends Factory
             'jenis_barang' => fake()->randomElement(['tanah', 'bangunan']),
             'luas' => fake()->randomFloat(2, 1, 100),
             'alamat' => fake()->address,
+            'lampiran' => $this->faker->word(),
         ];
     }
 }

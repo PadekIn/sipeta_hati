@@ -19,6 +19,7 @@ class Warga extends Model
         'no_telp',
         'jenis_kelamin',
         'tanggal_lahir',
+        'lampiran',
     ];
 
     public function getHashidAttribute()

@@ -17,7 +17,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">
-                            List Data Aset Ku
+                            <a href="{{ route('asets.create') }}" class="btn btn-primary">Daftarkan Aset</a>
                         </h5>
                         <!-- Table with stripped rows -->
                         <table class="table datatable">
