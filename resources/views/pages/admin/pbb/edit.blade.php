@@ -49,11 +49,11 @@
                             </div>
 
                             {{-- aset --}}
-                            <div id="aset_selection" class="col-12 {{ $aset_id?'':'d-none' }}">
+                            <div id="aset_selection" class="col-12 {{ old('aset_id') == 'input_manual' || $aset_id == 'input_manual' ?'':'d-none' }}">
                                 <label class="col-sm-2 col-form-label">Aset Warga</label>
                                 <div class="col-12">
                                     <select name="aset_id" class="form-select" aria-label="Default select example">
-                                        <option selected hidden>Pilih Aset Warga</option>
+                                        <option selected disabled hidden>Pilih Aset Warga</option>
                                         $@isset($asets)
                                             $@foreach ($asets as $aset)
                                             <option value="{{ $aset->hashid }}" {{ old('aset_id') == $aset->hashid || $aset_id == $aset->hashid ?'selected':'' }}>{{ $aset->warga->nama }} - {{ $aset->jenis_barang }} - {{ $aset->luas }} meter</option>
@@ -65,7 +65,7 @@
                             </div>
 
                             {{-- jenis --}}
-                            <div id="jenis_barang" class="col-12 {{ $aset_id?'d-none':'' }}">
+                            <div id="jenis_barang" class="col-12 {{ old('aset_id') == 'input_manual' || $aset_id == 'input_manual' ?'d-none':'' }}">
                                 <label class="col-sm-2 col-form-label">Jenis Barang</label>
                                 <div class="col-12">
                                     <select class="form-select" aria-label="Default select example" name="jenis_barang">
@@ -77,7 +77,7 @@
                             </div>
 
                             {{-- luas --}}
-                            <div id="luas" class="col-12 {{ $aset_id?'d-none':'' }}">
+                            <div id="luas" class="col-12 {{ old('aset_id') == 'input_manual' || $aset_id == 'input_manual' ?'d-none':'' }}">
                                 <label class="col-sm-2 col-form-label">Luas Aset</label>
                                 <div class="input-group ">
                                     <input name="luas" type="text" value="{{ old('luas', $pbb->luas) }}" class="form-control" placeholder="Nilai Luas Aset" aria-label="Nilai Luas Aset" aria-describedby="basic-addon2">
@@ -86,7 +86,7 @@
                             </div>
 
                             {{-- alamat --}}
-                            <div id="alamat" class="col-12 {{ $aset_id?'d-none':'' }}">
+                            <div id="alamat" class="col-12 {{ old('aset_id') == 'input_manual' || $aset_id == 'input_manual' ?'d-none':'' }}">
                                 <label class="col-sm-2 col-form-label">Alamat</label>
                                 <div class="col-12">
                                     <textarea name="alamat" class="form-control" id="exampleFormControlTextarea1" rows="3">{{ old('alamat', $pbb->alamat) }}</textarea>

@@ -8,7 +8,6 @@ use App\Models\Pengajuan;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Vinkla\Hashids\Facades\Hashids;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class PbbController extends Controller
@@ -72,7 +71,7 @@ class PbbController extends Controller
 
             $pengajuan_id = Hashids::decode($request->pengajuan_id)[0];
 
-            if($request->aset_id) {
+            if($request->aset_id && $request->aset_id != 'input_manual') {
                 $aset_id = Hashids::decode($request->aset_id)[0];
                 $aset = Aset::findOrFail($aset_id);
                 Pbb::create([
@@ -86,7 +85,7 @@ class PbbController extends Controller
                 ]);
             } else {
                 Pbb::create([
-                    'pengajuan_id' => Hashids::decode($request->pengajuan_id)[0],
+                    'pengajuan_id' => $pengajuan_id,
                     'no_surat' => $request->no_surat,
                     'tanggal_surat' => $request->tanggal_surat,
                     'jenis_barang' => $request->jenis_barang,
@@ -130,8 +129,8 @@ class PbbController extends Controller
                             ->where('alamat', $pbb->alamat)
                             ->where('warga_id', $pbb->pengajuan->warga_id)
                             ->first();
-            $aset_id = $aset->hashid;
-            $pengajuans = Pengajuan::with('warga')->where('jenis_surat', 'pbb')->where('status', 'Diproses')->get();
+            $aset_id = $aset? $aset->hashid : 'input_manual';
+            $pengajuans = Pengajuan::with('warga')->where('jenis_surat', 'pbb')->where('status', 'Diterima')->get();
             return view('pages.admin.pbb.edit', compact('pbb', 'asets', 'pengajuans', 'aset_id'));
         } catch (\Throwable $th) {
             return redirect()->route('admin.pbb')->with('error', 'Server Error');
@@ -145,7 +144,7 @@ class PbbController extends Controller
             $pbb = Pbb::findOrFail($pbb_id);
 
             if(!$pbb) {
-                return redirect()->route('admin.pbb')->with('error', 'Surat PBB tidak ditemukan');
+                return redirect()->back()->with('error', 'Surat PBB tidak ditemukan');
             }
 
             // Validate the incoming request data
@@ -175,15 +174,17 @@ class PbbController extends Controller
                 $lampiranName = $pbb->lampiran;
             }
 
-            $surat = Pbb::where('no_surat', $request->no_surat)->first();
+            if($request->no_surat != $pbb->no_surat){
+                $surat = Pbb::where('no_surat', $request->no_surat)->first();
 
-            if ($surat) {
-                return redirect()->route('pbb.create')->with('error', 'Nomor Surat sudah ada');
+                if ($surat) {
+                    return redirect()->back()->with('error', 'Nomor Surat sudah ada');
+                }
             }
 
             $pengajuan_id = Hashids::decode($request->pengajuan_id)[0];
 
-            if($request->aset_id) {
+            if($request->aset_id && $request->aset_id != 'input_manual') {
                 $aset_id = Hashids::decode($request->aset_id)[0];
                 $aset = Aset::findOrFail($aset_id);
                 $pbb->update([
@@ -218,6 +219,9 @@ class PbbController extends Controller
         try {
             $unhashed = Hashids::decode($id)[0];
             $pbb = Pbb::findOrFail($unhashed);
+            $pengajuan = Pengajuan::find($pbb->pengajuan_id);
+            $pengajuan->status = 'Diproses';
+            $pengajuan->save();
             $pbb->delete();
             return redirect()->route('admin.pbb')->with('success', 'Berhasil menghapus surat PBB');
         } catch (\Throwable $th) {

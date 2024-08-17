@@ -22,16 +22,12 @@
                         <table class="table table-striped">
                             <tbody>
                                 <tr>
+                                    <th class="col-2">Tiket Pengajuan</td>
+                                    <td> <a href="{{ route('admin.pengajuan.detail', $pbb->pengajuan->hashid) }}">{{ $pbb->pengajuan->hashid }}</a></td>
+                                </tr>
+                                <tr>
                                     <th class="col-2">Nama Warga</td>
                                     <td>{{ $pbb->pengajuan->warga->nama }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Aset</td>
-                                    <td>{{ $pbb->jenis_barang }} - {{ $pbb->luas }} meter</td>
-                                </tr>
-                                <tr>
-                                    <th>Lokasi Aset</td>
-                                    <td>{{ $pbb->alamat }}</td>
                                 </tr>
                                 <tr>
                                     <th>Tanggal Surat</td>
@@ -44,6 +40,14 @@
                                 <tr>
                                     <th>Keterangan</td>
                                     <td>{{ $pbb->pengajuan->keterangan }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Aset</td>
+                                    <td>{{ $pbb->jenis_barang }} - {{ $pbb->luas }} meter</td>
+                                </tr>
+                                <tr>
+                                    <th>Lokasi Aset</td>
+                                    <td>{{ $pbb->alamat }}</td>
                                 </tr>
                                 <tr>
                                     <th>Lampiran</td>
