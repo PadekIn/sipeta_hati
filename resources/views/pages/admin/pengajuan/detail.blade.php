@@ -42,9 +42,37 @@
                                     <td>{{ $pengajuan->keterangan }}</td>
                                 </tr>
                                 <tr>
-                                    <th>Lampiran</td>
+                                    <th>Lampiran Pengajuan</td>
                                     <td>
                                         <a target="_blank" href="{{ asset('lampiran/warga/pengajuan').'/'.$pengajuan->lampiran }}">Lihat Berkas <img src="{{ asset('img/pdf-download.png') }}" width="23px"></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Status</td>
+                                    <td>
+                                        @if ($pengajuan->status == 'Diproses')
+                                        <span class="badge bg-warning">Diproses</span>
+                                        @elseif ($pengajuan->status == 'Diterima')
+                                        <span class="badge bg-success">Diterima</span>
+                                        @elseif ($pengajuan->status == 'Ditolak')
+                                        <span class="badge bg-danger">Ditolak</span>
+                                        @endif
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Respon</td>
+                                    <td>
+                                        @if ($pengajuan->status == 'Diproses')
+                                        <span class="">Belum Ada Tanggapan</span>
+                                        @elseif ($pengajuan->status == 'Diterima')
+                                            @if ($pengajuan->jenis_surat == 'pbb')
+                                            <a href="{{ route('aset.pbb.detail', $pengajuan->pbb->hashid) }}">Lihat Balasan</a>
+                                            @elseif ($pengajuan->jenis_surat == 'sporadik')
+                                            <a href="{{ route('aset.sporadik.detail', $pengajuan->sporadik->hashid) }}">Lihat Balasan</a>
+                                            @endif
+                                        @elseif ($pengajuan->status == 'Ditolak')
+                                        <span class="text-danger">{{ $pengajuan->pesan }}</span>
+                                        @endif
                                     </td>
                                 </tr>
                             </tbody>

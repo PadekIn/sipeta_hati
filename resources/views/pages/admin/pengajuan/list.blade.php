@@ -37,7 +37,7 @@
                             <tbody>
                                 @foreach ($pengajuans as $pengajuan)
                                 <tr>
-                                    <td>#{{ $pengajuan->hashid }}</td>
+                                    <td><a href="{{ route('admin.pengajuan.detail', $pengajuan->hashid) }}">#{{ $pengajuan->hashid }}</a></td>
                                     <td>{{ $pengajuan->warga->nama }}</td>
                                     <td>
                                         @if ($pengajuan->jenis_surat == 'pbb')
@@ -61,7 +61,8 @@
                                         <span class="badge bg-danger">Ditolak</span>
                                         @endif
                                     </td>
-                                    <td>
+                                    <td class="text-center">
+                                        @if ($pengajuan->status == 'Diproses')
                                         <div class="d-flex">
                                             <a href="{{ route('admin.pengajuan.approved', [$pengajuan->jenis_surat, $pengajuan->hashid]) }}" class="btn btn-sm btn-success text-white">Terima</a>
                                             <div style="width: 10px;"></div>
@@ -72,6 +73,10 @@
                                                 Tolak
                                             </button>
                                         </div>
+                                        @else
+                                        <span class="badge bg-info">Selesai</span>
+                                        @endif
+
                                     </td>
                                 </tr>
                                 @endforeach
