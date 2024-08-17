@@ -1,12 +1,12 @@
 <x-app-layout>
 
     <div class="pagetitle">
-        <h1>Detail Data Sporadik</h1>
+        <h1>Detail Surat Sporadik</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('admin.sporadik') }}">Sporadik</a></li>
-                <li class="breadcrumb-item">Sporadik Detail</li>
+                <li class="breadcrumb-item"><a href="{{ route('admin.sporadik') }}">Surat</a></li>
+                <li class="breadcrumb-item">Sporadik</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -22,6 +22,34 @@
                         <table class="table table-striped">
                             <tbody>
                                 <tr>
+                                    <th class="col-2">Tiket Pengajuan</td>
+                                    <td> <a href="{{ route('admin.pengajuan.detail', $sporadik->pengajuan->hashid) }}">{{ $sporadik->pengajuan->hashid }}</a></td>
+                                </tr>
+                                <tr>
+                                    <th class="col-2">Nama Warga</td>
+                                    <td>{{ $sporadik->pengajuan->warga->nama }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Tanggal Surat</td>
+                                    <td>{{ $sporadik->tanggal_surat }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Perihal</td>
+                                    <td>{{ $sporadik->pengajuan->perihal }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Keterangan</td>
+                                    <td>{{ $sporadik->pengajuan->keterangan }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Aset</td>
+                                    <td>{{ $sporadik->jenis_barang }} - {{ $sporadik->luas }} meter</td>
+                                </tr>
+                                <tr>
+                                    <th>Lokasi Aset</td>
+                                    <td>{{ $sporadik->alamat }}</td>
+                                </tr>
+                                <tr>
                                     <th class="col-2">Pemilik Lama</td>
                                     <td>{{ $sporadik->pemilik_lama->nama }}</td>
                                 </tr>
@@ -30,21 +58,15 @@
                                     <td>{{ $sporadik->pemilik_baru->nama }}</td>
                                 </tr>
                                 <tr>
-                                    <th>Aset</td>
-                                    <td>{{ $sporadik->aset->jenis_barang }} - {{ $sporadik->aset->luas }} meter</td>
-                                </tr>
-                                <tr>
-                                    <th>Tanggal Surat</td>
-                                    <td>{{ $sporadik->tanggal_surat }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Jenis Surat</td>
-                                    <td>{{ $sporadik->jenis_surat }}</td>
+                                    <th>Lampiran</td>
+                                    <td>
+                                        <a target="_blank" href="{{ asset('lampiran/admin/sporadik').'/'.$sporadik->lampiran }}">Lihat Berkas <img src="{{ asset('img/pdf-download.png') }}" width="23px"></a>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
                         <!-- End Table with stripped rows -->
-                        <a href="{{ route('admin.sporadik.edit',$sporadik->hashid) }}" class="btn btn-warning">Edit</a>
+                        <button type="button" class="btn btn-warning text-white" onclick="history.back()">Kembali</button>
                     </div>
                 </div>
             </div>

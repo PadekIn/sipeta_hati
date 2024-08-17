@@ -1,7 +1,7 @@
 <x-app-layout>
 
     <div class="pagetitle">
-        <h1>Data Sporadik</h1>
+        <h1>Data Surat Sporadik</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
@@ -17,17 +17,17 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">
-                            <a href="{{ route('admin.sporadik.create') }}" class="btn btn-primary">Buat Sporadik Baru</a>
+                            <a href="{{ route('admin.sporadik.create') }}" class="btn btn-primary">Buat Surat Baru</a>
                         </h5>
                         <!-- Table with stripped rows -->
                         <table class="table datatable">
                             <thead>
                                 <tr>
                                     <th>No Surat</th>
-                                    <th>Pemilik Lama</th>
-                                    <th>Pemilik Baru</th>
-                                    <th>Id Aset</th>
-                                    <th>Jenis Surat</th>
+                                    <th>Tiket Pengajuan</th>
+                                    <th>Pemohon</th>
+                                    <th>Perihal</th>
+                                    <th>Keterangan</th>
                                     <th>Tanggal Surat</th>
                                     <th>Action</th>
                                 </tr>
@@ -36,22 +36,20 @@
                                 @foreach ($sporadiks as $sporadik)
                                 <tr>
                                     <td>
-                                       <a href="{{ route('admin.sporadik.detail', $sporadik->hashid) }}">
-                                        {{ $sporadik->no_surat }}
-                                       </a>
+                                        <a href="{{ route('admin.sporadik.detail', $sporadik->hashid) }}">{{ $sporadik->no_surat }}</a>
                                     </td>
-                                    <td>{{ $sporadik->pemilik_lama->nama }}</td>
-                                    <td>{{ $sporadik->pemilik_baru->nama }}</td>
                                     <td>
-                                        <a href="{{ route('admin.aset.detail', $sporadik->aset->hashid) }}">
-                                            {{ $sporadik->aset->hashid }}
+                                        <a href="{{ route('admin.pengajuan.detail', $sporadik->pengajuan->hashid) }}">
+                                            #{{ $sporadik->pengajuan->hashid }}
                                         </a>
                                     </td>
-                                    <td>{{ $sporadik->jenis_surat }}</td>
+                                    <td>{{ $sporadik->pengajuan->warga->nama }}</td>
+                                    <td>{{ $sporadik->pengajuan->perihal }}</td>
+                                    <td>{{ $sporadik->pengajuan->keterangan }}</td>
                                     <td>{{ $sporadik->tanggal_surat }}</td>
                                     <td>
                                         <div class="d-flex">
-                                            <a href="{{ route('admin.sporadik.edit', $sporadik->hashid) }}" class="btn btn-sm btn-warning">Edit</a>
+                                            <a href="{{ route('admin.sporadik.edit', $sporadik->hashid) }}" class="btn btn-sm btn-warning text-white">Edit</a>
                                             <div style="width: 10px;"></div>
                                             <button onclick="destroy('{{ $sporadik->hashid }}')" class="btn btn-sm btn-danger">Delete</button>
                                         </div>

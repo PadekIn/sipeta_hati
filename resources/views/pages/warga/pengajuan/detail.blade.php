@@ -66,9 +66,9 @@
                                         <span class="">Belum Ada Tanggapan</span>
                                         @elseif ($pengajuan->status == 'Diterima')
                                             @if ($pengajuan->jenis_surat == 'pbb')
-                                            <a href="{{ route('aset.pbb.detail', $pengajuan->pbb->hashid) }}">Lihat Balasan</a>
+                                            <a href="{{ route('admin.aset.pbb.detail', $pengajuan->pbb->hashid) }}">Lihat Balasan</a>
                                             @elseif ($pengajuan->jenis_surat == 'sporadik')
-                                            <a href="{{ route('aset.sporadik.detail', $pengajuan->sporadik->hashid) }}">Lihat Balasan</a>
+                                            <a href="{{ route('admin.aset.sporadik.detail', $pengajuan->sporadik->hashid) }}">Lihat Balasan</a>
                                             @endif
                                         @elseif ($pengajuan->status == 'Ditolak')
                                         <span class="text-danger">{{ $pengajuan->pesan }}</span>

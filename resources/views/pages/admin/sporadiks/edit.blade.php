@@ -23,25 +23,87 @@
                         <form class="row g-3" action="{{ route('admin.sporadik.update',  $sporadik->hashid  ) }}" method="post">
                             @csrf
                             @method('PATCH')
-                            {{-- aset --}}
+
+                            {{-- pengajuan --}}
                             <div class="col-12">
-                                <label class="col-sm-2 col-form-label">Pilih Aset</label>
+                                <label class="col-sm-2 col-form-label">Surat Pengajuan</label>
                                 <div class="col-12">
-                                    <select name="aset_id" class="form-select" aria-label="Default select example">
-                                        <option>Pilih Aset</option>
-                                        @foreach ($asets as $aset)
-                                            <option value="{{ $aset->hashid }}" data-warga-id="{{ $aset->warga->hashid }}" {{ $sporadik->aset->hashid == $aset->hashid?'selected':'' }}>{{ $aset->warga->nama }}-{{ $aset->jenis_barang }}-{{ $aset->luas }}meter</option>
+                                    <select name="pengajuan_id" class="form-select" aria-label="Default select example">
+                                        <option selected hidden>Pilih Surat Pengajuan</option>
+                                        $@foreach ($pengajuans as $pengajuan)
+                                        <option value="{{ $pengajuan->hashid }}" {{ old('pengajuan_id') == $pengajuan->hashid || $sporadik->pengajuan->hashid == $pengajuan->hashid?'selected':'' }}>{{ $pengajuan->hashid }} - {{ $pengajuan->warga->nama }} - {{ $pengajuan->perihal }}</option>
                                         @endforeach
                                     </select>
                                 </div>
                             </div>
 
-                            {{-- pemilik lama --}}
+                            {{-- no_surat --}}
+                            <div class="col-12">
+                                <label class="col-sm-2 col-form-label">Nomor Surat</label>
+                                <input type="text" name="no_surat" class="form-control" value="{{ old('no_surat', $sporadik->no_surat) }}" placeholder="01/SPORADIK/VIII/2024" aria-label="01/SPORADIK/VIII/2024" aria-describedby="basic-addon2">
+                            </div>
+
+                            {{-- tanggal --}}
+                            <div class="col-12">
+                                <label class="col-sm-2 col-form-label">Tanggal Surat</label>
+                                <input type="date" name="tanggal_surat" value="{{ old('tanggal_surat', $sporadik->tanggal_surat) }}" class="form-control" placeholder="20, Juli 2020" aria-label="20, Juli 2020" aria-describedby="basic-addon2">
+                            </div>
+
+                            {{-- aset --}}
+                            <div id="aset_selection" class="col-12 {{ old('aset_id') == 'input_manual' || $aset_id == 'input_manual'? 'd-none' : '' }}">
+                                <label class="col-sm-2 col-form-label">Aset Warga</label>
+                                <div class="col-12">
+                                    <select name="aset_id" class="form-select" aria-label="Default select example">
+                                        <option selected disabled hidden>Pilih Aset Warga</option>
+                                        $@isset($asets)
+                                            $@foreach ($asets as $aset)
+                                            <option value="{{ $aset->hashid }}" {{ old('aset_id') == $aset->hashid || $aset_id == $aset->hashid ?'selected':'' }}>{{ $aset->warga->nama }} - {{ $aset->jenis_barang }} - {{ $aset->luas }} meter</option>
+                                            @endforeach
+                                        @endisset
+                                        <option value="input_manual" {{ old('aset_id') == "input_manual"?'selected':'' }}>Input Manual</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            {{-- jenis --}}
+                            <div id="jenis_barang" class="col-12 {{ old('aset_id') == 'input_manual' || $aset_id == 'input_manual' ? '' : 'd-none' }}">
+                                <label class="col-sm-2 col-form-label">Jenis Barang</label>
+                                <div class="col-12">
+                                    <select class="form-select" aria-label="Default select example" name="jenis_barang">
+                                        <option selected hidden>Pilih Jenis Aset</option>
+                                        <option value="tanah" {{ old('jenis_barang') == 'tanah' || $sporadik->jenis_barang == 'tanah'?'selected' :'' }}>Tanah</option>
+                                        <option value="bangunan" {{ old('jenis_barang') == 'bangunan' || $sporadik->jenis_barang == 'bangunan'?'selected' :'' }}>Bangunan</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            {{-- luas --}}
+                            <div id="luas" class="col-12 {{ old('aset_id') == 'input_manual' || $aset_id == 'input_manual' ? '' : 'd-none' }}">
+                                <label class="col-sm-2 col-form-label">Luas Aset</label>
+                                <div class="input-group ">
+                                    <input name="luas" type="text" value="{{ old('luas', $sporadik->luas) }}" class="form-control" placeholder="Nilai Luas Aset" aria-label="Nilai Luas Aset" aria-describedby="basic-addon2">
+                                    <span class="input-group-text" id="basic-addon2">Meter</span>
+                                </div>
+                            </div>
+
+                            {{-- alamat --}}
+                            <div id="alamat" class="col-12 {{ old('aset_id') == 'input_manual' || $aset_id == 'input_manual' ? '' : 'd-none' }}">
+                                <label class="col-sm-2 col-form-label">Alamat</label>
+                                <div class="col-12">
+                                    <textarea name="alamat" class="form-control" id="exampleFormControlTextarea1" rows="3">{{ old('alamat', $sporadik->alamat) }}</textarea>
+                                </div>
+                            </div>
+
+                            {{-- pemilik Lama --}}
                             <div class="col-12">
                                 <label class="col-sm-2 col-form-label">Pemilik Lama</label>
                                 <div class="col-12">
-                                    <input type="text" name="pemilik_lama_id" class="d-none" id="pemilik_lama_id" value="{{ $sporadik->pemilik_lama_id }}">
-                                    <span class="form-control" id="pemilik_lama">{{ $sporadik->pemilik_lama->nama }}</span>
+                                    <select name="pemilik_lama_id" class="form-select" aria-label="Default select example">
+                                        <option>Pilih Pemilik Lama</option>
+                                        @foreach ($warga as $people)
+                                        <option value="{{ $people->hashid }}" {{ old('pemilik_lama_id') == $people->hashid || $sporadik->pemilik_lama->hashid == $people->hashid?'selected':'' }}>{{ $people->nama }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
 
@@ -52,33 +114,21 @@
                                     <select name="pemilik_baru_id" class="form-select" aria-label="Default select example">
                                         <option>Pilih Pemilik Baru</option>
                                         @foreach ($warga as $people)
-                                        <option value="{{ $people->hashid }}" {{ $people->hashid == $sporadik->pemilik_baru->hashid?'selected':'' }}>{{ $people->nama }}</option>
+                                        <option value="{{ $people->hashid }}" {{ old('pemilik_baru_id') == $people->hashid || $sporadik->pemilik_baru->hashid == $people->hashid?'selected':'' }}>{{ $people->nama }}</option>
                                         @endforeach
                                     </select>
                                 </div>
                             </div>
 
-                            {{-- no_surat --}}
+                            {{-- Lampiran --}}
                             <div class="col-12">
-                                <label class="col-sm-2 col-form-label">Nomor Surat</label>
-                                <input type="text" name="no_surat" value="{{ $sporadik->no_surat }}" class="form-control" placeholder="01/SPORADIK/VIII/2024" aria-label="01/SPORADIK/VIII/2024" aria-describedby="basic-addon2">
+                                <label class="col-sm-2 col-form-label">Lampiran</label>
+                                <input type="file" name="lampiran" class="form-control">
                             </div>
-
-                            <div class="col-12">
-                                <label class="col-sm-2 col-form-label">Jenis Surat</label>
-                                <input type="text" name="jenis_surat" class="form-control" value="{{ $sporadik->jenis_surat }}" placeholder="Masukan Jenis Surat" aria-label="Masukan Jenis Surat" aria-describedby="basic-addon2">
-                            </div>
-
-                            {{-- tanggal --}}
-                            <div class="col-12">
-                                <label class="col-sm-2 col-form-label">Tanggal Surat</label>
-                                <input type="date" name="tanggal_surat" class="form-control" value="{{ $sporadik->tanggal_surat }}">
-                            </div>
-
 
                             <div class="text-center">
                                 <button type="submit" class="btn btn-primary">Buat</button>
-                                <button type="button" class="btn btn-warning">Kembali</button>
+                                <button type="button" class="btn btn-warning" onclick="history.back()">Kembali</button>
                             </div>
                         </form><!-- Vertical Form -->
 
@@ -89,45 +139,29 @@
         </div>
     </section>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelector('select[name="aset_id"]').addEventListener('change', function() {
+                let aset_selection = document.getElementById('aset_selection');
+                let jenis_barang = document.getElementById('jenis_barang');
+                let luas = document.getElementById('luas');
+                let alamat = document.getElementById('alamat');
+
+                if (this.value == 'input_manual') {
+                    aset_selection.classList.add('d-none');
+                    jenis_barang.classList.remove('d-none');
+                    luas.classList.remove('d-none');
+                    alamat.classList.remove('d-none');
+                } else {
+                    aset_selection.classList.remove('d-none');
+                    jenis_barang.classList.add('d-none');
+                    luas.classList.add('d-none');
+                    alamat.classList.add('d-none');
+                }
+            });
+        });
+    </script>
+
+
 </x-app-layout>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        let selectAset = document.querySelector('select[name="aset_id"]');
-        let pemilikLamaId = document.querySelector('#pemilik_lama_id');
-        let pemilikLama = document.querySelector('#pemilik_lama');
-        let pemilikBaru = document.querySelector('select[name="pemilik_baru_id"]');
-
-        selectAset.addEventListener('change', function() {
-            let wargaId = this.options[this.selectedIndex].getAttribute('data-warga-id');
-            let wargaName = this.options[this.selectedIndex].text;
-
-            pemilikLamaId.value = wargaId;
-            pemilikLama.textContent = wargaName.split('-')[0];
-
-            if(pemilikLama.textContent == pemilikBaru.options[pemilikBaru.selectedIndex].text) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Pemilik Baru tidak boleh sama dengan Pemilik Lama',
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-                pemilikLamaId.value = '';
-                pemilikLama.textContent = 'Pemilik Lama';
-            }
-        });
-
-        pemilikBaru.addEventListener('change', function() {
-            if(pemilikLama.textContent === pemilikBaru.options[pemilikBaru.selectedIndex].text) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Pemilik Baru tidak boleh sama dengan Pemilik Lama',
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-                pemilikBaru.selectedIndex = 0;
-            }
-
-        });
-    });
-</script>
