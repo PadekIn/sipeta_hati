@@ -105,6 +105,13 @@
             </li><!-- End Assets Page Nav -->
 
             <li class="nav-item">
+                <a class="nav-link collapsed" href="{{ route('admin.aset') }}">
+                    <i class="bi bi-menu-button-wide"></i>
+                    <span>Aset Warga</span>
+                </a>
+            </li><!-- End Assets Page Nav -->
+
+            <li class="nav-item">
                 <a class="nav-link collapsed" href="{{ route('admin.sporadik') }}">
                     <i class="bi bi-journal-text"></i>
                     <span>Sporadik</span>
