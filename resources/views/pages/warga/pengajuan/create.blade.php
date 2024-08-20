@@ -57,7 +57,9 @@
                             <div class="col-12">
                                 <label class="col-sm-2 col-form-label">Lampiran</label>
                                 <input type="file" name="lampiran" class="form-control" aria-describedby="basic-addon2">
-                                <p style="color: red; font-size: 10px; font-style: italic; margin-left: 5px">noted: Lampirkan berkas persyaratan dan kelengkapan pengajuan dalam 1 format pdf</p>
+                                <p style="margin:0; padding:0; color: red; font-size: 10px; font-style: italic; margin-left: 5px">noted:</p>
+                                <p style="margin:0; padding:0; color: red; font-size: 10px; font-style: italic; margin-left: 5px">1. Lampirkan berkas persyaratan dan kelengkapan pengajuan dalam 1 format pdf</p>
+                                <p style="margin:0; padding:0; color: red; font-size: 10px; font-style: italic; margin-left: 5px" id="noted"></p>
                             </div>
                             </div>
 
@@ -80,6 +82,16 @@
             const today = new Date();
             tanggal.value = today.toISOString().substr(0, 10);
         });
+        document.addEventListener('DOMContentLoaded', ()=>{
+            const jenis_surat = document.querySelector('#jenis_surat');
+            jenis_surat.addEventListener('change', ()=>{
+                if(jenis_surat.value == 'pbb'){
+                    document.querySelector('#noted').innerHTML = '2. Persyaratan berkas berupa: Surat pengantar RT, KK, KTP, Sertifikat tanah';
+                }else if(jenis_surat.value == 'sporadik'){
+                    document.querySelector('#noted').innerHTML = '2. Persyaratan berkas berupa: Surat pengantar RT, KK penjual, KTP penjual, KK pembeli, KTP pembeli, Sertifikat tanah, Ukuran tanah';
+                }
+            })
+        })
     </script>
 
 </x-guest-layout>
