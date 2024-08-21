@@ -1,12 +1,13 @@
 <x-app-layout>
 
     <div class="pagetitle">
-        <h1>Detail Surat PBB</h1>
+        <h1>Detail Surat Permohonan PBB</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('admin.pbb') }}">Surat</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('admin.pbb') }}">Surat Permohonan</a></li>
                 <li class="breadcrumb-item">PBB</li>
+                <li class="breadcrumb-item">Detail</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->

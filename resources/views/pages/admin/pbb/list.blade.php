@@ -1,11 +1,12 @@
 <x-app-layout>
 
     <div class="pagetitle">
-        <h1>Data Surat Pajak Bumi Bangunan</h1>
+        <h1>Data Surat Permohonan Pajak Bumi Bangunan</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
-                <li class="breadcrumb-item">Surat Pajak Bumi Bangunan</li>
+                <li class="breadcrumb-item">Surat Permohonan</li>
+                <li class="breadcrumb-item">Pajak Bumi Bangunan</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->

@@ -1,12 +1,13 @@
 <x-app-layout>
 
     <div class="pagetitle">
-        <h1>Edit Data Pajak Bumi Bangunan</h1>
+        <h1>Edit Surat Permohonan Pajak Bumi Bangunan</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
                 <li class="breadcrumb-item"><a href="{{ route('admin.pbb') }}">Pajak Bumi Bangunan</a></li>
-                <li class="breadcrumb-item">Edit Pajak Bumi Bangunan</li>
+                <li class="breadcrumb-item">Surat Permohonan</li>
+                <li class="breadcrumb-item">Edit</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
