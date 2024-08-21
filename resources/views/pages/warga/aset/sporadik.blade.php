@@ -1,12 +1,13 @@
 <x-guest-layout>
 
     <div class="pagetitle">
-        <h1>Detail Data Sporadik</h1>
+        <h1>Detail Surat Sporadik</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('asets') }}">Assets</a></li>
-                <li class="breadcrumb-item">Sporadik Detail</li>
+                <li class="breadcrumb-item">Surat Permohonan</li>
+                <li class="breadcrumb-item">Sporadik</li>
+                <li class="breadcrumb-item">Detail</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -49,7 +50,7 @@
                             </tbody>
                         </table>
                         <!-- End Table with stripped rows -->
-                        <a href="{{ route('admin.sporadik.edit',$sporadik->hashid) }}" class="btn btn-warning">Edit</a>
+                        <button type="button" onclick="history.back()" class="btn btn-warning text-white">Kembali</button>
                     </div>
                 </div>
             </div>

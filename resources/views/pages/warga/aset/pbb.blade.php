@@ -1,12 +1,13 @@
 <x-guest-layout>
 
     <div class="pagetitle">
-        <h1>Detail Data Pajak Bumi Bangunan</h1>
+        <h1>Detail Surat Permohonan Pajak Bumi Bangunan</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('asets') }}">Assets</a></li>
-                <li class="breadcrumb-item">Pajak Bumi Bangunan Detail</li>
+                <li class="breadcrumb-item">Surat Permohonan</li>
+                <li class="breadcrumb-item">Pbb</li>
+                <li class="breadcrumb-item">Detail</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -50,7 +51,6 @@
                             </tbody>
                         </table>
                         <!-- End Table with stripped rows -->
-                        {{-- <a href="{{ route('admin.pbb.edit',$pbb->hashid) }}" class="btn btn-warning">Edit</a> --}}
                         <button class="btn btn-warning text-white" onclick="history.back()">Kembali</button>
                     </div>
                 </div>

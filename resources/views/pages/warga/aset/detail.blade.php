@@ -51,7 +51,7 @@
                 </div>
             </div>
             {{-- suratan --}}
-            <div class="col-6">
+            {{-- <div class="col-6">
                 <div class="card p-4">
                     <h5 class="card-title">
                         Surat Sporadik
@@ -108,7 +108,7 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </section>
 

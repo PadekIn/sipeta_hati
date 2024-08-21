@@ -35,9 +35,9 @@
                                 @foreach ($asets as $aset)
                                 <tr>
                                     <td>
-                                        <a href="{{ route('aset.detail', $aset->hashid) }}">
+                                        {{-- <a href="{{ route('aset.detail', $aset->hashid) }}"> --}}
                                             #{{ $aset->hashid }}
-                                        </a>
+                                        {{-- </a> --}}
                                     </td>
                                     <td>{{ $aset->jenis_barang }}</td>
                                     <td>{{ $aset->luas }} meter</td>

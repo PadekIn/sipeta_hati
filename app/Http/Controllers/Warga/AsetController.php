@@ -151,7 +151,7 @@ class AsetController
     {
         try {
             $unhashed = Hashids::decode($id_pbb)[0];
-            $pbb = Pbb::with('pengajuan')->where('id', $unhashed)->first();
+            $pbb = Pbb::where('id', $unhashed)->first();
             return view('pages.warga.aset.pbb', compact('pbb'));
         } catch (\Throwable $th) {
             return redirect()->route('asets')->with('error', 'Server Error'). $th->getMessage();

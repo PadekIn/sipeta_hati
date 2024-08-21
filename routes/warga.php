@@ -12,7 +12,7 @@ Route::middleware(['auth', 'isWarga'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::get('/pbb', [LaporanController::class, 'pbb'])->name('pbb');
-    Route::get('/aset', [LaporanController::class, 'saparodik'])->name('saparodik');
+    Route::get('/sporadik', [LaporanController::class, 'sporadik'])->name('sporadik');
 
     Route::prefix('pengajuan')->group(function () {
         Route::get('/', [PengajuanController::class, 'index'])->name('pengajuan');
