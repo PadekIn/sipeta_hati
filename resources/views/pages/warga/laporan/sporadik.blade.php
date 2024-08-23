@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-guest-layout>
 
     <div class="pagetitle">
         <h1>Surat Permohonan Sporadik</h1>
@@ -140,4 +140,4 @@
 
     </script>
 
-</x-app-layout>
+</x-guest-layout>

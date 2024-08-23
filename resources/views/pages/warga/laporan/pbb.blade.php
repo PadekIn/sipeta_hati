@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-guest-layout>
 
     <div class="pagetitle">
         <h1>Surat Permohonan Pajak Bumi Bangunan</h1>
@@ -140,4 +140,4 @@
 
     </script>
 
-</x-app-layout>
+</x-guest-layout>

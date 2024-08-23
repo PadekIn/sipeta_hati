@@ -58,4 +58,4 @@
         </div>
     </section>
 
-</x-app-layout>
+</x-guest-layout>
