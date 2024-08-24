@@ -119,7 +119,7 @@
             printWindow.document.write('</div>');
 
             // Laporan
-            printWindow.document.write('<h4 style="text-align: center;">Laporan Surat Sporadik</h4>');
+            printWindow.document.write('<h4 style="text-align: center;">Laporan Surat Sporadik ' + new Date().getFullYear() + '</h4>');
             // printWindow.document.write('<hr>');
 
             // Tabel Laporan
