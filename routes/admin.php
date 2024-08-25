@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\PbbController;
 use App\Http\Controllers\Admin\AsetController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\WargaController;
+use App\Http\Controllers\admin\LaporanController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\SporadikController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -53,6 +54,12 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
         Route::patch('/update/{id}', [PbbController::class, 'update'])->name('admin.pbb.update');
         Route::get('/destroy/{id}', [PbbController::class, 'destroy'])->name('admin.pbb.destroy');
     });
+
+    Route::prefix('laporan')->group(function () {
+        Route::get('/pbb', [LaporanController::class, 'pbb'])->name('admin.laporan.pbb');
+        Route::get('/sporadik', [LaporanController::class, 'sporadik'])->name('admin.laporan.sporadik');
+    });
+
     // warga
     Route::prefix('warga')->group(function () {
         Route::get('/', [WargaController::class, 'index'])->name('admin.warga');
