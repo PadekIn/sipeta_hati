@@ -105,10 +105,10 @@
             </li><!-- End PBB Page Nav -->
 
             <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-target="#pengguna-nav" data-bs-toggle="collapse" href="#">
+                <a class="nav-link collapsed" data-bs-target="#laporan-nav" data-bs-toggle="collapse" href="#">
                     <i class="bi bi-card-list"></i><span>Laporan</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
-                <ul id="pengguna-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <ul id="laporan-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                     <li>
                         <a href="{{ route('admin.laporan.pbb') }}">
                             <i class="bi bi-circle"></i><span>PBB</span>

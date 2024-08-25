@@ -90,19 +90,19 @@
                 </a>
             </li><!-- End Assets Page Nav -->
 
-            <li class="nav-item">
+            {{-- <li class="nav-item">
                 <a class="nav-link collapsed" href="{{ route('pbb') }}">
                     <i class="bi bi-menu-button-wide"></i>
                     <span>PBB</span>
                 </a>
-            </li><!-- End Assets Page Nav -->
+            </li> --}}
 
-            <li class="nav-item">
+            {{-- <li class="nav-item">
                 <a class="nav-link collapsed" href="{{ route('sporadik') }}">
                     <i class="bi bi-menu-button-wide"></i>
                     <span>Sporadik</span>
                 </a>
-            </li><!-- End Assets Page Nav -->
+            </li> --}}
 
             <li class="nav-heading">Profile</li>
 
