@@ -86,7 +86,11 @@
                         <div class="row ">
                             <div  class="col-sm-2 col-form-label">Lampiran</div>
                             <div class="col-sm-10">
+                                @if ($warga->lampiran)
                                 <a target="_blank" href="{{ asset('lampiran/warga/data').'/'.$warga->lampiran }}">Lihat Berkas <img src="{{ asset('img/pdf-download.png') }}" width="23px"></a>
+                                @else
+                                <span class="badge bg-danger">Tidak Ada Berkas</span>
+                                @endif
                             </div>
                         </div>
                         <hr>
