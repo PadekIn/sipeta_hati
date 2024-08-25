@@ -66,7 +66,6 @@ class RegisteredUserController extends Controller
                 'password' => Hash::make($request->input('password')),
                 'role' => 'warga',
                 'status' => 0,
-                'lampiran' => $lampiranName,
             ]);
 
             Warga::create([
@@ -76,6 +75,7 @@ class RegisteredUserController extends Controller
                 'no_telp' => $request->input('no_telp'),
                 'alamat' => $request->input('alamat'),
                 'tanggal_lahir' => $request->input('tanggal_lahir'),
+                'lampiran' => $lampiranName,
             ]);
         } catch (\Exception $e) {
             return redirect()->back()
