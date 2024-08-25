@@ -58,27 +58,6 @@
                             <h6>{{ Auth::user()->username }}</h6>
                             <span>{{ Auth::user()->role }}</span>
                         </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-
-                        {{-- <li>
-                            <a class="dropdown-item d-flex align-items-center" href="">
-                                <i class="bi bi-person"></i>
-                                <span>My Profile</span>
-                            </a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li> --}}
-
-                        <li>
-                            <a class="dropdown-item d-flex align-items-center" href="/logout">
-                                <i class="bi bi-box-arrow-right"></i>
-                                <span>Sign Out</span>
-                            </a>
-                        </li>
-
                     </ul><!-- End Profile Dropdown Items -->
                 </li><!-- End Profile Nav -->
             </ul>
