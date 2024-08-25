@@ -83,6 +83,12 @@
                                 {{ $warga->tanggal_lahir }}
                             </div>
                         </div>
+                        <div class="row ">
+                            <div  class="col-sm-2 col-form-label">Lampiran</div>
+                            <div class="col-sm-10">
+                                <a target="_blank" href="{{ asset('lampiran/warga/data').'/'.$warga->lampiran }}">Lihat Berkas <img src="{{ asset('img/pdf-download.png') }}" width="23px"></a>
+                            </div>
+                        </div>
                         <hr>
                         <a href="{{ route('admin.warga.edit', $warga->hashId) }}" class="btn btn-sm btn-primary">Edit</a>
                         <button type="button" class="btn btn-sm btn-warning text-white" onclick="window.location.href='/admin/warga'">Kembali</button>
