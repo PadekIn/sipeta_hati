@@ -37,9 +37,8 @@ Route::middleware(['auth', 'isWarga'])->group(function () {
 
     Route::prefix('profile')->group(function () {
         Route::get('/', [ProfileController::class, 'index'])->name('profile');
-        Route::get('/detail/{id}', [ProfileController::class, 'detail'])->name('profile.detail');
-        Route::get('/edit/{id}', [ProfileController::class, 'edit'])->name('profile.edit');
-        Route::patch('/update/{id}', [ProfileController::class, 'update'])->name('profile.udpate');
+        Route::get('/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+        Route::patch('/update', [ProfileController::class, 'update'])->name('profile.update');
     });
 
 });
