@@ -99,6 +99,12 @@ class SporadikController extends Controller
                     'warga_id' => $pemilik_baru_id,
                 ]);
             } else {
+                Aset::create([
+                    'warga_id' => $pemilik_baru_id,
+                    'jenis_barang' => $request->jenis_barang,
+                    'luas' => $request->luas,
+                    'alamat' => $request->alamat,
+                ]);
                 Sporadik::create([
                     'pemilik_lama_id' => $pemilik_lama_id,
                     'pemilik_baru_id' => $pemilik_baru_id,
@@ -228,6 +234,12 @@ class SporadikController extends Controller
                     'warga_id' => $pemilik_baru_id,
                 ]);
             } else {
+                Aset::create([
+                    'warga_id' => $pemilik_baru_id,
+                    'jenis_barang' => $request->jenis_barang,
+                    'luas' => $request->luas,
+                    'alamat' => $request->alamat,
+                ]);
                 $sporadik->update([
                     'pemilik_lama_id' => $pemilik_lama_id,
                     'pemilik_baru_id' => $pemilik_baru_id,
