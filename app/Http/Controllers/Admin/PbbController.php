@@ -84,6 +84,13 @@ class PbbController extends Controller
                     'lampiran' => $lampiranName,
                 ]);
             } else {
+                $pengajuan = Pengajuan::find($pengajuan_id);
+                Aset::create([
+                    'warga_id' => $pengajuan->warga_id,
+                    'jenis_barang' => $request->jenis_barang,
+                    'luas' => $request->luas,
+                    'alamat' => $request->alamat,
+                ]);
                 Pbb::create([
                     'pengajuan_id' => $pengajuan_id,
                     'no_surat' => $request->no_surat,
@@ -197,6 +204,13 @@ class PbbController extends Controller
                     'lampiran' => $lampiranName,
                 ]);
             } else {
+                $pengajuan = Pengajuan::find($pengajuan_id);
+                Aset::create([
+                    'warga_id' => $pengajuan->warga_id,
+                    'jenis_barang' => $request->jenis_barang,
+                    'luas' => $request->luas,
+                    'alamat' => $request->alamat,
+                ]);
                 $pbb->update([
                     'pengajuan_id' => Hashids::decode($request->pengajuan_id)[0],
                     'no_surat' => $request->no_surat,
