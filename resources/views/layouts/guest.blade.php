@@ -104,6 +104,24 @@
                 </a>
             </li> --}}
 
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#laporan-nav" data-bs-toggle="collapse" href="#">
+                    <i class="bi bi-card-list"></i><span>Laporan</span><i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="laporan-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a href="{{ route('pbb') }}">
+                            <i class="bi bi-circle"></i><span>PBB</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('sporadik') }}">
+                            <i class="bi bi-circle"></i><span>Sporadik</span>
+                        </a>
+                    </li>
+                </ul>
+            </li><!-- End Components Nav -->
+
             <li class="nav-heading">Profile</li>
 
             <li class="nav-item">
