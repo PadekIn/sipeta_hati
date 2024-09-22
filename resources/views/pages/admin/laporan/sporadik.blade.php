@@ -109,7 +109,7 @@
             // Header
             printWindow.document.write(
                 '<div style="margin-bottom: 3rem; padding-bottom: 1rem; text-align: center; border-bottom: 3px solid black; display: flex; align-items: center; gap: 2.5rem;">'
-                );
+            );
             printWindow.document.write(
                 '<img src="http://sipeta_hati.test/img/logo/logo_jambi2.png" style="width: 65px;" alt="logo">');
             printWindow.document.write('<div style="width: 75%;">');
@@ -118,13 +118,13 @@
             printWindow.document.write('<h3 style="margin:0; padding:0;">KELURAHAN SENGETI</h3>');
             printWindow.document.write(
                 '<p style="margin:0; padding:0; font-size: 13px">Jl. Kemas Tabro RT. 14 Kelurahan Sengeti Kecamatan Sekernan Kabupaten Muaro Jambi Kode Pos 36381</p>'
-                );
+            );
             printWindow.document.write('</div>');
             printWindow.document.write('</div>');
 
             // Laporan
             printWindow.document.write('<h4 style="text-align: center;">Laporan Surat Sporadik ' + new Date()
-            .getFullYear() + '</h4>');
+                .getFullYear() + '</h4>');
             // printWindow.document.write('<hr>');
 
             // Tabel Laporan
@@ -132,8 +132,9 @@
 
             // Footer
             printWindow.document.write('<div style="text-align: right; margin-top: 4rem;">');
-            printWindow.document.write('<p style="margin-bottom:3rem; text-align: right;">Jambi, 23 September 2024</p>');
-            printWindow.document.write('<p style="margin-top:3rem;">Rahmiyati, S.Pd Nip: 1976112003122003</p>');
+            printWindow.document.write('<p style="margin-bottom:4rem; text-align: right;">Jambi, 23 September 2024</p>');
+            printWindow.document.write('<p style="margin-top:3rem;">Rahmiyati, S.Pd</p>');
+            printWindow.document.write('<p>Nip: 1976112003122003</p>');
             printWindow.document.write('</div>');
 
             printWindow.document.write('</body></html>');
