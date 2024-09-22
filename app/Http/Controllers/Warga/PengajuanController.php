@@ -15,7 +15,7 @@ class PengajuanController extends Controller
     {
         try {
             $id = Auth::user()->warga->id;
-            $pengajuans = Pengajuan::with('warga')->where('warga_id', $id)->get();
+            $pengajuans = Pengajuan::with('warga')->where('warga_id', $id)->orderBy('created_at', 'desc')->get();
 
             return view('pages.warga.pengajuan.list', compact('pengajuans'));
         } catch (\Exception $e) {
