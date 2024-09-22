@@ -37,18 +37,20 @@
                             </thead>
                             <tbody>
                                 @foreach ($pbbs as $pbb)
-                                <tr>
-                                    <td>
-                                        <a href="{{ route('aset.pbb.detail', $pbb->hashid) }}">{{ $pbb->no_surat }}</a>
-                                    </td>
-                                    <td>
-                                        <a href="{{ route('pengajuan.detail', $pbb->pengajuan->hashid) }}">#{{ $pbb->pengajuan->hashid }}</a>
-                                    </td>
-                                    <td>{{ $pbb->pengajuan->warga->nama }}</td>
-                                    <td>{{ $pbb->pengajuan->perihal }}</td>
-                                    <td>{{ $pbb->pengajuan->keterangan }}</td>
-                                    <td>{{ $pbb->tanggal_surat }}</td>
-                                </tr>
+                                    <tr>
+                                        <td>
+                                            <a
+                                                href="{{ route('aset.pbb.detail', $pbb->hashid) }}">{{ $pbb->no_surat }}</a>
+                                        </td>
+                                        <td>
+                                            <a
+                                                href="{{ route('pengajuan.detail', $pbb->pengajuan->hashid) }}">#{{ $pbb->pengajuan->hashid }}</a>
+                                        </td>
+                                        <td>{{ $pbb->pengajuan->warga->nama }}</td>
+                                        <td>{{ $pbb->pengajuan->perihal }}</td>
+                                        <td>{{ $pbb->pengajuan->keterangan }}</td>
+                                        <td>{{ $pbb->tanggal_surat }}</td>
+                                    </tr>
                                 @endforeach
                             </tbody>
                         </table>
@@ -95,25 +97,33 @@
             printWindow.document.write('.header { text-align: center; margin-bottom: 20px; }');
             printWindow.document.write('.footer { text-align: center; margin-top: 20px; }');
             printWindow.document.write('.no-print { display: none; }'); // Menyembunyikan elemen yang tidak perlu
-            printWindow.document.write('table { width: 100%; border-collapse: collapse; margin: 20px 0; table-layout: fixed; }');
-            printWindow.document.write('th, td { border: 1px solid #ddd; text-align: center; word-wrap: break-word; padding: 8px; }');
+            printWindow.document.write(
+                'table { width: 100%; border-collapse: collapse; margin: 20px 0; table-layout: fixed; }');
+            printWindow.document.write(
+                'th, td { border: 1px solid #ddd; text-align: center; word-wrap: break-word; padding: 8px; }');
             printWindow.document.write('th { background-color: #f2f2f2; }');
             printWindow.document.write('@page { size: portrait; } }');
             printWindow.document.write('</style></head><body>');
 
             // Header
-            printWindow.document.write('<div style="margin-bottom: 3rem; padding-bottom: 1rem; text-align: center; border-bottom: 3px solid black; display: flex; align-items: center; gap: 2.5rem;">');
-            printWindow.document.write('<img src="http://sipeta_hati.test/img/logo/logo_jambi2.png" style="width: 65px;" alt="logo">');
+            printWindow.document.write(
+                '<div style="margin-bottom: 3rem; padding-bottom: 1rem; text-align: center; border-bottom: 3px solid black; display: flex; align-items: center; gap: 2.5rem;">'
+                );
+            printWindow.document.write(
+                '<img src="http://sipeta_hati.test/img/logo/logo_jambi2.png" style="width: 65px;" alt="logo">');
             printWindow.document.write('<div style="width: 75%;">');
             printWindow.document.write('<h3 style="margin:0; padding:0;">PEMERINTAH KABUPATEN MUARO JAMBI</h3>');
             printWindow.document.write('<h3 style="margin:0; padding:0;">KECAMATAN SEKERNAN</h3>');
             printWindow.document.write('<h3 style="margin:0; padding:0;">KELURAHAN SENGETI</h3>');
-            printWindow.document.write('<p style="margin:0; padding:0; font-size: 13px">Jl. Kemas Tabro RT. 14 Kelurahan Sengeti Kecamatan Sekernan Kabupaten Muaro Jambi Kode Pos 36381</p>');
+            printWindow.document.write(
+                '<p style="margin:0; padding:0; font-size: 13px">Jl. Kemas Tabro RT. 14 Kelurahan Sengeti Kecamatan Sekernan Kabupaten Muaro Jambi Kode Pos 36381</p>'
+                );
             printWindow.document.write('</div>');
             printWindow.document.write('</div>');
 
             // Laporan
-            printWindow.document.write('<h4 style="text-align: center;">Laporan Surat PBB ' + new Date().getFullYear() + '</h4>');
+            printWindow.document.write('<h4 style="text-align: center;">Laporan Surat PBB ' + new Date().getFullYear() +
+                '</h4>');
             // printWindow.document.write('<hr>');
 
             // Tabel Laporan
@@ -121,8 +131,8 @@
 
             // Footer
             printWindow.document.write('<div style="text-align: right; margin-top: 4rem;">');
-            printWindow.document.write('<p style="margin-bottom:3rem; text-align: right;">Admin,</p>');
-            printWindow.document.write('<p style="margin-top:3rem;">____________</p>');
+            printWindow.document.write('<p style="margin-bottom:3rem; text-align: right;">Jambi, 23 September 2024</p>');
+            printWindow.document.write('<p style="margin-top:3rem;">Rahmiyati, S.Pd Nip: 1976112003122003</p>');
             printWindow.document.write('</div>');
 
             printWindow.document.write('</body></html>');
@@ -130,9 +140,9 @@
             printWindow.focus();
             printWindow.print();
             printWindow.onafterprint = function() {
-            // Kembalikan ID tabel ke semula
-            table.id = originalId;
-            printWindow.close();
+                // Kembalikan ID tabel ke semula
+                table.id = originalId;
+                printWindow.close();
             };
         }
 
@@ -140,7 +150,6 @@
             event.preventDefault();
             printReport();
         });
-
     </script>
 
 </x-guest-layout>

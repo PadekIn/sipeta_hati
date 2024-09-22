@@ -121,8 +121,8 @@
 
             // Footer
             printWindow.document.write('<div style="text-align: right; margin-top: 4rem;">');
-            printWindow.document.write('<p style="margin-bottom:3rem; text-align: right;">Admin,</p>');
-            printWindow.document.write('<p style="margin-top:3rem;">____________</p>');
+            printWindow.document.write('<p style="margin-bottom:3rem; text-align: right;">Jambi, 23 September 2024</p>');
+            printWindow.document.write('<p style="margin-top:3rem;">Rahmiyati, S.Pd Nip: 1976112003122003</p>');
             printWindow.document.write('</div>');
 
             printWindow.document.write('</body></html>');
