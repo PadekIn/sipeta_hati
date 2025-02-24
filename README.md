@@ -1,6 +1,6 @@
 # Sistem Informasi Pengolahan Data di Kelurahan Sengeti
 
-## Lankah Menjalankan Project
+## Langkah Menjalankan Project
 1. Download project atau clone repo ke dalam komputer
 2. Pertama-tama, kita perlu membuat file .env berdasarkan dari file env.example, caranya jalankan perintah: ```copy .env.example .env```. Lalu isi file .env sesuai kebutuhan.
 3. Berikutnya, kita instal package-package yang diinstal dalam composer di mana package tersebut akan disimpan dalam folder vendor. Jalankan perintah berikut di dalam command prompt atau terminal: ```composer install```
